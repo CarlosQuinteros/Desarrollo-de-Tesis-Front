@@ -1,50 +1,67 @@
-  <body class="image-fondo">
-    <div class="container">
-      <div class="row justify-content-center mt-lg-3">
-        <h2 class="text-center text-light fw-bold mt-1">ADMINISTRADOR DE COMPENTENCIAS</h2>
-        <div class="col-lg-5 fadeInDown">
-          <div class="card shadow-lg border-0 mt-5">
-            <div class="card-header bg-gradient bg-dark text-white form-control-lg">
-              Iniciar Sesion
-            </div>
-            <div class="card-body mt-2">
-              <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
-                <div class="form-group">
-                  <label for="labelNombreUsuario">Nombre de Usuario</label>
-                  <div class="input-group mt-2">
-                    <i class="bi-person-fill btn btn-secondary"></i>
-                    <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
-                      placeholder="Ingrese su usuario" [(ngModel)]="nombreUsuario" required />
+<body class="image-fondo">
+  <div class="container">
+    <div class="row justify-content-center mt-lg-3">
+      <h2 class="text-center text-light fw-bold mt-1">ADMINISTRADOR DE COMPENTENCIAS</h2>
+      <div class="col-lg-5 fadeInDown">
+
+        <!-- card -->
+        <div class="card shadow-lg border-0 mt-5">
+          <div class="card-header bg-gradient bg-dark text-white form-control-lg">
+            Iniciar Sesion
+          </div>
+          <div class="card-body mt-2">
+            <!-- form login -->
+            <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+              <div class="form-group">
+                <label for="labelNombreUsuario">Nombre de Usuario</label>
+                    <div class="input-group mt-2">
+                        <i class="bi-person-fill btn btn-secondary"></i>
+                        <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
+                        placeholder="Ingrese su usuario" [(ngModel)]="nombreUsuario" required #nombre="ngModel" />
+                    </div>
+                    <div class="alert alert-danger mt-1" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre.errors?.required">
+                           <i class="bi-x-circle-fill"></i>
+                            El usuario es requerido
+                        </div>
                   </div>
-                </div>
-                <div class="form-group mt-3">
-                  <label for="labelPassword">Contraseña</label>
-                  <div class="input-group mt-2">
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="labelPassword">Contraseña</label>
+                <div class="input-group mt-2">
                     <i class="btn btn-secondary bi bi-eye-fill"
-                      [ngClass]="hide? 'btn btn-secondary bi bi-eye-fill' : 'btn btn-secondary bi bi-eye-slash-fill'"
-                      (click)="hidepassword()"></i>
-                    <input type="password" [type]="hide ? 'password': 'text'" class="form-control" name="password"
-                      id="password" placeholder="Ingrese su contraseña" [(ngModel)]="password" required />
-                  </div>
+                     [ngClass]="hide? 'btn btn-secondary bi bi-eye-fill' : 'btn btn-secondary bi bi-eye-slash-fill'" (click)="hidepassword()"></i>
+                     <input type="password" [type]="hide ? 'password': 'text'" class="form-control" name="password"
+                     id="password" placeholder="Ingrese su contraseña" [(ngModel)]="password" required #contrasenia ="ngModel" />
                 </div>
-                <div class="form-group mt-3">
-                  <div class="d-grid gap-2">
-                    <button class="bi-arrow-right-circle btn btn-success" [disabled]="!f.valid">
-                      Ingresar
-                    </button>
-                  </div>
+                <div class="alert alert-danger mt-1" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+                    <div *ngIf="contrasenia.errors?.required">
+                          <i class=" bi bi-x-circle-fill"></i>
+                          La contraseña es requerida
+                    </div>
                 </div>
-                <div class="form-group m-3">
-                  <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-link">
-                      ¿Olvidaste tu contraseña?
-                    </button>
-                  </div>
+
+              </div>
+
+              <div class="form-group mt-3">
+                <div class="d-grid gap-2">
+                  <button class="bi-arrow-right-circle btn btn-success" [disabled]="!f.valid">
+                    Ingresar
+                  </button>
                 </div>
-              </form>
-            </div>
+              </div>
+              <div class="form-group m-3">
+                <div class="d-grid gap-2">
+                  <button type="button" class="btn btn-link">
+                    ¿Olvidaste tu contraseña?
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
