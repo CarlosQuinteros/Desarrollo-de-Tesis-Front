@@ -9,4 +9,8 @@ html, body, app-root {
 @font-face {
     font-family: Montserrat;
     src: url(assets/fonts/Montserrat-Medium.ttf) format("opentype");
-  }
+}
+
+.container {
+    min-height: calc(100vh - 112px);
+}

@@ -11,6 +11,8 @@ import { ListaUsuariosComponent } from './usuarios/lista/lista-usuarios.componen
 import { NavBarComponent } from './NavBar/nav-bar.component';
 import { DetalleUsuarioComponent } from './usuarios/detalle/detalle-usuario.component';
 import { IndexComponent } from './index/index.component';
+import { CambiarPasswordComponent } from './usuarios/cambiarPassword/cambiar-password.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import { IndexComponent } from './index/index.component';
     ListaUsuariosComponent,
     NavBarComponent,
     DetalleUsuarioComponent,
-    IndexComponent
+    IndexComponent,
+    CambiarPasswordComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { ListaUsuariosComponent } from './usuarios/lista/lista-usuarios.componen
 import { DetalleUsuarioComponent } from './usuarios/detalle/detalle-usuario.component';
 import { IndexComponent } from './index/index.component';
 import {LoginComponent } from './auth/login.component';
+import { CambiarPasswordComponent } from './usuarios/cambiarPassword/cambiar-password.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'usuarios/lista', component:ListaUsuariosComponent},
   {path: 'usuarios/detalle/:id', component:DetalleUsuarioComponent},
   {path: 'usuarios/nuevo', component:NuevoUsuarioComponent},
+  {path: 'usuarios/perfil/cambiarContraseña', component:CambiarPasswordComponent},
   {path: '**', redirectTo: 'inicio', pathMatch: 'full' }
 ];
 

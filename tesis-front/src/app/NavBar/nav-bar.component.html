@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Adm Compentencias</a>
+        <a class="navbar-brand" >Adm Compentencias</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/inicio">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink = "/usuarios/lista">Usuarios</a>
@@ -59,12 +59,12 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!"> <i
                             class="bi bi-person-fill"></i> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#!"> <i
-                            class="bi bi-eye-fill"></i> Cambiar Contraseña</a></li>
+                        <li><a class="dropdown-item" routerLink="/usuarios/perfil/cambiarContraseña"> <i
+                            class="bi bi-key-fill"></i> Cambiar Contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
-                        <li><a class="dropdown-item" (click)="logOut()">Salir</a></li>
+                        <li><a class="dropdown-item" (click)="logOut()"> <i class="bi-arrow-right-circle-fill"></i> Salir</a></li>
                     </ul>
                 </li>
             </ul>

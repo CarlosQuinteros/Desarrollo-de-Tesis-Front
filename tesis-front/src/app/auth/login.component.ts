@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginUsuario } from '../modelo/login-usuario';
+import { LoginUsuario } from '../Dtos/login-usuario';
 import { AuthService } from '../servicios/auth.service';
 import { TokenService } from '../servicios/token.service';
 
@@ -65,13 +65,16 @@ export class LoginComponent implements OnInit {
           this.isLogged = false;
           this.isLoginFail = true;
           this.errMsj = err.error.mensaje;
+          if(!this.errMsj){
+            this.errMsj = "Si el problema persiste, consulte con el administrador.";
+           } 
 
           console.log(this.errMsj);
 
           //sweetalert2 con error
           Swal.fire({
             icon: 'error',
-            title: 'Error',
+            title: 'Error al iniciar session',
             text: `${this.errMsj}`
           })
         }
