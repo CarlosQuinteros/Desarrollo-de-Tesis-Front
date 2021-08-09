@@ -18,7 +18,7 @@
                     <div class="input-group mt-2">
                         <i class="bi-person-fill btn btn-secondary"></i>
                         <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
-                        placeholder="Ingrese su usuario" [(ngModel)]="nombreUsuario" required #nombre="ngModel" />
+                        placeholder="Ingrese su usuario o correo" [(ngModel)]="nombreUsuario" required #nombre="ngModel" />
                        
                     </div>
                     <div class="alert-danger rounded mt-2" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
