@@ -38,30 +38,46 @@ export class CambiarPasswordComponent implements OnInit {
   }
 
   cambiarPassword():void{
+    /*al hacer click en cambiar Contraseña */
     console.log(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     this.cambiarPasswordDto = new CambiarPassword(this.passwordActual, this.passwordNuevo, this.repetirPassword);
-    
-    console.log(" al hacer click cambiar contra");
-      this.usuarioService.cambiarPassword(this.usuario.id, this.cambiarPasswordDto).subscribe(
-        data => {
-          this.msj = data.mensaje;
-          this.restablecerFormulario();
-          Swal.fire({
-            icon: 'success',
-            title:this.msj,
-            text:''
-          })
-        }, 
-        err => {
-          this.msj = err.error.mensaje;
-          Swal.fire({
-            icon: 'error',
-            title: 'Error al actualizar la contraseña',
-            text: this.msj
-            
-          })
-        }
-      )
+    Swal.fire({
+      title: '¿Realmente deseas cambiar la contraseña?',
+      showCancelButton: true,
+      confirmButtonText: `Cambiar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.showLoading();
+        this.solicitarCambioPassword();
+      } 
+    })
+      
+  }
+
+  solicitarCambioPassword():void{
+    /*Solicitar cambio de contraseña al backend*/
+    this.usuarioService.cambiarPassword(this.usuario.id, this.cambiarPasswordDto).subscribe(
+      data => {
+        this.msj = data.mensaje;
+        Swal.fire({
+          icon: 'success',
+          title:this.msj,
+          text:''
+        })
+        
+        this.restablecerFormulario();
+      }, 
+      err => {
+        this.msj = err.error.mensaje;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al actualizar la contraseña',
+          text: this.msj
+          
+        })
+      }
+    )
   }
 
   obtenerUsuario():void{

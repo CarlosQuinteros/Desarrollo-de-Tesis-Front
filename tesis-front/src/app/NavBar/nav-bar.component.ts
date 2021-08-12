@@ -36,7 +36,7 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/login']);
     Swal.fire({
       icon: 'success',
-      title: 'Cerraste Sesion correctamente!'
+      title: 'Cerraste sesion correctamente!'
     })
 
   }

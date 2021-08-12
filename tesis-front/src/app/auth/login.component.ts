@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           Swal.fire({
             icon : 'success',
             title : 'Bienvenido',
-            text : 'Iniciaste session correctamente'
+            text : 'Iniciaste sesion correctamente'
           })
           this.roles = this.tokenService.getAuthorities();
           this.router.navigate(['/inicio']);
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
           //sweetalert2 con error
           Swal.fire({
             icon: 'error',
-            title: 'Error al iniciar session',
+            title: 'Error al iniciar sesion',
             text: `${this.errMsj}`
           })
         }

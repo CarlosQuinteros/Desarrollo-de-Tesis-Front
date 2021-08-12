@@ -40,7 +40,7 @@
                                             <td>{{ usuario.apellido }}</td>
                                             <td>{{ usuario.email}}</td>
                                             <td>
-                                                <span [ngClass] = "usuario.activo? 'badge bg-success':'badge bg-danger'">
+                                                <span [ngClass] = "usuario.activo? 'badge rounded-pill bg-success':'badge rounded-pill bg-danger'">
                                                     {{usuario.activo? "Activo": "Inactivo" }}
                                                 </span>
                                             </td>
