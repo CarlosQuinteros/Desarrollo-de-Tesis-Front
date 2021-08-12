@@ -9,6 +9,7 @@ export class Usuario {
     activo:boolean = false;
     fechaCreacion:Date = new Date();
     fechaActualizacion:Date = new Date();
+    tokenPassword: string = '';
 
 
     constructor(nombre: string,apellido: string,email:string, nombreUsuario:string,password: string){

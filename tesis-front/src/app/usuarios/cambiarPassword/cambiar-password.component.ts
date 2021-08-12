@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CambiarPassword } from 'src/app/Dtos/cambiar-password';
 import { Usuario } from 'src/app/modelo/usuario';
@@ -37,7 +38,7 @@ export class CambiarPasswordComponent implements OnInit {
 
   }
 
-  cambiarPassword():void{
+  cambiarPassword(form: NgForm):void{
     /*al hacer click en cambiar Contraseña */
     console.log(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     this.cambiarPasswordDto = new CambiarPassword(this.passwordActual, this.passwordNuevo, this.repetirPassword);
@@ -49,13 +50,13 @@ export class CambiarPasswordComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.showLoading();
-        this.solicitarCambioPassword();
+        this.solicitarCambioPassword(form);
       } 
     })
       
   }
 
-  solicitarCambioPassword():void{
+  solicitarCambioPassword(form : NgForm):void{
     /*Solicitar cambio de contraseña al backend*/
     this.usuarioService.cambiarPassword(this.usuario.id, this.cambiarPasswordDto).subscribe(
       data => {
@@ -63,10 +64,9 @@ export class CambiarPasswordComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title:this.msj,
-          text:''
+          text:'Recuerdala para tu próximo inicio de sesion'
         })
-        
-        this.restablecerFormulario();
+        form.resetForm();
       }, 
       err => {
         this.msj = err.error.mensaje;
