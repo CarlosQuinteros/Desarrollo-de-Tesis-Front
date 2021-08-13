@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule , LOCALE_ID} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import localEs from '@angular/common/locales/es-AR'
+import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,9 @@ import { DetalleUsuarioComponent } from './usuarios/detalle/detalle-usuario.comp
 import { IndexComponent } from './index/index.component';
 import { CambiarPasswordComponent } from './usuarios/cambiarPassword/cambiar-password.component';
 import { FooterComponent } from './footer/footer.component';
+
+
+registerLocaleData(localEs, "es-AR");
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +36,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

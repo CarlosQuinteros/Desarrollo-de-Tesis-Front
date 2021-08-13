@@ -6,13 +6,14 @@
         <li class="breadcrumb-item active">Listado</li>
     </ol>
     <div class="mt-4">
-        <button class="btn btn-success"> <i class="bi bi-plus-circle"> </i> Nuevo Usuario</button>
+        <button class="btn btn-success"> <i class="bi bi-plus-circle me-1"> </i> Nuevo Usuario</button>
     </div>
     <div class="row justify-content-center mt-4">
         <div>
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title">Usuarios</h5>
+                    <i class="bi bi-table me-1"></i>
+                    Usuarios
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -44,9 +45,8 @@
                                                     {{usuario.activo? "Activo": "Inactivo" }}
                                                 </span>
                                             </td>
-                                            <td>{{ usuario.fechaCreacion}}</td>
-                                            <td>{{ usuario.fechaActualizacion }}</td>
-                                            <td>{{ usuario.tokenPassword}}</td>
+                                            <td>{{ usuario.fechaCreacion | date:"short" }}</td>
+                                            <td>{{ usuario.fechaActualizacion | date:"short" }}</td>
                                            
                                         </tr>                                    
                                     </tbody>
