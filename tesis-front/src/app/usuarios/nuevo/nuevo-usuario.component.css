@@ -1,11 +1,5 @@
-.image-fondo{
-    background-image: url("src/assets/imagenes/fondo1.jpg");
-    position: fixed;
-    height: 110%;
-    min-width: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    background-size: cover;
-    
+
+.scroll {
+    max-height: 500px;
+    overflow-y: auto;
 }

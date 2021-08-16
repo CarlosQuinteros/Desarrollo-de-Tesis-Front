@@ -1,20 +1,147 @@
 <app-nav-bar></app-nav-bar>
-<div class="container">
-    <h2 class="mt-4">Crear Usuario</h2>
+<div class="container-xl">
 
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item">Usuarios</li>
-        <li class="breadcrumb-item active">Nuevo</li>
-    </ol>
-    <div class="row justify-content-center">
-        <div class="col-lg-7">
-            <div class="card shadow mb-lg-4">
-                <div class="card-header bg-primary">
-                  <h5 class="card-title text-white">Formulario</h5>
-                </div>
-                <!-- /.card-header -->
-            </div>
-        </div>
-    </div>
+    <div class="row">
+		<div class="col-md-12 mt-2">
+            <h3>Crear Usuario</h3>
+
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">Usuarios</li>
+                <li class="breadcrumb-item active">Nuevo</li>
+            </ol>
+			<div class="row" >
+				<div class="col-md-7">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card shadow mb-lg-4">
+                                <div class="card-header bg-primary text-white">
+                                    <i class="bi bi-card-text me-1"></i>
+                                    Formulario
+                                </div>
+                                <div class="card-body">
+                                    <!--form nuevo usuario-->
+                                    <form #formUsuario = ngForm (ngSubmit)= "guardarUsuario(formUsuario)" novalidate>
+                                        <!--group nombre -->
+                                        <div class="form-group">
+                                            <label for="labelNombre">Nombre</label>
+                                            <input type="text" class="form-control mt-2" name ="nombre"id="nombre"  placeholder="Ingrese el nombre" [(ngModel)]="nombreUsuario" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
+                                                <div *ngIf="nombreUs.errors?.required">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El nombre es requerido
+                                                </div>
+                                                <div *ngIf="nombreUs.errors?.pattern">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        Solo se permiten letras
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group nombre-->
+                                        <!--group apellido-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelApellido">Apellidos</label>
+                                            <input type="text" class="form-control mt-2" name ="apellido"id="apellido"  placeholder="Ingrese el apellido" [(ngModel)]="apellidoUsuario" #apellidoUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
+                                                <div *ngIf="apellidoUs.errors?.required">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El apellido es requerido
+                                                </div>
+                                                <div *ngIf="apellidoUs.errors?.pattern">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        Solo se permiten letras
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group apellido-->
+                                        <!--group email-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelEmail">Email</label>
+                                            <input type="email" class="form-control mt-2" name ="email"id="email"  placeholder="Ingrese el correo electronico" [(ngModel)]="emailUsuario" #emailUs = "ngModel" required email>
+                                            <div class="alert-danger rounded mt-2" *ngIf="emailUs.invalid && (emailUs.dirty || emailUs.touched)">
+                                                <div *ngIf="emailUs.errors?.required">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El correo es requerido
+                                                </div>
+                                                <div *ngIf="emailUs.errors?.email">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El correo debe tener el formato correcto
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group email-->
+                                        <!--group username-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelUserName">Nombre de usuario</label>
+                                            <input type="text" class="form-control mt-2" name ="userName"id="userName"  placeholder="Ingrese el nombre de usuario" [(ngModel)]="userNameUsuario" #userNameUs = "ngModel" required minlength="4">
+                                            <div class="alert-danger rounded mt-2" *ngIf="userNameUs.invalid && (userNameUs.dirty || userNameUs.touched)">
+                                                <div *ngIf="userNameUs.errors?.required">
+                                                <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El nombre de usuario es requerido
+                                                </div>
+                                                <div *ngIf="userNameUs.errors?.minlength">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        El correo debe tener al menos 4 caracteres
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group username-->
+                                        <!--group password-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelPassword">Contraseña</label>
+                                            <input type="password" class="form-control mt-2" name ="password"id="password"  placeholder="Ingrese la contraseña" [(ngModel)]="passwordUsuario" #passUs = "ngModel" required minlength="8">
+                                            <div class="alert-danger rounded mt-2" *ngIf="passUs.invalid && (passUs.dirty || passUs.touched)">
+                                                <div *ngIf="passUs.errors?.required">
+                                                   <i class="ms-1 bi-x-circle-fill"></i>
+                                                     La contraseña es requerida
+                                                </div>
+                                                <div *ngIf="passUs.errors?.minlength">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                      La contraseña debe tener un minimo de 8 caracteres
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group password -->
+                                        
+                                    <div class="card-footer text-center mt-3">
+                                        <button class="btn btn-success" [disabled]="!formUsuario.valid">Guardar Usuario</button>  
+                                    </div>
+                                    </form>
+                                    <!-- fin form nuevo usuario-->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+				</div>
+				<div class="col-md-5 align-content-center">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary text-white"> 
+                                    <i class="bi bi-toggle-on me-1"></i>
+                                    Roles a asignar</div>
+                                <div class="card-body">
+                                    <!-- roles -->
+                                <!-- group roles-->
+                                <div class="form-group mt-2">
+                                    <div class="form-check form-switch mt-2" *ngFor="let rol of roles; let i = index; ">
+                                        <input class="form-check-input" type="checkbox" id={{roles[i].name}} [(ngModel)] = "roles[i].active"  [disabled]="roles[i].name=='User'">
+                                        <label class="form-check-label fw-bold" for={{roles[i].name}} id={{roles[i].name}}>{{rol.name}}</label>
+                                        <p>{{rol.description}}</p>
+                                    </div>
+                                </div>
+                                <!-- fin roles-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+				</div>
+			</div>
+		</div>
+	</div>
+    
 </div>
 <app-footer></app-footer>

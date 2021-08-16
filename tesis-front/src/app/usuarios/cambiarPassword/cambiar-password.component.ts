@@ -39,7 +39,7 @@ export class CambiarPasswordComponent implements OnInit {
   }
 
   cambiarPassword(form: NgForm):void{
-    /*al hacer click en cambiar Contraseña */
+    /*al hacer click en el boton cambiar Contraseña */
     console.log(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     this.cambiarPasswordDto = new CambiarPassword(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     Swal.fire({

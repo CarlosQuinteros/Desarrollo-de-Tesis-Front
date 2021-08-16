@@ -16,6 +16,7 @@ import { IndexComponent } from './index/index.component';
 import { CambiarPasswordComponent } from './usuarios/cambiarPassword/cambiar-password.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { ValidateEqualModule } from 'ng-validate-equal';
 
 registerLocaleData(localEs, "es-AR");
 @NgModule({
@@ -34,7 +35,8 @@ registerLocaleData(localEs, "es-AR");
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ValidateEqualModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]
