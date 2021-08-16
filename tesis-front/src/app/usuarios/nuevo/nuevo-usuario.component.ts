@@ -65,9 +65,10 @@ export class NuevoUsuarioComponent implements OnInit {
       rolesUsuarios
     );
     Swal.fire({
-      title: '¿Crear usuario neuvo?',
+      title: '¿Crear usuario nuevo?',
       showCancelButton: true,
-      confirmButtonText: `Crear`,
+      confirmButtonText: 'Crear',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -87,7 +88,7 @@ export class NuevoUsuarioComponent implements OnInit {
           text: '',
         });
         form.resetForm();
-        console.log(this.roles);
+        this.resetRoles();
       },
       (err) => {
         this.msj = err.error.mensaje;
@@ -95,17 +96,26 @@ export class NuevoUsuarioComponent implements OnInit {
           icon: 'error',
           title: 'Error al crear el usuario',
           text: this.msj,
-        });
-        console.log(this.msj);
-        
+        });        
       }
     );
   }
 
   construirRoles(): string[] {
     let result = this.roles
-      .filter((role) => role.active === true)
-      .map((role) => role.name);
+                    .filter((role) => role.active === true)
+                    .map((role) => role.name);
+    /* console.log(result); */
+    
     return result;
+  }
+
+  resetRoles(): void {
+    this.roles
+      .filter((role) => role.name != 'User')
+      .forEach((role) => role.active = false);
+    
+    /* console.log(this.roles); */
+    
   }
 }
