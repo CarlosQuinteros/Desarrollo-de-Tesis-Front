@@ -34,4 +34,25 @@ export class UsuarioService {
     public crearUsuario(nuevoUsuario : NuevoUsuario):Observable<any> {
       return this.httpClient.post<any>(`${this.usuariosURL}/nuevo`, nuevoUsuario);
     }
+
+    public getCantidadUsuarios():Observable<number> {
+      return this.httpClient.get<any>(`${this.usuariosURL}/total`);
+    }
+
+    public getCantidadUsuariosActivos():Observable<number> {
+      return this.httpClient.get<any>(`${this.usuariosURL}/total-activos`);
+
+    }
+
+    public getCantidadUsuariosInactivos():Observable<number> {
+      return this.httpClient.get<any>(`${this.usuariosURL}/total-inactivos`);
+    }
+
+    public darDeAltaUsuario(id:number):Observable<any>{
+      return this.httpClient.put<any>(`${this.usuariosURL}/alta/${id}`,id);
+    }
+
+    public darDeBajaUsuario(id:number):Observable<any>{
+      return this.httpClient.put<any>(`${this.usuariosURL}/baja/${id}`,id);
+    }
 }
