@@ -45,7 +45,7 @@ export class NuevoUsuarioComponent implements OnInit {
     {
       name: 'User',
       active: true,
-      description: 'Rol por defecto. Tiene permitido consultar jugadores y partidos'
+      description: 'Rol por defecto. Tiene permitido consultar jugadores y partidos.'
     }
   ];
 
