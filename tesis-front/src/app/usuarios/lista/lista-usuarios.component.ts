@@ -46,7 +46,9 @@ export class ListaUsuariosComponent implements OnInit {
     Swal.fire({
       title: '¿Realmente quieres dar de alta este usuario?',
       showCancelButton: true,
+      icon: 'question',
       confirmButtonText: `Dar alta`,
+      cancelButtonText: 'Cancelar'
     }).then(result => {
       if (result.isConfirmed) {
         this.solicitarAltaUsuario(id);     
@@ -74,8 +76,10 @@ export class ListaUsuariosComponent implements OnInit {
     /* alerta de confirmacion */
     Swal.fire({
       title: '¿Realmente quieres dar de baja este usuario?',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonText: `Dar baja`,
+      cancelButtonText: 'Cancelar'
     }).then(result => {
       if (result.isConfirmed) {
         this.solicitarBajaUsuario(id);

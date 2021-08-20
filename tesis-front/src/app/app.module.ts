@@ -17,6 +17,8 @@ import { CambiarPasswordComponent } from './usuarios/cambiarPassword/cambiar-pas
 import { FooterComponent } from './footer/footer.component';
 
 import { ValidateEqualModule } from 'ng-validate-equal';
+import { EnviarEmailComponent } from './usuarios/recuperarPassword/enviarEmail/enviar-email.component';
+import { RecuperarPasswordComponent } from './usuarios/recuperarPassword/cambiarPassword/recuperar-password.component';
 
 registerLocaleData(localEs, "es-AR");
 @NgModule({
@@ -29,7 +31,9 @@ registerLocaleData(localEs, "es-AR");
     DetalleUsuarioComponent,
     IndexComponent,
     CambiarPasswordComponent,
-    FooterComponent
+    FooterComponent,
+    EnviarEmailComponent,
+    RecuperarPasswordComponent
   ],
   imports: [
     BrowserModule,

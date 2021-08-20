@@ -72,7 +72,6 @@ export class NuevoUsuarioComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        
         this.solicitarCreacionUsuario(form);
       }
     });

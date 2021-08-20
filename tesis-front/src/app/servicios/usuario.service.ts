@@ -26,6 +26,7 @@ export class UsuarioService {
     public UsuarioPorNombreUsuario(nombreUsuario: string):Observable<Usuario>{
       return this.httpClient.get<Usuario>(`${this.usuariosURL}/detalle/nombreUsuario/${nombreUsuario}`);
     }
+    
 
     public cambiarPassword(id:number,cambiarPassword: CambiarPassword):Observable<any>{
       return this.httpClient.put<any>(`${this.usuariosURL}/cambiarContrasenia/${id}`, cambiarPassword );

@@ -44,8 +44,10 @@ export class CambiarPasswordComponent implements OnInit {
     this.cambiarPasswordDto = new CambiarPassword(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     Swal.fire({
       title: '¿Realmente deseas cambiar la contraseña?',
+      icon: 'question',
       showCancelButton: true,
-      confirmButtonText: `Cambiar`,
+      confirmButtonText: 'Cambiar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
