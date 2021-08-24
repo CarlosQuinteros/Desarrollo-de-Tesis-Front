@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CambiarPassword } from 'src/app/Dtos/cambiar-password';
+import { CambiarPassword } from 'src/app/Dtos/usuarios/cambiar-password';
 import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';

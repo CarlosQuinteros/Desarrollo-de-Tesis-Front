@@ -29,7 +29,7 @@
                                             <th scope="col">Email</th>
                                             <th scope="col">Estado</th>
                                             <th scope="col">Creado</th>
-                                            <th scope="col">Ult. Actualización</th>
+                                            <th scope="col">Actualizado</th>
                                             <th scope="col">Acciones</th>
                                            
                                         </tr>
@@ -49,7 +49,7 @@
                                             <td>{{ usuario.fechaCreacion | date:"short" }}</td>
                                             <td>{{ usuario.fechaActualizacion | date:"short" }}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm m-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                                                <button class="btn btn-primary btn-sm m-1" routerLink="/usuarios/detalle/{{usuario.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
                                                     <i class="fas fa-edit"></i></button>
                                                 <button class="btn btn-success btn-sm" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de alta"> 
                                                     <i class="fas fa-user-check"></i></button>

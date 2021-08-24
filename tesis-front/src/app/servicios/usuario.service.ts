@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CambiarPassword } from '../Dtos/cambiar-password';
-import { NuevoUsuario } from '../Dtos/nuevo-usuario';
+import { CambiarPassword } from '../Dtos/usuarios/cambiar-password';
+import { EditarUsuarioDto } from '../Dtos/usuarios/editar-usuario-dto';
+import { NuevoUsuario } from '../Dtos/usuarios/nuevo-usuario';
+import { PerfilUsuarioDto } from '../Dtos/usuarios/perfil-usuario-dto';
 import { Usuario } from '../modelo/usuario';
 
 @Injectable({
@@ -55,5 +57,13 @@ export class UsuarioService {
 
     public darDeBajaUsuario(id:number):Observable<any>{
       return this.httpClient.put<any>(`${this.usuariosURL}/baja/${id}`,id);
+    }
+
+    public actualizarPerfilDatos(id:number, perfilUsuarioDto : PerfilUsuarioDto):Observable<any>{
+      return this.httpClient.put<any>(`${this.usuariosURL}/perfil/actualizarDatos/${id}`, perfilUsuarioDto);
+    }
+
+    public actualizarUsuario(id: number, editarUsuarioDto : EditarUsuarioDto):Observable<any>{
+      return this.httpClient.put<any>(`${this.usuariosURL}/editar/${id}`, editarUsuarioDto);
     }
 }

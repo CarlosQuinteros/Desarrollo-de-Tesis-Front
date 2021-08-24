@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginUsuario } from '../Dtos/login-usuario';
+import { LoginUsuario } from '../Dtos/usuarios/login-usuario';
 import { AuthService } from '../servicios/auth.service';
 import { TokenService } from '../servicios/token.service';
 

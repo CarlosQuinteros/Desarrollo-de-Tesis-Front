@@ -1,1 +1,150 @@
-<p>detalle-usuario works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="container-xl">
+
+    <div class="row">
+        
+		<div class="col-md-12 mt-2">
+            <!-- titulo-->
+            <h3>Editar Usuario</h3>
+
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a routerLink="/usuarios/lista">Usuarios</a></li>
+                <li class="breadcrumb-item active">Editar</li>
+            </ol>
+            <!-- fin titulo-->
+			<div class="row" >
+                <!-- div parte izquierda de pantalla-->
+				<div class="col-md-7">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card shadow mb-lg-4">
+                                <div class="card-header bg-primary text-white">
+                                    <i class="bi bi-card-text me-1"></i>
+                                    Formulario
+                                </div>
+                                <div class="card-body">
+                                    <!--form nuevo usuario-->
+                                    <form #formUsuario = ngForm (ngSubmit)="actualizarUsuario(usuario.id)" novalidate>
+                                        <!--group nombre -->
+                                        <div class="form-group">
+                                            <label for="labelNombre">Nombre</label>
+                                            <input type="text" class="form-control mt-2" name ="nombre" id="nombre" value={{usuario.nombre}}  placeholder="Ingrese el nombre" [(ngModel)]="usuario.nombre" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
+                                                <div *ngIf="nombreUs.errors?.required">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El nombre es requerido
+                                                </div>
+                                                <div *ngIf="nombreUs.errors?.pattern">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        Solo se permiten letras
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group nombre-->
+                                        <!--group apellido-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelApellido">Apellidos</label>
+                                            <input type="text" class="form-control mt-2" name ="apellido"id="apellido"  placeholder="Ingrese el apellido" value={{usuario.apellido}} [(ngModel)]="usuario.apellido" #apellidoUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
+                                                <div *ngIf="apellidoUs.errors?.required">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El apellido es requerido
+                                                </div>
+                                                <div *ngIf="apellidoUs.errors?.pattern">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        Solo se permiten letras
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group apellido-->
+                                        <!--group email-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelEmail">Email</label>
+                                            <input type="email" class="form-control mt-2" name ="email"id="email"  placeholder="Ingrese el correo electronico" value={{usuario.email}} [(ngModel)]="usuario.email" #emailUs = "ngModel" required email>
+                                            <div class="alert-danger rounded mt-2" *ngIf="emailUs.invalid && (emailUs.dirty || emailUs.touched)">
+                                                <div *ngIf="emailUs.errors?.required">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El correo es requerido
+                                                </div>
+                                                <div *ngIf="emailUs.errors?.email">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El correo debe tener el formato correcto
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group email-->
+                                        <!--group username-->
+                                        <div class="form-group mt-2">
+                                            <label for="labelUserName">Nombre de usuario</label>
+                                            <input type="text" class="form-control mt-2" name ="userName"id="userName"  placeholder="Ingrese el nombre de usuario" value={{usuario.nombreUsuario}} [(ngModel)]="usuario.nombreUsuario" #userNameUs = "ngModel" required minlength="4">
+                                            <div class="alert-danger rounded mt-2" *ngIf="userNameUs.invalid && (userNameUs.dirty || userNameUs.touched)">
+                                                <div *ngIf="userNameUs.errors?.required">
+                                                <i class="ms-1 bi-x-circle-fill"></i>
+                                                    El nombre de usuario es requerido
+                                                </div>
+                                                <div *ngIf="userNameUs.errors?.minlength">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        El correo debe tener al menos 4 caracteres
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--fin group username-->
+                                        <!-- estado usuario-->                                        
+                                        <div class="form-group mt-2">
+                                            <label for="labelApellido" class="me-2">Estado</label>
+                                            <p style="font-size: 18px;">
+                                                <span [ngClass] = "usuario.activo? 'badge rounded-pill bg-success':'badge rounded-pill bg-danger'">
+                                                    {{usuario.activo? "Activo": "Inactivo" }}
+                                                </span>
+                                                <button type= "button" class="btn btn-sm badge rounded-pill bg-success ms-2" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false"> 
+                                                    <i class="fas fa-user-check"></i> Dar de Alta</button>
+                                                    
+                                                <button type= "button" class="btn badge rounded-pill bg-danger btn-sm ms-2" (click)="darDeBajaUsuario(usuario.id)" *ngIf="usuario.activo == true">
+                                                    <i class="fas fa-user-times"></i> Dar de Baja</button>
+                                            </p>       
+                                        </div>
+                                        <!-- fin estado usuario -->
+                                    <div class="card-footer text-center mt-3">
+                                        <button class="btn btn-success" type="submit" [disabled]="!formUsuario.valid">Actualizar Usuario</button>  
+                                    </div>
+                                    </form>
+                                    <!-- fin form nuevo usuario-->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+				</div>
+                <!-- div parte derecha de pantalla -->
+				<div class="col-md-5 ">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary text-white"> 
+                                    <i class="bi bi-toggle-on me-1"></i>
+                                    Editar Roles </div>
+                                <div class="card-body">
+                                    <!-- roles -->
+                                <!-- group roles-->
+                                <div class="form-group mt-2">
+                                    <div class="form-check form-switch mt-2" *ngFor="let rol of roles; let i = index; ">
+                                        <input class="form-check-input" type="checkbox" id={{roles[i].name}} [(ngModel)] = "roles[i].active"  [disabled]="roles[i].name=='User'">
+                                        <label class="form-check-label fw-bold" for={{roles[i].name}} id={{roles[i].name}}>{{rol.name}}</label>
+                                        <p>{{rol.description}}</p>
+                                    </div>
+                                </div>
+                                <!-- fin roles-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+				</div>
+			</div>
+		</div>
+	</div>
+    
+</div>
+<app-footer></app-footer>

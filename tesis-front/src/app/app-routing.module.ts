@@ -8,6 +8,7 @@ import {LoginComponent } from './auth/login.component';
 import { CambiarPasswordComponent } from './usuarios/cambiarPassword/cambiar-password.component';
 import { EnviarEmailComponent } from './usuarios/recuperarPassword/enviarEmail/enviar-email.component';
 import { RecuperarPasswordComponent } from './usuarios/recuperarPassword/cambiarPassword/recuperar-password.component';
+import { PerfilActualizarComponent } from './usuarios/perfil/perfil-actualizar.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'usuarios/perfil/cambiarContraseña', component:CambiarPasswordComponent},
   {path: 'recuperarContraseña/enviarEmail', component:EnviarEmailComponent},
   {path: 'recuperarContrasenia/cambiar/:tokenPassword', component: RecuperarPasswordComponent},
+  {path: 'usuarios/perfil/actualizarDatos', component:PerfilActualizarComponent},
   {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

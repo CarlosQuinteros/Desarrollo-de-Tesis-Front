@@ -16,18 +16,17 @@ export class NavBarComponent implements OnInit {
 
   nombreUsuario: any;
   usuario : Usuario | any;
-  cant : number = 0
   constructor(private tokenService : TokenService, private router: Router, private usuarioService : UsuarioService) {}
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()!== null && this.cant==0) {
+    if(this.tokenService.getToken()!== null) {
       this.nombreUsuario = this.tokenService.getUserNamme();
-      this.usuarioService.UsuarioPorNombreUsuario(this.nombreUsuario).subscribe(
+      /*this.usuarioService.UsuarioPorNombreUsuario(this.nombreUsuario).subscribe(
         data => {
           this.usuario = data;
         }
         
-      )
+      )*/
     }
   }
 

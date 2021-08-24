@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmailValuesDto } from 'src/app/Dtos/email-values-dto';
+import { EmailValuesDto } from 'src/app/Dtos/usuarios/email-values-dto';
 import { RecuperarPasswordService } from 'src/app/servicios/recuperar-password.service';
 import Swal from 'sweetalert2';
 
@@ -30,7 +30,7 @@ export class EnviarEmailComponent implements OnInit {
       data =>{
         this.msj = data.mensaje;
         //Swal.close();
-        Swal.fire(this.msj, 'El correo contiene el enlace para restablecer tu contraseña', 'success');
+        Swal.fire(this.msj, 'Con un enlace para restablecer tu contraseña', 'success');
         form.resetForm();
       },
       err =>{

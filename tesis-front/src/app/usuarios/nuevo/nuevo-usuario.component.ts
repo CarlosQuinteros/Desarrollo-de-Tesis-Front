@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NuevoUsuario } from 'src/app/Dtos/nuevo-usuario';
+import { NuevoUsuario } from 'src/app/Dtos/usuarios/nuevo-usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 import Swal from 'sweetalert2';
@@ -68,6 +68,7 @@ export class NuevoUsuarioComponent implements OnInit {
       title: '¿Crear usuario nuevo?',
       showCancelButton: true,
       confirmButtonText: 'Crear',
+      icon: 'question',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */

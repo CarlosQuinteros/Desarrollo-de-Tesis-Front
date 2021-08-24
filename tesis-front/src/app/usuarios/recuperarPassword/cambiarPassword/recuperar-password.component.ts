@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { RecuperarPasswordDto } from 'src/app/Dtos/recuperar-password-dto';
+import { RecuperarPasswordDto } from 'src/app/Dtos/usuarios/recuperar-password-dto';
 import { Usuario } from 'src/app/modelo/usuario';
 import { RecuperarPasswordService } from 'src/app/servicios/recuperar-password.service';
 
@@ -29,9 +29,9 @@ export class RecuperarPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.tokenPassword = this.rutaActiva.snapshot.params.tokenPassword;
     this.verificarTokenExiste(this.tokenPassword);
-    setTimeout(function(){
+    /*setTimeout(function(){
       console.log("Luego de 5 segundos cargo");
-    },5000);
+    },5000);*/
 
   }
 
@@ -73,8 +73,9 @@ export class RecuperarPasswordComponent implements OnInit {
     this.recuperarPasswordService.recuperarPassword(recuperarPasswordDto).subscribe(
       data => {
         this.msj = data.mensaje;
-        Swal.fire(this.msj, '', 'success');
+        Swal.fire(this.msj, 'Ya puedes inicar sesión', 'success');
         form.resetForm();
+        this.router.navigate(['/login']);
       },
       err => {
         this.msj = err.error.mensaje;
