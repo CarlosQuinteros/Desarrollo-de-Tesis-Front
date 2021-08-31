@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
   providedIn: 'root',
 })
 export class UsuarioGuardService implements CanActivate {
-  realRole: string = '';
 
   constructor(private tokenService: TokenService, private router: Router) {}
 
@@ -22,6 +21,7 @@ export class UsuarioGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+
     const rolesEsperados = route.data.rolesEsperados;
     const rolesDelUsuario = this.tokenService.getAuthorities();
     let permitido = false;

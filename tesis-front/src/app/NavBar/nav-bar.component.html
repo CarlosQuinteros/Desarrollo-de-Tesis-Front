@@ -7,14 +7,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+
+                <!-- pagina inicio-->
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/inicio">Inicio</a>
                 </li>
-                <li class="nav-item" *ngIf="isAdmin">
-                    <a class="nav-link" routerLink = "/usuarios/lista">Usuarios</a>
+
+                <!-- menu usuarios -->
+                <li class="nav-item dropdown" *ngIf="isAdmin">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Usuarios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" routerLink="/usuarios/nuevo">Nuevo usuario</a></li>
+                        <li><a class="dropdown-item" routerLink="/usuarios/lista">Listado Usuarios</a></li>
+                    </ul>
                 </li>
                 <!-- menu jugadores -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoJugadores">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Jugadores
@@ -23,11 +34,21 @@
                         <li><a class="dropdown-item">Jugadores</a></li>
                         <li><a class="dropdown-item" href="#">Clubes</a></li>
                         <li><a class="dropdown-item" href="#">Transferencias</a></li>
-                        <li><a class="dropdown-item" href="#">Sanciones</a></li>
+                    </ul>
+                </li>
+                <!-- menu sanciones-->
+                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoSanciones">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Sanciones
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item">Nueva Sancion</a></li>
+                        <li><a class="dropdown-item" href="#">Listado Sanciones</a></li>
                     </ul>
                 </li>
                 <!-- menu torneos-->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoTorneos">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Competencias
@@ -38,7 +59,7 @@
                     </ul>
                 </li>
                 <!-- menu configuraciones -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" *ngIf="isAdmin">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Configuraciones
@@ -51,7 +72,7 @@
                 </li>
                 <!-- fin de menus -->
             </ul>
-            <!-- menu de usuario -->
+            <!-- menu del usuario logueado -->
             <ul class="navbar-nav ms-auto d-flex">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"

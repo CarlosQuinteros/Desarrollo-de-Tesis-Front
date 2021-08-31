@@ -78,11 +78,7 @@ export class TokenService {
     if(!this.isLogged()){
       return false;
     }
-    const token = this.getToken();
-    const payload: any = token?.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
+    const roles = this.getAuthorities();
     
     if(!roles.includes('ROLE_ADMIN')){
       return false;
@@ -94,11 +90,7 @@ export class TokenService {
     if(!this.isLogged()){
       return false;
     }
-    const token = this.getToken();
-    const payload: any = token?.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
+    const roles = this.getAuthorities();
     
     if(!roles.includes('ROLE_ENCARGADO_DE_JUGADORES')){
       return false;
@@ -110,11 +102,7 @@ export class TokenService {
     if(!this.isLogged()){
       return false;
     }
-    const token = this.getToken();
-    const payload: any = token?.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
+    const roles = this.getAuthorities();
     
     if(!roles.includes('ROLE_ENCARGADO_DE_TORNEOS')){
       return false;
@@ -126,16 +114,24 @@ export class TokenService {
     if(!this.isLogged()){
       return false;
     }
-    const token = this.getToken();
-    const payload: any = token?.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
+    const roles = this.getAuthorities();
     
     if(!roles.includes('ROLE_ENCARGADO_DE_SANCIONES')){
       return false;
     }
     return true;
+  }
+
+  public isUser(): boolean{
+    if(!this.isLogged()){
+      return false;
+    }
+    const roles = this.getAuthorities();
+    
+    if(!roles.includes('ROLE_USER')){
+      return false;
+    }
+    return true
   }
 
   public logOut(): void{

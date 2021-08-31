@@ -11,7 +11,14 @@ import { UsuarioService } from '../servicios/usuario.service';
 export class IndexComponent implements OnInit {
 
   roles : string[] = [];
+
   isAdmin = false;
+  isUser = true;
+  isEncargadoTorneos = false;
+  isEncargadoJugadores = false;
+  isEncargadoSanciones = false;
+
+  nombreUsuario: any = '';
 
   cantidadUsuarios : number = 0;
   cantidadActivos : number = 0;
@@ -24,8 +31,12 @@ export class IndexComponent implements OnInit {
     /*if(!this.tokenService.getToken()){
       this.router.navigate(['/login']);
     } */
+    this.nombreUsuario = this.tokenService.getUserNamme();
     this.roles = this.tokenService.getAuthorities();
     this.isAdmin = this.tokenService.isAdmin();
+    this.isEncargadoJugadores = this.tokenService.isEncargadoJugadores();
+    this.isEncargadoTorneos = this.tokenService.isEncargadoTorneos();
+    this.isEncargadoSanciones = this.tokenService.isEncargadoSanciones();
 
     this.obtenerCantidadUsuarios();
     this.obtenerCantidadUsuariosActivos();
@@ -48,11 +59,6 @@ export class IndexComponent implements OnInit {
     this.usuarioService.getCantidadUsuariosInactivos().subscribe(data =>{
       this.cantidadInactivos = data;
     })
-  }
-
-  public esAdmin(): void{
-    this.isAdmin  = this.roles.includes('ROLE_ADMIN');
-    
   }
 
 

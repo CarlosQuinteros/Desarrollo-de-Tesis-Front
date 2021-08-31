@@ -17,11 +17,19 @@ export class NavBarComponent implements OnInit {
   nombreUsuario: any;
   usuario : Usuario | any;
   isAdmin = false;
+  isUser = true;
+  isEncargadoJugadores = false;
+  isEncargadoSanciones = false;
+  isEncargadoTorneos = false;
+  
   constructor(private tokenService : TokenService, private router: Router, private usuarioService : UsuarioService) {}
 
   ngOnInit(): void {
     this.nombreUsuario = this.tokenService.getUserNamme();
     this.isAdmin = this.tokenService.isAdmin();
+    this.isEncargadoJugadores = this.tokenService.isEncargadoJugadores();
+    this.isEncargadoTorneos = this.tokenService.isEncargadoTorneos();
+    this.isEncargadoSanciones = this.tokenService.isEncargadoSanciones();
 
   }
 

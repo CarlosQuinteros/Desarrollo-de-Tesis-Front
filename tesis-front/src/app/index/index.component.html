@@ -1,14 +1,15 @@
 <app-nav-bar></app-nav-bar>
     <div class="container">
-        <h2 class="mt-4">Bienvenido</h2>
+        <h2 class="mt-4">Bienvenido {{nombreUsuario}}</h2>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item">Administrador de Compentencias</li>
             <li class="breadcrumb-item active">Inicio</li>
         </ol>
         <!-- inicio dashboard -->
         <div class="row">
-            <div class="col-lg-3 col-6" *ngIf="isAdmin">
-                <div class="card bg-primary bg-gradient text-white mb-4" >
+            <!-- inicio card usuarios-->
+            <div class="col-lg-3 col-6 " *ngIf="isAdmin">
+                <div class="card bg-primary bg-gradient  text-white mb-4" >
                     <div class="card-body">
                         <h4>Usuarios {{cantidadUsuarios}}</h4>
                         <div class="d-flex align-items-center justify-content-between">
@@ -30,7 +31,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <!-- inicio card jugadores-->
+            <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoJugadores">
                 <div class="card border-2 bg-success text-white mb-4">
                     <div class="card-body">
                         <h3>Jugadores</h3>
@@ -48,7 +50,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <!-- inicio card clubes-->
+            <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoJugadores">
                 <div class="card bg-warning mb-4">
                     <div class="card-body">
                         <h3 class="strong">Clubes</h3>
@@ -63,7 +66,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <!-- inicio card transferencias-->
+            <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoJugadores">
                 <div class="card bg-success  text-white mb-4">
                     <div class="card-body">
                         <h3 class="strong">Transferencias</h3>
@@ -78,7 +82,44 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <!-- inicio card competencias-->
+            <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoTorneos">
+                <div class="card border-2 bg-info mb-4">
+                    <div class="card-body">
+                        <h3>Competencias</h3>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h3>25</h3>
+                            <span style="font-size: 32px;">
+                                <i class="fas fa-trophy"></i>
+                            </span>                       
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-dark stretched-link" href="#">Ver detalles</a>
+                        <div class="small text-dark"><i class="bi bi-arrow-right-circle-fill"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!-- inicio card arbitros-->
+            <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoTorneos">
+                <div class="card border-2 bg-light mb-4">
+                    <div class="card-body">
+                        <h3>Arbitros</h3>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h3>15</h3>
+                            <span style="font-size: 32px;">
+                                <img src="../assets/imagenes/silbato-con-detalle-blanco.png">
+                            </span>                
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-dark stretched-link" href="#">Ver detalles</a>
+                        <div class="small text-dark"><i class="bi bi-arrow-right-circle-fill"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!-- inicio card Sanciones-->
+            <div class="col-lg-3 col-6" *ngIf="isAdmin  || isEncargadoSanciones">
                 <div class="card bg-danger  text-white mb-4">
                     <div class="card-body">
                         <h3 class="strong">Sanciones</h3>
@@ -94,8 +135,6 @@
                 </div>
             </div>
         </div>
-
-
         <!--fin dashboard-->
         <div class="row justify-content-center mt-5">
             <div>
@@ -104,23 +143,23 @@
                         <h5 class="card-title">Tus Roles son</h5>
                     </div>
                     <div class="card-body">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-5">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
 
-                                    <table class="table table-striped table-hover">
-                                        <thead>
-                                            <tr class="text-center">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr class="text-center">
                                                 <th scope="col">Nombre</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="text-center" *ngFor="let rol of roles">
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center" *ngFor="let rol of roles">
                                                 <td>{{ rol }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        </tr>
+                                     </tbody>
+                                </table>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
