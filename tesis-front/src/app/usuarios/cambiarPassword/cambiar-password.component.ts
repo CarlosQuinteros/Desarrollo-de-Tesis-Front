@@ -27,7 +27,9 @@ export class CambiarPasswordComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.existeToken();
+    if(!this.tokenService.isLogged()){
+      this.router.navigate(['/login']);
+    }
     this.obtenerUsuario();
   }
 

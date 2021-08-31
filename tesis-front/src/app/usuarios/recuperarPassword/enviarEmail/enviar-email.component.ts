@@ -30,7 +30,7 @@ export class EnviarEmailComponent implements OnInit {
       data =>{
         this.msj = data.mensaje;
         //Swal.close();
-        Swal.fire(this.msj, 'Con un enlace para restablecer tu contraseña', 'success');
+        Swal.fire(this.msj, 'El mismo contiene un enlace para restablecer tu contraseña', 'success');
         form.resetForm();
       },
       err =>{

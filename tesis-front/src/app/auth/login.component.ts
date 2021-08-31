@@ -42,12 +42,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginUsuario).subscribe(
         data => {
 
-          //almacenamos en sessionStorage
+          //almacenamos en LocalStorage
           this.tokenService.setToken(data.token);
-          this.tokenService.setUserNamme(data.nombreUsuario);
-          this.tokenService.setAuthorities(data.authorities);
-    
-          this.roles = data.authorities;
 
           this.isLogged = true;
           this.isLoginFail = false;
@@ -69,7 +65,7 @@ export class LoginComponent implements OnInit {
             this.errMsj = "Si el problema persiste, consulte con el administrador.";
            } 
 
-          console.log(this.errMsj);
+          //console.log(this.errMsj);
 
           //sweetalert2 con error
           Swal.fire({

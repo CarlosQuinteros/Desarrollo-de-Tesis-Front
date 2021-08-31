@@ -52,7 +52,9 @@ export class NuevoUsuarioComponent implements OnInit {
 
   constructor(private router: Router, private usuarioService: UsuarioService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   guardarUsuario(form: NgForm): void {
     let rolesUsuarios = this.construirRoles();

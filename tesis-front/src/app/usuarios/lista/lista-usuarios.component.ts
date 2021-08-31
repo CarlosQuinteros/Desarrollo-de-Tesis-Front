@@ -19,13 +19,15 @@ export class ListaUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+    this.cargarListado();
+
+    /*
     if(this.tokenService.getToken()){
       this.cargarListado();
     }
     else{
       this.router.navigate(['/login']);
-    }
+    }*/
 
   }
 

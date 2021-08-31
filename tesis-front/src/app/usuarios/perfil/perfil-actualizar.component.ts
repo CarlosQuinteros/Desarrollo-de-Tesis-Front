@@ -20,7 +20,9 @@ export class PerfilActualizarComponent implements OnInit {
   constructor(private tokenService : TokenService, private router : Router, private usuarioService : UsuarioService) { }
 
   ngOnInit(): void {
-    this.existeToken();
+    if(!this.tokenService.isLogged()){
+      this.router.navigate(['/login']);
+    }
     this.obtenerUsuario();
   }
 
@@ -49,7 +51,7 @@ export class PerfilActualizarComponent implements OnInit {
     const usuarioActualizar = new PerfilUsuarioDto(this.usuario.nombre, this.usuario.apellido, this.usuario.email, this.usuario.nombreUsuario);
     //console.log(usuarioActualizar);
     Swal.fire({
-      title: '¿Realmente deseas cambiar la contraseña?',
+      title: '¿Realmente deseas actualizar tus datos?',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: `Cambiar`,
@@ -66,10 +68,9 @@ export class PerfilActualizarComponent implements OnInit {
     this.usuarioService.actualizarPerfilDatos(id, usuarioActualizar).subscribe(
       data => {
         this.usuario = data;
-        this.tokenService.setUserNamme(this.usuario.nombreUsuario);
-        Swal.fire('Datos actualizados correctamente', '', 'success').then((result) => {
+        Swal.fire('Datos actualizados correctamente', 'Debes inicar sesion nuevamente', 'success').then((result) => {
           if(result.isConfirmed){
-            window.location.reload();
+            this.tokenService.logOut();
           }
         });
 

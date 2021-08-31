@@ -11,6 +11,7 @@ import { UsuarioService } from '../servicios/usuario.service';
 export class IndexComponent implements OnInit {
 
   roles : string[] = [];
+  isAdmin = false;
 
   cantidadUsuarios : number = 0;
   cantidadActivos : number = 0;
@@ -20,10 +21,12 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(!this.tokenService.getToken()){
+    /*if(!this.tokenService.getToken()){
       this.router.navigate(['/login']);
-    }
+    } */
     this.roles = this.tokenService.getAuthorities();
+    this.isAdmin = this.tokenService.isAdmin();
+
     this.obtenerCantidadUsuarios();
     this.obtenerCantidadUsuariosActivos();
     this.obtenerCantidadUsuariosInactivos();
@@ -45,6 +48,11 @@ export class IndexComponent implements OnInit {
     this.usuarioService.getCantidadUsuariosInactivos().subscribe(data =>{
       this.cantidadInactivos = data;
     })
+  }
+
+  public esAdmin(): void{
+    this.isAdmin  = this.roles.includes('ROLE_ADMIN');
+    
   }
 
 

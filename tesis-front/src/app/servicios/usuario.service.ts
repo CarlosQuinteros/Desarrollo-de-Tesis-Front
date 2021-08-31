@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CambiarPassword } from '../Dtos/usuarios/cambiar-password';
 import { EditarUsuarioDto } from '../Dtos/usuarios/editar-usuario-dto';
 import { NuevoUsuario } from '../Dtos/usuarios/nuevo-usuario';
@@ -15,7 +16,7 @@ export class UsuarioService {
   constructor(
     private httpClient : HttpClient) { }
 
-    usuariosURL: string = 'http://localhost:8080/usuarios';
+    usuariosURL: string = environment.usuariosURL;
 
     public listaUsuarios():Observable<Usuario[]> {
       return this.httpClient.get<Usuario[]>(`${this.usuariosURL}/listado`);

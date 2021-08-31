@@ -16,28 +16,21 @@ export class NavBarComponent implements OnInit {
 
   nombreUsuario: any;
   usuario : Usuario | any;
+  isAdmin = false;
   constructor(private tokenService : TokenService, private router: Router, private usuarioService : UsuarioService) {}
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()!== null) {
-      this.nombreUsuario = this.tokenService.getUserNamme();
-      /*this.usuarioService.UsuarioPorNombreUsuario(this.nombreUsuario).subscribe(
-        data => {
-          this.usuario = data;
-        }
-        
-      )*/
-    }
+    this.nombreUsuario = this.tokenService.getUserNamme();
+    this.isAdmin = this.tokenService.isAdmin();
+
   }
 
   logOut(): void {
     this.tokenService.logOut();
-    this.router.navigate(['/login']);
     Swal.fire({
       icon: 'success',
       title: 'Cerraste sesion correctamente!'
     })
-
   }
 
 }

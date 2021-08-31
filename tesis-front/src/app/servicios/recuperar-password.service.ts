@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { EmailValuesDto } from '../Dtos/usuarios/email-values-dto';
 import { RecuperarPasswordDto } from '../Dtos/usuarios/recuperar-password-dto';
 import { Usuario } from '../modelo/usuario';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class RecuperarPasswordService {
 
   constructor(private httpClient: HttpClient) { }
 
-  recuperarPasswordURL: string ='http://localhost:8080/email-password';
+  recuperarPasswordURL: string =environment.recuperarPasswordURL;
 
   public existeTokenPassword (tokenPassword: string): Observable<boolean> {
       return this.httpClient.get<any>(`${this.recuperarPasswordURL}/existe-token/${tokenPassword}`);

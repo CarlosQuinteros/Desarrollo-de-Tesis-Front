@@ -20,6 +20,7 @@ import { ValidateEqualModule } from 'ng-validate-equal';
 import { EnviarEmailComponent } from './usuarios/recuperarPassword/enviarEmail/enviar-email.component';
 import { RecuperarPasswordComponent } from './usuarios/recuperarPassword/cambiarPassword/recuperar-password.component';
 import { PerfilActualizarComponent } from './usuarios/perfil/perfil-actualizar.component';
+import { interceptorProvider } from './interceptors/usuario-interceptor.service';
 
 registerLocaleData(localEs, "es-AR");
 @NgModule({
@@ -44,7 +45,7 @@ registerLocaleData(localEs, "es-AR");
     FormsModule,
     ValidateEqualModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es-AR' }],
+  providers: [{provide: LOCALE_ID, useValue: 'es-AR'}, interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

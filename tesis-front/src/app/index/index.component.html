@@ -7,8 +7,8 @@
         </ol>
         <!-- inicio dashboard -->
         <div class="row">
-            <div class="col-lg-3 col-6">
-                <div class="card bg-primary bg-gradient text-white mb-4">
+            <div class="col-lg-3 col-6" *ngIf="isAdmin">
+                <div class="card bg-primary bg-gradient text-white mb-4" >
                     <div class="card-body">
                         <h4>Usuarios {{cantidadUsuarios}}</h4>
                         <div class="d-flex align-items-center justify-content-between">
