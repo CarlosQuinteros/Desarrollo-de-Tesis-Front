@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { TokenService } from '../servicios/token.service';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +18,7 @@ export class UsuarioGuardService implements CanActivate {
 
   constructor(private tokenService: TokenService, private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
+  canActivate(route: ActivatedRouteSnapshot,  state: RouterStateSnapshot): boolean {
 
     const rolesEsperados = route.data.rolesEsperados;
     const rolesDelUsuario = this.tokenService.getAuthorities();
@@ -32,7 +30,14 @@ export class UsuarioGuardService implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
-
+    
+    if(this.tokenService.isTokenExpired()){
+      Swal.fire('Token Expirado', 'Debes iniciar sesion nuevamente', 'info');
+      this.tokenService.logOut();
+      this.router.navigate(['/login']);
+      return false;
+    }
+    
     /** Comprobamos con un acumulador booleano, si el usuario tiene alguno de los roles esperados para acceder */
     rolesEsperados.forEach((rol: string) => {
       permitido = permitido || rolesDelUsuario.includes(rol);
