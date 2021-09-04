@@ -26,15 +26,17 @@ export class UsuarioGuardService implements CanActivate {
 
     /** comprobamos si esta logueado o no, para dirigir al login */
     if (!this.tokenService.isLogged()) {
-      Swal.fire('Acceso denegado', 'Debes iniciar sesion', 'error');
       this.router.navigate(['/login']);
+      Swal.fire('Acceso denegado', 'Debes iniciar sesion', 'error');
+      
       return false;
     }
-    
+
+    /** comprobamos si no expirto el token para cargar el componente */    
     if(this.tokenService.isTokenExpired()){
+      this.router.navigate(['/login']);
       Swal.fire('Token Expirado', 'Debes iniciar sesion nuevamente', 'info');
       this.tokenService.logOut();
-      this.router.navigate(['/login']);
       return false;
     }
     
@@ -53,6 +55,8 @@ export class UsuarioGuardService implements CanActivate {
 
       return false;
     }
+
+    /** si paso todas las comprobaciones, permtimos el acceso */
     return true;
   }
 }

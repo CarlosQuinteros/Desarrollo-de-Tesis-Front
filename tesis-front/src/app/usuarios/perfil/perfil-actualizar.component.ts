@@ -20,29 +20,17 @@ export class PerfilActualizarComponent implements OnInit {
   constructor(private tokenService : TokenService, private router : Router, private usuarioService : UsuarioService) { }
 
   ngOnInit(): void {
-    if(!this.tokenService.isLogged()){
-      this.router.navigate(['/login']);
-    }
     this.obtenerUsuario();
-  }
-
-  existeToken():void{
-    if(!this.tokenService.getToken()){
-      this.router.navigate(['/login']);
-    }    
-
   }
 
   obtenerUsuario():void{
     let username : any = this.tokenService.getUserNamme();
     this.usuarioService.UsuarioPorNombreUsuario(username).subscribe(
       data => {
-        this.usuario = data; 
-        //console.log(this.usuario.roles)          
+        this.usuario = data;
       },
       err => {
         this.msj = err.error.mensaje;
-        
       }
     )
   }
