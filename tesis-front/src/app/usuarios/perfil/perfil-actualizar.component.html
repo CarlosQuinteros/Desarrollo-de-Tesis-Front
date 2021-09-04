@@ -9,7 +9,7 @@
         <li class="breadcrumb-item active">Actualizar datos</li>
     </ol>
     <!-- fin titulo-->
-    <p style="font-style: italic;">Nota: Deberás iniciar sesión nuevamente luego de actualizar tu información</p>
+    <p style="font-style: italic;">Nota: Deberás iniciar sesión nuevamente luego de actualizar tu información.</p>
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card shadow mb-lg-4">
@@ -24,7 +24,7 @@
                         <!--group nombre usuario-->
                         <div class="form-group">
                             <label for="label">Nombre</label>
-                            <input type="text" class="form-control mt-2" name ="nombreUsuario" id = "nombreUsuario" value = {{usuario.nombre}} placeholder="Nombre" [(ngModel)] = "usuario.nombre" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                            <input type="text" class="form-control mt-2" name ="nombreUsuario" id = "nombreUsuario" value = {{usuario.nombre}} placeholder="Nombre" [(ngModel)] = "usuario.nombre" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
                                 <div *ngIf="nombreUs.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -40,7 +40,7 @@
                         <!--group apellido-->
                         <div class="form-group">
                             <label for="labelApelldio">Apellido</label>
-                            <input type="text" class="form-control mt-2" name ="apellido" value = {{usuario.apellido}} placeholder="Apellido" [(ngModel)]="usuario.apellido" #apellidoUs= "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                            <input type="text" class="form-control mt-2" name ="apellido" value = {{usuario.apellido}} placeholder="Apellido" [(ngModel)]="usuario.apellido" #apellidoUs= "ngModel" pattern="^[a-zA-Z ]{2,254}" required [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
                                 <div *ngIf="apellidoUs.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -56,7 +56,7 @@
                         <!--group nombre usuario-->
                         <div class="form-group">
                             <label for="label usuario">Nombre de usuario</label>
-                            <input type="text" class="form-control mt-2" name ="NombreUsuario" value = {{usuario.nombreUsuario}} placeholder= "Nombre de usuario" [(ngModel)]="usuario.nombreUsuario" #userName = "ngModel" required>
+                            <input type="text" class="form-control mt-2" name ="NombreUsuario" value = {{usuario.nombreUsuario}} placeholder= "Nombre de usuario" [(ngModel)]="usuario.nombreUsuario" #userName = "ngModel" required [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
                                 <div *ngIf="userName.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -68,7 +68,7 @@
                         <!--group correo-->
                         <div class="form-group mt-2">
                             <label for="labelCorreo">Correo</label>
-                            <input type="email" class="form-control mt-2" name="Correo" value= {{usuario.email}} placeholder="Correo electrónico" [(ngModel)]="usuario.email" #emailUs = "ngModel" required email>
+                            <input type="email" class="form-control mt-2" name="Correo" value= {{usuario.email}} placeholder="Correo electrónico" [(ngModel)]="usuario.email" #emailUs = "ngModel" required email [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="emailUs.invalid && (emailUs.dirty || emailUs.touched)">
                                 <div *ngIf="emailUs.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>

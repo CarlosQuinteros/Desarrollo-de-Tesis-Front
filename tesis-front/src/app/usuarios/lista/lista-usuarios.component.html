@@ -49,13 +49,17 @@
                                             <td>{{ usuario.fechaCreacion | date:"short" }}</td>
                                             <td>{{ usuario.fechaActualizacion | date:"short" }}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm m-1" routerLink="/usuarios/detalle/{{usuario.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                                                <button class="btn btn-primary btn-sm m-1" routerLink="/usuarios/detalle/{{usuario.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" *ngIf="usuario.nombreUsuario!='admin'">
                                                     <i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-success btn-sm" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de alta"> 
+                                                <button class="btn btn-success btn-sm" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false && usuario.nombreUsuario!='admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de alta"> 
                                                     <i class="fas fa-user-check"></i></button>
                                                     
-                                                <button class="btn btn-danger btn-sm" (click)="darDeBajaUsuario(usuario.id)" *ngIf="usuario.activo == true" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de baja">
+                                                <button class="btn btn-danger btn-sm" (click)="darDeBajaUsuario(usuario.id)" *ngIf="usuario.activo == true && usuario.nombreUsuario!='admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de baja">
                                                     <i class="fas fa-user-times"></i></button>
+                                                <button class="btn btn-warning "  *ngIf="usuario.nombreUsuario == 'admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Sin acciones">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </button>
+                                                
                                             </td>
                                         </tr>                                    
                                     </tbody>

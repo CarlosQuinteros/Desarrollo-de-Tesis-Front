@@ -96,16 +96,16 @@
                                                 <span [ngClass] = "usuario.activo? 'badge rounded-pill bg-success':'badge rounded-pill bg-danger'">
                                                     {{usuario.activo? "Activo": "Inactivo" }}
                                                 </span>
-                                                <button type= "button" class="btn btn-sm badge rounded-pill bg-success ms-2" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false"> 
+                                                <button type= "button" class="btn btn-sm badge rounded-pill bg-success ms-2" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false && usuario.nombreUsuario!='admin'"> 
                                                     <i class="fas fa-user-check"></i> Dar de Alta</button>
                                                     
-                                                <button type= "button" class="btn badge rounded-pill bg-danger btn-sm ms-2" (click)="darDeBajaUsuario(usuario.id)" *ngIf="usuario.activo == true">
+                                                <button type= "button" class="btn badge rounded-pill bg-danger btn-sm ms-2" (click)="darDeBajaUsuario(usuario.id)" *ngIf="usuario.activo == true && usuario.nombreUsuario!='admin'">
                                                     <i class="fas fa-user-times"></i> Dar de Baja</button>
                                             </p>       
                                         </div>
                                         <!-- fin estado usuario -->
                                     <div class="card-footer text-center mt-3">
-                                        <button class="btn btn-success" type="submit" [disabled]="!formUsuario.valid">Actualizar Usuario</button>  
+                                        <button class="btn btn-success" type="submit" [disabled]="!formUsuario.valid || usuario.nombreUsuario =='admin'">Actualizar Usuario</button>  
                                     </div>
                                     </form>
                                     <!-- fin form nuevo usuario-->

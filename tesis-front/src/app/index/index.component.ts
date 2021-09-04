@@ -28,19 +28,27 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*if(!this.tokenService.getToken()){
-      this.router.navigate(['/login']);
-    } */
     this.nombreUsuario = this.tokenService.getUserNamme();
+    this.obtenerRolesDelUsuario();
+    this.obtenerTotalesUsuarios();
+    
+  }
+
+  public obtenerRolesDelUsuario():void{
     this.roles = this.tokenService.getAuthorities();
     this.isAdmin = this.tokenService.isAdmin();
     this.isEncargadoJugadores = this.tokenService.isEncargadoJugadores();
     this.isEncargadoTorneos = this.tokenService.isEncargadoTorneos();
     this.isEncargadoSanciones = this.tokenService.isEncargadoSanciones();
+  }
 
-    this.obtenerCantidadUsuarios();
-    this.obtenerCantidadUsuariosActivos();
-    this.obtenerCantidadUsuariosInactivos();
+  public obtenerTotalesUsuarios(): void {
+    if(this.isAdmin){
+      this.obtenerCantidadUsuarios();
+      this.obtenerCantidadUsuariosActivos();
+      this.obtenerCantidadUsuariosInactivos();
+    }
+
   }
 
   public obtenerCantidadUsuarios():void{

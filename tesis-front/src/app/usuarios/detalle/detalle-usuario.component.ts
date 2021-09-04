@@ -50,13 +50,17 @@ export class DetalleUsuarioComponent implements OnInit {
   ngOnInit(): void {
     const id = this.ruteActiva.snapshot.params.id;
     this.obtenerUsuario(id);
+    
   }
 
   obtenerUsuario(id: number):void{
     this.usuarioService.UsuarioPorId(id).subscribe(
       data => {
         this.usuario = data;
-        //console.log(this.usuario);
+        if(this.usuario.nombreUsuario == 'admin'){
+          Swal.fire('No se puede editar el usuario admin del sistema', 'Selecciona otro usuario a editar', 'error');
+          this.router.navigate(["/usuarios/lista"]);
+        }
         this.formatearRolesUsuario();
         
     },

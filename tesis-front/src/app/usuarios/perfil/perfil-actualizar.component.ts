@@ -54,7 +54,7 @@ export class PerfilActualizarComponent implements OnInit {
       title: '¿Realmente deseas actualizar tus datos?',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: `Cambiar`,
+      confirmButtonText: `Cambiar`
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -69,7 +69,7 @@ export class PerfilActualizarComponent implements OnInit {
       data => {
         this.usuario = data;
         Swal.fire('Datos actualizados correctamente', 'Debes inicar sesion nuevamente', 'success').then((result) => {
-          if(result.isConfirmed){
+          if(result.isConfirmed || result.dismiss === Swal.DismissReason.esc){
             this.tokenService.logOut();
           }
         });
