@@ -7,6 +7,7 @@ export class NuevoUsuario {
     password: string;
     roles: string[] = [];
 
+
     constructor (pNombre: string, pApellido: string, pEmail: string, pNombreUsuario: string, pPassword: string, pRoles: string[]){
         this.nombre = pNombre;
         this.apellido = pApellido;

@@ -25,15 +25,24 @@
                     </ul>
                 </li>
                 <!-- menu jugadores -->
-                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoJugadores">
+                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoJugadores || isUser">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Jugadores
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item">Jugadores</a></li>
-                        <li><a class="dropdown-item" href="#">Clubes</a></li>
-                        <li><a class="dropdown-item" href="#">Transferencias</a></li>
+                        <li *ngIf="isUser || isAdmin || isEncargadoJugadores"><a class="dropdown-item">Lista Jugadores</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" href="#">Transferencias</a></li>
+                    </ul>
+                </li>
+                <!-- menu clubes-->
+                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Clubes
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos"><a class="dropdown-item">Lista Clubes</a></li>
                     </ul>
                 </li>
                 <!-- menu sanciones-->

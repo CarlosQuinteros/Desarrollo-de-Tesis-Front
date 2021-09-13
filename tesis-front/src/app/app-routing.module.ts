@@ -12,18 +12,22 @@ import { PerfilActualizarComponent } from './usuarios/perfil/perfil-actualizar.c
 import { UsuarioGuardService as guardUsuarios} from './guards/usuario-guard.service';
 import { LoginGuard } from './guards/login.guard';
 
-
+const USER = 'ROLE_USER';
+const ADMIN = 'ROLE_ADMIN';
+const ENCARGADO_DE_TORNEOS = 'ROLE_ENCARGADO_DE_TORNEOS';
+const ENCARGADO_DE_JUGADORES = 'ROLE_ENCARGADO_DE_JUGADORES';
+const ENCARGADO_DE_SANCIONES = 'ROLE_ENCARGADO_DE_SANCIONES';
 
 const routes: Routes = [
-  {path: 'inicio', component:IndexComponent, canActivate:[guardUsuarios], data:{rolesEsperados:['ROLE_USER']}},
+  {path: 'inicio', component:IndexComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[USER]}},
   {path: 'login', component:LoginComponent, canActivate:[LoginGuard]},
-  {path: 'usuarios/lista', component:ListaUsuariosComponent, canActivate:[guardUsuarios], data:{rolesEsperados: ['ROLE_ADMIN']}},
-  {path: 'usuarios/detalle/:id', component:DetalleUsuarioComponent, canActivate:[guardUsuarios], data:{rolesEsperados: ['ROLE_ADMIN']}},
-  {path: 'usuarios/nuevo', component:NuevoUsuarioComponent,canActivate:[guardUsuarios], data:{rolesEsperados: ['ROLE_ADMIN']}},
-  {path: 'usuarios/perfil/cambiarContraseña', component:CambiarPasswordComponent, canActivate:[guardUsuarios], data:{rolesEsperados: ['ROLE_USER']}},
+  {path: 'usuarios/lista', component:ListaUsuariosComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
+  {path: 'usuarios/detalle/:id', component:DetalleUsuarioComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
+  {path: 'usuarios/nuevo', component:NuevoUsuarioComponent,canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
+  {path: 'usuarios/perfil/cambiarContraseña', component:CambiarPasswordComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [USER]}},
   {path: 'recuperarContraseña/enviarEmail', component:EnviarEmailComponent},
   {path: 'recuperarContrasenia/cambiar/:tokenPassword', component: RecuperarPasswordComponent},
-  {path: 'usuarios/perfil/actualizarDatos', component:PerfilActualizarComponent, canActivate:[guardUsuarios], data:{rolesEsperados: ['ROLE_USER']}},
+  {path: 'usuarios/perfil/actualizarDatos', component:PerfilActualizarComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [USER]}},
   {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

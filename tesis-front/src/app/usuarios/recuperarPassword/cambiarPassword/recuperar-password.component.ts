@@ -46,7 +46,7 @@ export class RecuperarPasswordComponent implements OnInit {
       },
       err =>{
         this.msj = err.error.mensaje;
-        Swal.fire(this.msj, 'Debe generar nuevamente el token', 'error');        
+        Swal.fire(this.msj, 'Debes generar nuevamente el token', 'error');        
         this.router.navigate(['/recuperarContraseña/enviarEmail']);
       }
       )
