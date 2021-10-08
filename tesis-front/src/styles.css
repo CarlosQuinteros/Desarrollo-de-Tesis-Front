@@ -14,6 +14,9 @@ html, body, app-root {
 .container {
     min-height: calc(100vh - 112px);
 }
+.container-xl {
+    min-height: calc(100vh - 112px);
+}
 
 body{
     background-color:#f4f6f9;

@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class PerfilActualizarComponent implements OnInit {
 
+  patronLetras: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
+
   usuario: any; //sera undefined hasta que se obtenga en la suscripción
   msj : string = '';
 
@@ -42,7 +44,8 @@ export class PerfilActualizarComponent implements OnInit {
       title: '¿Realmente deseas actualizar tus datos?',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: `Cambiar`
+      confirmButtonText: `Cambiar`,
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

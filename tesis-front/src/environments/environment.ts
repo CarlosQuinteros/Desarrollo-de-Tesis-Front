@@ -7,7 +7,8 @@ export const environment = {
 
   authURL : "http://localhost:8080/auth",
   recuperarPasswordURL: 'http://localhost:8080/email-password',
-  usuariosURL: 'http://localhost:8080/usuarios'
+  usuariosURL: 'http://localhost:8080/usuarios',
+  clubesURL: 'http://localhost:8080/clubes',
 
 };
 

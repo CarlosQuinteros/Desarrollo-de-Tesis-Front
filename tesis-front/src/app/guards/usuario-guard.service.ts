@@ -47,16 +47,12 @@ export class UsuarioGuardService implements CanActivate {
 
     if (!permitido) {
       this.router.navigate(['/inicio']);
-      Swal.fire(
-        'Acceso denegado',
-        'No tienes los permisos necesarios para acceder',
-        'error'
-      );
-
+      Swal.fire('Acceso denegado','No tienes los permisos necesarios para acceder','error');
       return false;
     }
 
     /** si paso todas las comprobaciones, permtimos el acceso */
     return true;
   }
+
 }

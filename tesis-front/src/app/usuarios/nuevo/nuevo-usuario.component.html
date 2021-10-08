@@ -25,7 +25,7 @@
                                         <!--group nombre -->
                                         <div class="form-group">
                                             <label for="labelNombre">Nombre</label>
-                                            <input type="text" class="form-control mt-2" name ="nombre"id="nombre"  placeholder="Ingrese el nombre" [(ngModel)]="nombreUsuario" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <input type="text" class="form-control mt-2" name ="nombre"id="nombre"  placeholder="Ingrese el nombre" [(ngModel)]="nombreUsuario" #nombreUs = "ngModel" pattern={{patronLetras}} minlength="3" required>
                                             <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
                                                 <div *ngIf="nombreUs.errors?.required">
                                                     <i class="ms-1 bi-x-circle-fill"></i>
@@ -35,13 +35,17 @@
                                                     <i class="ms-1 bi-x-circle-fill"></i>
                                                         Solo se permiten letras
                                                 </div>
+                                                <div *ngIf="nombreUs.errors?.minlength">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        El nombre debe tener al menos 3 caracteres
+                                                </div>
                                             </div>
                                         </div>
                                         <!--fin group nombre-->
                                         <!--group apellido-->
                                         <div class="form-group mt-2">
                                             <label for="labelApellido">Apellidos</label>
-                                            <input type="text" class="form-control mt-2" name ="apellido"id="apellido"  placeholder="Ingrese el apellido" [(ngModel)]="apellidoUsuario" #apellidoUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <input type="text" class="form-control mt-2" name ="apellido"id="apellido"  placeholder="Ingrese el apellido" [(ngModel)]="apellidoUsuario" #apellidoUs = "ngModel" pattern={{patronLetras}} minlength="3" required>
                                             <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
                                                 <div *ngIf="apellidoUs.errors?.required">
                                                     <i class="ms-1 bi-x-circle-fill"></i>
@@ -50,6 +54,10 @@
                                                 <div *ngIf="apellidoUs.errors?.pattern">
                                                     <i class="ms-1 bi-x-circle-fill"></i>
                                                         Solo se permiten letras
+                                                </div>
+                                                <div *ngIf="apellidoUs.errors?.minlength">
+                                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                                        El apellido debe tener al menos 3 caracteres
                                                 </div>
                                             </div>
                                         </div>
@@ -67,13 +75,14 @@
                                                     <i class="ms-1 bi-x-circle-fill"></i>
                                                     El correo debe tener el formato correcto
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                         <!--fin group email-->
                                         <!--group username-->
                                         <div class="form-group mt-2">
                                             <label for="labelUserName">Nombre de usuario</label>
-                                            <input type="text" class="form-control mt-2" name ="userName"id="userName"  placeholder="Ingrese el nombre de usuario" [(ngModel)]="userNameUsuario" #userNameUs = "ngModel" required minlength="4">
+                                            <input type="text" class="form-control mt-2" name ="userName"id="userName"  placeholder="Ingrese el nombre de usuario" [(ngModel)]="userNameUsuario" #userNameUs = "ngModel" required minlength="4" pattern={{patronLetras}}>
                                             <div class="alert-danger rounded mt-2" *ngIf="userNameUs.invalid && (userNameUs.dirty || userNameUs.touched)">
                                                 <div *ngIf="userNameUs.errors?.required">
                                                 <i class="ms-1 bi-x-circle-fill"></i>

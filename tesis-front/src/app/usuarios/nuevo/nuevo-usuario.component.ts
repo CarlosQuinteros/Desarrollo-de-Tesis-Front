@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./nuevo-usuario.component.css'],
 })
 export class NuevoUsuarioComponent implements OnInit {
+  patronLetras: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
+
   nombreUsuario: string = '';
   apellidoUsuario: string = '';
   emailUsuario: string = '';
@@ -29,7 +31,7 @@ export class NuevoUsuarioComponent implements OnInit {
       name: 'Encargado de torneos',
       active: false,
       description:
-        'Tiene permitido crear, modificar y dar de alta torneos y partidos.',
+        'Tiene permitido crear, modificar y dar de baja torneos y partidos.',
     },
     {
       name: 'Encargado de jugadores',

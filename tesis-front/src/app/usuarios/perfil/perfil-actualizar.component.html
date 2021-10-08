@@ -21,10 +21,10 @@
                 <!-- form start -->
                 <form #form = "ngForm" (ngSubmit)="actualizarDatos()" novalidate>
                     <div class="card-body">
-                        <!--group nombre usuario-->
+                        <!--group nombre-->
                         <div class="form-group">
                             <label for="label">Nombre</label>
-                            <input type="text" class="form-control mt-2" name ="nombreUsuario" id = "nombreUsuario" value = {{usuario.nombre}} placeholder="Nombre" [(ngModel)] = "usuario.nombre" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required [disabled]="usuario.nombreUsuario == 'admin'">
+                            <input type="text" class="form-control mt-2" name ="nombreUsuario" id = "nombreUsuario" value = {{usuario.nombre}} placeholder="Nombre" [(ngModel)] = "usuario.nombre" #nombreUs = "ngModel" pattern={{patronLetras}} minlength="3" required [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
                                 <div *ngIf="nombreUs.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -34,13 +34,17 @@
                                     <i class="ms-1 bi-x-circle-fill"></i>
                                       Solo se permiten letras
                                  </div>
+                                 <div *ngIf="nombreUs.errors?.minlength">
+                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                      El nombre debe tener al menos 3 caracteres
+                                 </div>
                             </div>
                         </div>
-                        <!--fin nombre usuario-->
+                        <!--fin nombre-->
                         <!--group apellido-->
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="labelApelldio">Apellido</label>
-                            <input type="text" class="form-control mt-2" name ="apellido" value = {{usuario.apellido}} placeholder="Apellido" [(ngModel)]="usuario.apellido" #apellidoUs= "ngModel" pattern="^[a-zA-Z ]{2,254}" required [disabled]="usuario.nombreUsuario == 'admin'">
+                            <input type="text" class="form-control mt-2" name ="apellido" value = {{usuario.apellido}} placeholder="Apellido" [(ngModel)]="usuario.apellido" #apellidoUs= "ngModel" pattern={{patronLetras}} minlength="3" required [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
                                 <div *ngIf="apellidoUs.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -50,11 +54,15 @@
                                     <i class="ms-1 bi-x-circle-fill"></i>
                                       Solo se permiten letras
                                  </div>
+                                 <div *ngIf="apellidoUs.errors?.minlength">
+                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                      El apellido debe tener al menos 3 caracteres
+                                 </div>
                             </div>
                         </div>
                         <!--fin apellido-->
                         <!--group nombre usuario-->
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="label usuario">Nombre de usuario</label>
                             <input type="text" class="form-control mt-2" name ="NombreUsuario" value = {{usuario.nombreUsuario}} placeholder= "Nombre de usuario" [(ngModel)]="usuario.nombreUsuario" #userName = "ngModel" required [disabled]="usuario.nombreUsuario == 'admin'">
                             <div class="alert-danger rounded mt-2" *ngIf="userName.invalid && (userName.dirty || userName.touched)">

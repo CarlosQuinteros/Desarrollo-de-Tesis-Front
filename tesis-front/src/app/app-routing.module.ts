@@ -11,6 +11,9 @@ import { RecuperarPasswordComponent } from './usuarios/recuperarPassword/cambiar
 import { PerfilActualizarComponent } from './usuarios/perfil/perfil-actualizar.component';
 import { UsuarioGuardService as guardUsuarios} from './guards/usuario-guard.service';
 import { LoginGuard } from './guards/login.guard';
+import { NuevoClubComponent } from './clubes/nuevo/nuevo-club.component';
+import { ListaClubesComponent } from './clubes/lista/lista-clubes.component';
+import { EditarClubComponent } from './clubes/editar/editar-club.component';
 
 const USER = 'ROLE_USER';
 const ADMIN = 'ROLE_ADMIN';
@@ -19,8 +22,11 @@ const ENCARGADO_DE_JUGADORES = 'ROLE_ENCARGADO_DE_JUGADORES';
 const ENCARGADO_DE_SANCIONES = 'ROLE_ENCARGADO_DE_SANCIONES';
 
 const routes: Routes = [
+  /** ruta inicio o home */
   {path: 'inicio', component:IndexComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[USER]}},
+  /** ruta login */
   {path: 'login', component:LoginComponent, canActivate:[LoginGuard]},
+  /** rutas usuarios */
   {path: 'usuarios/lista', component:ListaUsuariosComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
   {path: 'usuarios/detalle/:id', component:DetalleUsuarioComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
   {path: 'usuarios/nuevo', component:NuevoUsuarioComponent,canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
@@ -28,6 +34,10 @@ const routes: Routes = [
   {path: 'recuperarContraseña/enviarEmail', component:EnviarEmailComponent},
   {path: 'recuperarContrasenia/cambiar/:tokenPassword', component: RecuperarPasswordComponent},
   {path: 'usuarios/perfil/actualizarDatos', component:PerfilActualizarComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [USER]}},
+  /** rutas clubes */
+  {path: 'clubes/lista', component: ListaClubesComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES,ENCARGADO_DE_TORNEOS]}},
+  {path: 'clubes/nuevo', component: NuevoClubComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN,ENCARGADO_DE_JUGADORES]}},
+  {path: 'clubes/detalle/:id', component:EditarClubComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[ADMIN, ENCARGADO_DE_JUGADORES]}},
   {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

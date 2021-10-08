@@ -42,7 +42,8 @@
                         Clubes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos"><a class="dropdown-item">Lista Clubes</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos"><a class="dropdown-item" routerLink="/clubes/nuevo">Nuevo Club</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos"><a class="dropdown-item" routerLink="/clubes/lista">Lista Clubes</a></li>
                     </ul>
                 </li>
                 <!-- menu sanciones-->

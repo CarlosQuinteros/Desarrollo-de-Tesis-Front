@@ -13,8 +13,7 @@ import { Usuario } from '../modelo/usuario';
 })
 export class UsuarioService {
 
-  constructor(
-    private httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
 
     usuariosURL: string = environment.usuariosURL;
 

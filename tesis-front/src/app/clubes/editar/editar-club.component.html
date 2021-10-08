@@ -1,0 +1,89 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <h3 class="mt-2">Detalle Club</h3>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
+         <li class="breadcrumb-item"><a routerLink="/clubes/lista">Clubes</a></li>
+        <li class="breadcrumb-item active">Editar</li>
+    </ol>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow mb-lg-4">
+                <div class="card-header bg-primary text-white">
+                    <i class=" bi bi-card-text me-1"></i>
+                    Formulario
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form #form = "ngForm" (ngSubmit) = "editarClub(club.id)" novalidate>
+                    <div class="card-body">
+                        <!--group nombre-->
+                        <div class="form-group mt">
+                            <label for="">Nombre del Club</label>
+                            <input type="text" class="form-control mt-2" value="club.nombreClub" name="nombreClub" id="nombreClub" placeholder="Ingrese el nombre del club" [(ngModel)]="club.nombreClub"  #nombre = "ngModel" required minlength="8" pattern={{patron}}>
+                            <div class="alert-danger rounded mt-2" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <div *ngIf="nombre.errors?.required">
+                                   <i class="ms-1 bi-x-circle-fill"></i>
+                                     El nombre es requerido
+                                </div>
+                                <div *ngIf="nombre.errors?.minlength">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                      El nombre debe contener un minimo de 8 caracteres
+                                 </div>
+                                 <div *ngIf="nombre.errors?.pattern">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                        Solo se permiten letras
+                                 </div>
+                            </div>
+                        </div>
+                        <!--fin group nombre-->
+                        <!--group alias club-->
+                        <div class="form-group mt-2">
+                            <label for="labelAlias">Alias del Club</label>
+                            <input type="text" class="form-control mt-2" value="club.alias" name ="aliasClub"id="aliasClub"  placeholder="Ingrese el alias o apodo del club" [(ngModel)]="club.alias" #alias = "ngModel" required minlength="2" pattern={{patron}}>
+                            <div class="alert-danger rounded mt-2" *ngIf="alias.invalid && (alias.dirty || alias.touched)">
+                                <div *ngIf="alias.errors?.required">
+                                   <i class="ms-1 bi-x-circle-fill"></i>
+                                     El alias es requerido
+                                </div>
+                                <div *ngIf="alias.errors?.minlength">
+                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                    El alias debe contener un minimo de 2 caracteres
+                                </div>
+                                <div *ngIf="alias.errors?.pattern">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                        Solo se permiten letras
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin group alias-->
+                        
+                        <!--group email-->
+                        <div class="form-group mt-2">
+                            <label for="labelEmail">Email</label>
+                            <input type="email" class="form-control mt-2" value="club.email" name="emailClub" id="emailClub" placeholder="Ingtrese el email del club" [(ngModel)]="club.email" #emailClub ="ngModel" email required>
+                            <div class="alert-danger rounded mt-2" *ngIf="emailClub.invalid && (emailClub.dirty || emailClub.touched)">
+                                <div *ngIf="emailClub.errors?.required">
+                                   <i class="ms-1 bi-x-circle-fill"></i>
+                                     El email es requerido
+                                </div>
+                                 <div *ngIf="emailClub.errors?.email">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                        El email debe tener el formato correcto
+                                 </div>
+                            </div>
+                        </div>
+                        <!--fin group email-->
+                    </div>
+                  <div class="card-footer mb-2 text-center">
+                    <button class="btn btn-success" [disabled]="!form.valid">Actualizar Club</button>
+                    
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- fin container-->
+<app-footer></app-footer>
+

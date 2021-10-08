@@ -21,6 +21,9 @@ import { EnviarEmailComponent } from './usuarios/recuperarPassword/enviarEmail/e
 import { RecuperarPasswordComponent } from './usuarios/recuperarPassword/cambiarPassword/recuperar-password.component';
 import { PerfilActualizarComponent } from './usuarios/perfil/perfil-actualizar.component';
 import { interceptorProvider } from './interceptors/usuario-interceptor.service';
+import { NuevoClubComponent } from './clubes/nuevo/nuevo-club.component';
+import { ListaClubesComponent } from './clubes/lista/lista-clubes.component';
+import { EditarClubComponent } from './clubes/editar/editar-club.component';
 
 registerLocaleData(localEs, "es-AR");
 @NgModule({
@@ -36,7 +39,10 @@ registerLocaleData(localEs, "es-AR");
     FooterComponent,
     EnviarEmailComponent,
     RecuperarPasswordComponent,
-    PerfilActualizarComponent
+    PerfilActualizarComponent,
+    NuevoClubComponent,
+    ListaClubesComponent,
+    EditarClubComponent
   ],
   imports: [
     BrowserModule,

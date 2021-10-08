@@ -16,7 +16,6 @@
                     Usuarios
                 </div>
                 <div class="card-body">
-                    <div class="container">
                         <div class="row justify-content-center">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover" *ngIf="usuarios.length > 0">
@@ -50,13 +49,16 @@
                                             <td>{{ usuario.fechaActualizacion | date:"short" }}</td>
                                             <td>
                                                 <button class="btn btn-primary btn-sm m-1" routerLink="/usuarios/detalle/{{usuario.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" *ngIf="usuario.nombreUsuario!='admin'">
-                                                    <i class="fas fa-edit"></i></button>
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
                                                 <button class="btn btn-success btn-sm" (click) ="darDeAltaUsuario(usuario.id)" *ngIf="usuario.activo == false && usuario.nombreUsuario!='admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de alta"> 
-                                                    <i class="fas fa-user-check"></i></button>
+                                                    <i class="fas fa-user-check"></i>
+                                                </button>
                                                     
                                                 <button class="btn btn-danger btn-sm" (click)="darDeBajaUsuario(usuario.id)" *ngIf="usuario.activo == true && usuario.nombreUsuario!='admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Dar de baja">
-                                                    <i class="fas fa-user-times"></i></button>
-                                                <button class="btn btn-warning "  *ngIf="usuario.nombreUsuario == 'admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Sin acciones">
+                                                    <i class="fas fa-user-times"></i>
+                                                </button>
+                                                <button class="btn btn-warning"  *ngIf="usuario.nombreUsuario == 'admin'" data-bs-toggle="tooltip" data-bs-placement="top" title="Sin acciones">
                                                     <i class="fas fa-exclamation-triangle"></i>
                                                 </button>
                                                 
@@ -67,7 +69,6 @@
                                 <div *ngIf="usuarios.length == 0"><h3>No se encontraron registros</h3></div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

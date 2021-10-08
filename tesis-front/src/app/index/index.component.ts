@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ClubService } from '../servicios/club.service';
 import { TokenService } from '../servicios/token.service';
 import { UsuarioService } from '../servicios/usuario.service';
 
@@ -23,14 +24,18 @@ export class IndexComponent implements OnInit {
   cantidadUsuarios : number = 0;
   cantidadActivos : number = 0;
   cantidadInactivos : number = 0;
+  cantidadTotalClubes : number = 0;
 
-  constructor(private tokenService: TokenService, private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private tokenService: TokenService, 
+    private router: Router, 
+    private usuarioService: UsuarioService, 
+    private clubService: ClubService) { }
 
   ngOnInit(): void {
 
     this.nombreUsuario = this.tokenService.getUserNamme();
     this.obtenerRolesDelUsuario();
-    this.obtenerTotalesUsuarios();
+    this.cargarInicio();
     
   }
 
@@ -40,6 +45,11 @@ export class IndexComponent implements OnInit {
     this.isEncargadoJugadores = this.tokenService.isEncargadoJugadores();
     this.isEncargadoTorneos = this.tokenService.isEncargadoTorneos();
     this.isEncargadoSanciones = this.tokenService.isEncargadoSanciones();
+  }
+
+  public cargarInicio():void{
+    this.obtenerTotalesUsuarios();
+    this.obtenerCantidadClubes();
   }
 
   public obtenerTotalesUsuarios(): void {
@@ -67,6 +77,17 @@ export class IndexComponent implements OnInit {
     this.usuarioService.getCantidadUsuariosInactivos().subscribe(data =>{
       this.cantidadInactivos = data;
     })
+  }
+
+  public obtenerCantidadClubes():void {
+    if(this.isEncargadoJugadores || this.isAdmin){
+      this.clubService.cantidadTotalClubes().subscribe(data =>{
+        this.cantidadTotalClubes = data;
+      },err => {
+        console.log(err.error);
+        
+      })
+    }
   }
 
 
