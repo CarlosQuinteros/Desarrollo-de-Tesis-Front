@@ -47,6 +47,7 @@ import { DetalleJugadorComponent } from './jugadores/detalle/detalle-jugador.com
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {TooltipModule} from 'primeng/tooltip';
 import {ToolbarModule} from 'primeng/toolbar';
+import {RippleModule} from 'primeng/ripple';
 
 import { ListadoPasesJugadorComponent } from './jugadores/pases/lista/listado-pases-jugador.component';
 import { ListadoPasesComponent } from './Pases/lista/listado-pases.component';
@@ -105,7 +106,8 @@ registerLocaleData(localEs, "es-AR");
     MenuModule,
     DialogModule,
     ToolbarModule,
-    PanelModule
+    PanelModule,
+    RippleModule
 
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-AR'}, interceptorProvider],
