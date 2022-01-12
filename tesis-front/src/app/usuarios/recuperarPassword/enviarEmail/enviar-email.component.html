@@ -26,7 +26,7 @@
                             <!--group email o usuario-->
                             <div class="form-group">
                                 <label for="labelEmail">Correo electronico o nombre de usuario</label>
-                                <input type="text" class="form-control mt-2" name ="email"id="email"  placeholder="Ingrese su correo o su usuario" [(ngModel)]="mailTo" #emailUsuario = "ngModel" required>
+                                <input type="text" class="p-inputtext form-control mt-2" name ="email"id="email"  placeholder="Ingrese su correo o su usuario" [(ngModel)]="mailTo" #emailUsuario = "ngModel" required>
                                 <div class="alert-danger rounded mt-2" *ngIf="emailUsuario.invalid && (emailUsuario.dirty || emailUsuario.touched)">
                                     <div *ngIf="emailUsuario.errors?.required">
                                        <i class="ms-1 bi-x-circle-fill"></i>
@@ -36,16 +36,16 @@
                             </div>
                             <!--fin group email o usuario-->
                         </div>
-                      <div class="card-footer text-center">
-                        <button class="btn btn-success m-2" [disabled]="!form.valid">Enviar correo</button>
-                        <div class="text-center mt-2">
-                            <a routerLink="/login" class="link-primary text-center">Volver a inicio de sesión</a>
+                      <div class="card-footer">
+                          <div class="d-grid gap-2">
+                            <button pButton class="p-button-success" label="Enviar correo" [disabled]="!form.valid"></button>
+                          </div>
+                        <div class="text-center mt-3">
+                            <a routerLink="/login" class="link-primary text-center"><i class="bi bi-arrow-left-circle"></i>   Volver a inicio de sesión</a>
                         </div>
                       </div>
                       
                     </form>
-                    
-
                 </div>
                 <!-- fin card-->
             </div>

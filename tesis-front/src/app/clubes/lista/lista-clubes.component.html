@@ -1,61 +1,114 @@
 <app-nav-bar></app-nav-bar>
 <!-- inicio container-->
-<div class="container-xl">
-    <h3 class="mt-2">Listado de Clubes</h3>
-    <ol class="breadcrumb mb-4">
+<div class="container-xxl">
+    <!--<h3 class="mt-2">Listado de Clubes</h3>-->
+    <ol class="breadcrumb mt-4 mb-4">
         <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
         <li class="breadcrumb-item">Clubes</li>
         <li class="breadcrumb-item active">Listado</li>
     </ol>
-    <div class="mt-4">
+    <!--<div class="mt-4">
         <button class="btn btn-success" routerLink="/clubes/nuevo"> <i class="bi bi-plus-circle me-1"> </i> Nuevo Club</button>
-    </div>
+        <button pButton *ngIf="isAdmin || isEncargadoJugadores"class="p-button p-button-rounded p-button-help me-1" label="Nuevo Club" icon = "bi bi-plus-circle" routerLink="/clubes/nuevo"></button>
+    </div>  -->
+      <!--<h3 class="mt-2">Listado de Clubes</h3>-->
+
     <div class="row justify-content-center mt-4">
+       
+        <!-- tabla -->
         <div>
             <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <i class="bi bi-table me-1"></i>
-                    Clubes
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="table table-responsive-lg">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th scope="col">Id</th>
-                                        <th scope="col" style="width: 300px">Nombre</th>
-                                        <th scope="col" style="width: 250px">Alias</th>
-                                        <th scope="col" style="width: 100px">Email</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-center align-middle" *ngFor="let club of clubes">
-                                        <td>{{ club.id }}</td>
-                                        <td>{{ club.nombreClub }}</td>
-                                        <td>{{ club.alias }}</td>
-                                        <td>{{ club.email }}</td>
-                                        <td>
-                                            <button class="btn btn-info btn-sm m-1"  data-bs-toggle="tooltip" data-bs-placement="top" title="Jugadores">
-                                                <i class="fas fa-running"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm m-1" routerLink="/clubes/detalle/{{club.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-danger btn-sm m-1" (click)="eliminarClub(club.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                 </tbody>
-                            </table>
-                            <div *ngIf="clubes.length == 0"><h3>No se encontraron clubes registrados</h3></div>
+              <div class="card-header bg-primary text-white">
+                <i class="bi bi-table me-1"></i>
+                Clubes
+              </div>
+              <div class="card-body">
+                <p-table #dt [value]="clubes" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" dataKey="id" [rows]="5"
+                  [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+                  [paginator]="true"
+                  currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+                  [filterDelay]="0">
+                  <ng-template pTemplate="caption">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <button pButton class="p-button-sm p-button-rounded me-1" *ngIf="isAdmin || isEncargadoJugadores" icon="bi bi-plus-circle" label="Nuevo Club"  routerLink="/clubes/nuevo"></button>
+                            <button pButton class="p-button-sm p-button-outlined p-button-rounded me-1"  icon="pi pi-filter-slash" label="Limpiar Filtros" (click)="clear(dt)"></button>
+
                         </div>
+                        <!--<div>
+                            <button pButton class="p-button-danger p-button-sm me-1"  icon="pi pi-file-pdf" pTooltip="Exportar a PDF" tooltipPosition="top" (click)="exportarPdf(dt)"></button>
+                            <button pButton class=" p-button-success p-button-sm me-1" icon="pi pi-file-excel" pTooltip="Exportar a Excel" tooltipPosition="bottom" (click)="exportarExcel(dt)"></button>
+                        </div>-->
                     </div>
-                </div>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                    <tr class="text-center">
+                        <!--column Id-->
+                        <th class="text-center" pSortableColumn="id">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Id
+                                <p-sortIcon field="id"></p-sortIcon>
+                                <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column nombreClub-->
+                        <th class="text-center" pSortableColumn="nombreClub">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Nombre
+                                <p-sortIcon field="nombreClub"></p-sortIcon>
+                                <p-columnFilter type="text" field="nombreClub" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!-- column alias-->
+                        <th class="text-center" pSortableColumn="alias">
+                          <div class="p-d-flex p-jc-between p-ai-center">
+                            Alias
+                            <p-sortIcon field="alias"></p-sortIcon>
+                            <p-columnFilter type="text" field="alias" display="menu" class="p-ml-auto"></p-columnFilter>
+                          </div>                        
+                        </th>
+                        <!-- column email-->
+                        <th class="text-center" pSortableColumn="email">
+                          <div class="p-d-flex p-jc-between p-ai-center">
+                            Email
+                            <p-sortIcon field="email"></p-sortIcon>
+                            <p-columnFilter type="text" field="email" display="menu" class="p-ml-auto"></p-columnFilter>
+                          </div>        
+                        </th>
+                        <!-- columna acciones-->
+                        <th class="text-center" *ngIf="isAdmin || isEncargadoJugadores">Acciones</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-club>
+                    <tr>
+                      <td >{{club.id}}</td>
+                      <td>{{club.nombreClub}}</td>
+                      <td>{{club.alias}}</td>
+                      <td>{{club.email}}</td>
+                      <td class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
+                        <button pButton class="p-button-success p-button p-button-rounded me-1" icon="fas fa-running" routerLink="/jugadores/club/{{club.id}}" pTooltip="Ver Jugadores" tooltipPosition = "top">
+                            <!--<i class="fas fa-running"></i>-->
+                        </button>
+                        <button pButton class="p-buttonm p-button-rounded me-1" icon="far fa-edit" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
+                            <!--<i class="fas fa-edit"></i>-->
+                        </button>
+                        <button pButton class="p-button-danger p-button-rounded" icon="pi pi-trash" (click)="eliminarClub(club.id)" pTooltip="Eliminar" tooltipPosition = "top">
+                            <!--<i class="fas fa-trash"></i>-->
+                        </button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" colspan="8">No se encontraron registros.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+      
             </div>
-        </div>
+          </div>
+        <!-- fin tabla-->
     </div>
 </div>
 

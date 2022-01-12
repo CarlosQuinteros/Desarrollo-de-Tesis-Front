@@ -14,6 +14,15 @@ import { LoginGuard } from './guards/login.guard';
 import { NuevoClubComponent } from './clubes/nuevo/nuevo-club.component';
 import { ListaClubesComponent } from './clubes/lista/lista-clubes.component';
 import { EditarClubComponent } from './clubes/editar/editar-club.component';
+import { ListaLogsComponent } from './Logs/lista/lista-logs.component';
+import { NuevoJugadorComponent } from './jugadores/nuevo/nuevo-jugador.component';
+import { ListadoJugadoresComponent } from './jugadores/lista/listado-jugadores.component';
+import { ListaJugadoresActualesComponent } from './clubes/listaJugadoresActuales/lista-jugadores-actuales.component';
+import { DetalleJugadorComponent } from './jugadores/detalle/detalle-jugador.component';
+import { ListadoPasesJugadorComponent } from './jugadores/pases/lista/listado-pases-jugador.component';
+import { ListadoPasesComponent } from './Pases/lista/listado-pases.component';
+import { NuevoPaseJugadorComponent } from './jugadores/pases/nuevo/nuevo-pase-jugador.component';
+
 
 const USER = 'ROLE_USER';
 const ADMIN = 'ROLE_ADMIN';
@@ -34,10 +43,22 @@ const routes: Routes = [
   {path: 'recuperarContraseña/enviarEmail', component:EnviarEmailComponent},
   {path: 'recuperarContrasenia/cambiar/:tokenPassword', component: RecuperarPasswordComponent},
   {path: 'usuarios/perfil/actualizarDatos', component:PerfilActualizarComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [USER]}},
+  /** rutas logs */
+  {path: 'logs/lista', component:ListaLogsComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
   /** rutas clubes */
   {path: 'clubes/lista', component: ListaClubesComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES,ENCARGADO_DE_TORNEOS]}},
   {path: 'clubes/nuevo', component: NuevoClubComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN,ENCARGADO_DE_JUGADORES]}},
   {path: 'clubes/detalle/:id', component:EditarClubComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[ADMIN, ENCARGADO_DE_JUGADORES]}},
+  /**rutas de jugadores */
+  {path: 'jugadores/nuevo',component:NuevoJugadorComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES]}},
+  {path:'jugadores/detalle/:id', component:DetalleJugadorComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES]}},
+  {path: 'jugadores/lista', component:ListadoJugadoresComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES, USER]}},
+  {path: 'jugadores/club/:id', component:ListaJugadoresActualesComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES]}},
+  {path: 'jugadores/historialClubes/:id', component:ListadoPasesJugadorComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES]}},
+  {path: 'jugadores/pases/nuevo/:id', component:NuevoPaseJugadorComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[ADMIN, ENCARGADO_DE_JUGADORES]}},
+  /** rutas de pases o transferencias */
+  {path: 'pases/lista', component:ListadoPasesComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES]}},
+
   {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

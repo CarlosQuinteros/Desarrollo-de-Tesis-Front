@@ -18,6 +18,10 @@ html, body, app-root {
     min-height: calc(100vh - 112px);
 }
 
+.container-xxl {
+    min-height: calc(100vh - 112px);
+}
+
 body{
     background-color:#f4f6f9;
 }

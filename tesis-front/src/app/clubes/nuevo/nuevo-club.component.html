@@ -1,8 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <!-- inicio container-->
 <div class="container">
-    <h3 class="mt-2">Crear Club</h3>
-    <ol class="breadcrumb mb-4">
+    <!--<h3 class="mt-2">Crear Club</h3>-->
+    <ol class="breadcrumb m-4">
         <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
          <li class="breadcrumb-item"><a routerLink="/clubes/lista">Clubes</a></li>
         <li class="breadcrumb-item active">Nuevo</li>
@@ -12,7 +12,7 @@
             <div class="card shadow mb-lg-4">
                 <div class="card-header bg-primary text-white">
                     <i class=" bi bi-card-text me-1"></i>
-                    Formulario
+                    Crear nuevo club
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -21,7 +21,7 @@
                         <!--group nombre-->
                         <div class="form-group mt">
                             <label for="">Nombre del Club</label>
-                            <input type="text" class="form-control mt-2" name="nombreClub" id="nombreClub" placeholder="Ingrese el nombre del club" [(ngModel)]="nuevoClub.nombre"  #nombre = "ngModel" required minlength="8" pattern={{patron}}>
+                            <input type="text" class="p-inputtext form-control mt-2" name="nombreClub" id="nombreClub" placeholder="Ingrese el nombre del club" [(ngModel)]="nuevoClub.nombre"  #nombre = "ngModel" required minlength="8" pattern={{patron}}>
                             <div class="alert-danger rounded mt-2" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                                 <div *ngIf="nombre.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -41,7 +41,7 @@
                         <!--group alias club-->
                         <div class="form-group mt-2">
                             <label for="labelAlias">Alias del Club</label>
-                            <input type="text" class="form-control mt-2" name ="aliasClub"id="aliasClub"  placeholder="Ingrese el alias o apodo del club" [(ngModel)]="nuevoClub.alias" #alias = "ngModel" required minlength="2" pattern={{patron}}>
+                            <input type="text" class="p-inputtext form-control mt-2" name ="aliasClub"id="aliasClub"  placeholder="Ingrese el alias o apodo del club" [(ngModel)]="nuevoClub.alias" #alias = "ngModel" required minlength="2" pattern={{patron}}>
                             <div class="alert-danger rounded mt-2" *ngIf="alias.invalid && (alias.dirty || alias.touched)">
                                 <div *ngIf="alias.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
@@ -62,22 +62,24 @@
                         <!--group email-->
                         <div class="form-group mt-2">
                             <label for="labelEmail">Email</label>
-                            <input type="email" class="form-control mt-2" name="emailClub" id="emailClub" placeholder="Ingtrese el email del club" [(ngModel)]="nuevoClub.email" #emailClub ="ngModel" email required>
+                            <input type="email" pKeyFilter= "email" class="p-inputtext form-control mt-2" name="emailClub" id="emailClub" placeholder="Ingtrese el email del club" [(ngModel)]="nuevoClub.email" #emailClub ="ngModel" email required>
                             <div class="alert-danger rounded mt-2" *ngIf="emailClub.invalid && (emailClub.dirty || emailClub.touched)">
                                 <div *ngIf="emailClub.errors?.required">
                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                     El email es requerido
+                                        El email es requerido
                                 </div>
-                                 <div *ngIf="emailClub.errors?.email">
+                                <div *ngIf="emailClub.errors?.email">
                                     <i class=" ms-1 bi-x-circle-fill"></i>
                                         El email debe tener el formato correcto
-                                 </div>
+                                </div>
                             </div>
                         </div>
                         <!--fin group email-->
                     </div>
                   <div class="card-footer mb-2 text-center">
-                    <button class="btn btn-success" [disabled]="!form.valid">Crear Club</button>
+                      <div class="d-grid gap-2">
+                        <button pButton class="p-button-success"   label="Crear Club" [disabled]="!form.valid"></button>
+                      </div>
                     
                   </div>
                 </form>

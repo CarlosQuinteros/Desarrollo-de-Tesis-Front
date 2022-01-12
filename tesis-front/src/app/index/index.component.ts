@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClubService } from '../servicios/club.service';
+import { JugadorService } from '../servicios/jugador.service';
+import PasesService from '../servicios/pases.service';
 import { TokenService } from '../servicios/token.service';
 import { UsuarioService } from '../servicios/usuario.service';
 
@@ -25,11 +27,15 @@ export class IndexComponent implements OnInit {
   cantidadActivos : number = 0;
   cantidadInactivos : number = 0;
   cantidadTotalClubes : number = 0;
+  cantidadTotalJugadores : number = 0;
+  cantidadTotalPases : number = 0;
 
   constructor(private tokenService: TokenService, 
     private router: Router, 
     private usuarioService: UsuarioService, 
-    private clubService: ClubService) { }
+    private clubService: ClubService,
+    private jugadorService: JugadorService,
+    private pasesJugService: PasesService) { }
 
   ngOnInit(): void {
 
@@ -50,6 +56,8 @@ export class IndexComponent implements OnInit {
   public cargarInicio():void{
     this.obtenerTotalesUsuarios();
     this.obtenerCantidadClubes();
+    this.obtenerCantidadJugadores();
+    this.obtenerCantidadTotalPases();
   }
 
   public obtenerTotalesUsuarios(): void {
@@ -62,31 +70,57 @@ export class IndexComponent implements OnInit {
   }
 
   public obtenerCantidadUsuarios():void{
-    this.usuarioService.getCantidadUsuarios().subscribe(data =>{
+    this.usuarioService.getCantidadUsuarios().toPromise().then(data =>{
         this.cantidadUsuarios = data;
     })
   }
 
   public obtenerCantidadUsuariosActivos():void{
-    this.usuarioService.getCantidadUsuariosActivos().subscribe(data =>{
+    this.usuarioService.getCantidadUsuariosActivos().toPromise().then(data =>{
       this.cantidadActivos = data;
     })
   }
 
   public obtenerCantidadUsuariosInactivos():void{
-    this.usuarioService.getCantidadUsuariosInactivos().subscribe(data =>{
+    this.usuarioService.getCantidadUsuariosInactivos().toPromise().then(data =>{
       this.cantidadInactivos = data;
     })
   }
 
   public obtenerCantidadClubes():void {
     if(this.isEncargadoJugadores || this.isAdmin){
-      this.clubService.cantidadTotalClubes().subscribe(data =>{
+      this.clubService.cantidadTotalClubes().toPromise().then(data =>{
         this.cantidadTotalClubes = data;
       },err => {
         console.log(err.error);
         
       })
+    }
+  }
+
+  public obtenerCantidadJugadores():void{
+    if(this.isEncargadoJugadores || this.isAdmin || this.isUser){
+      this.jugadorService.cantidadTotalJugadores().toPromise().then(
+        data =>{
+          this.cantidadTotalJugadores = data;
+        },err=>{
+          console.log(err.error.message);
+          
+        }
+      )
+    }
+  }
+
+  public obtenerCantidadTotalPases():void {
+    if(this.isAdmin || this.isEncargadoJugadores){
+      this.pasesJugService.cantidadPases().toPromise().then(
+        data =>{
+          this.cantidadTotalPases = data;
+        },err=>{
+          console.log(err.error.message);
+          
+        }
+      )
     }
   }
 

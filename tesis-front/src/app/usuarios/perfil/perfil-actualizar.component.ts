@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PerfilUsuarioDto } from 'src/app/Dtos/usuarios/perfil-usuario-dto';
+import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -16,7 +17,7 @@ export class PerfilActualizarComponent implements OnInit {
 
   patronLetras: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
 
-  usuario: any; //sera undefined hasta que se obtenga en la suscripción
+  usuario : Usuario = new Usuario('','','','',''); //sera undefined hasta que se obtenga en la suscripción
   msj : string = '';
 
   constructor(private tokenService : TokenService, private router : Router, private usuarioService : UsuarioService) { }
@@ -25,16 +26,23 @@ export class PerfilActualizarComponent implements OnInit {
     this.obtenerUsuario();
   }
 
-  obtenerUsuario():void{
+   obtenerUsuario():void{
     let username : any = this.tokenService.getUserNamme();
-    this.usuarioService.UsuarioPorNombreUsuario(username).subscribe(
+    /*this.usuarioService.UsuarioPorNombreUsuario(username).subscribe(
       data => {
         this.usuario = data;
       },
       err => {
         this.msj = err.error.mensaje;
       }
-    )
+    )*/
+    this.usuarioService.UsuarioPorNombreUsuario(username).toPromise().then(
+      data => {
+        this.usuario = data;
+        
+    }, err => {
+      this.msj = err.error.mensaje;
+    })
   }
 
   actualizarDatos():void{
@@ -42,6 +50,7 @@ export class PerfilActualizarComponent implements OnInit {
     //console.log(usuarioActualizar);
     Swal.fire({
       title: '¿Realmente deseas actualizar tus datos?',
+      text:' Deberás iniciar sesión nuevamente luego de actualizar tu información',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: `Cambiar`,

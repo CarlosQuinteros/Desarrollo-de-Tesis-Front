@@ -1,0 +1,109 @@
+<app-nav-bar></app-nav-bar>
+<div class="container-xxl">
+    <!--<h3 class="mt-2">Detalle Jugador</h3>-->
+    <ol class="breadcrumb mt-4 mb-4">
+        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/jugadores/lista">Jugadores</a></li>
+        <li class="breadcrumb-item active">Detalle</li>
+    </ol>
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow mb-lg-4">
+                
+                <div class="card-header bg-primary text-white">
+                    <i class=" bi bi-card-text me-1"></i>
+                    Formulario
+                </div>
+                <!-- /.card-header -->
+                <form #form="ngForm"(ngSubmit)="actualizarJugador()" novalidate>
+                    <div class="card-body">
+                        <!--group nombre-->
+                        <div class="form-group">
+                            <label for="">Nombres</label>
+                            <input type="text" class="p-inputtext form-control mt-2" name="nombreJug" id="nombreJug"
+                                placeholder="Ingrese los nombres del jugador"
+                                [(ngModel)]="detalleJugador.jugador.nombre" #nombre="ngModel" required minlength="3"
+                                pattern={{patronLetras}}>
+                            <div class="alert-danger rounded mt-2"
+                                *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <div *ngIf="nombre.errors?.required">
+                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                    El nombre es requerido
+                                </div>
+                                <div *ngIf="nombre.errors?.minlength">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                    El nombre debe contener un minimo de 3 caracteres
+                                </div>
+                                <div *ngIf="nombre.errors?.pattern">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                    Solo se permiten letras
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin group nombre-->
+                        <!--group apellidos-->
+                        <div class="form-group mt-2">
+                            <label for="">Apellidos</label>
+                            <input type="text" class="p-inputtext form-control mt-2" name="apellidoJug" id="apellidoJug"
+                                placeholder="Ingrese el apellido del jugador"
+                                [(ngModel)]="detalleJugador.jugador.apellidos" #apellido="ngModel" required
+                                minlength="4" pattern={{patronLetras}}>
+                            <div class="alert-danger rounded mt-2"
+                                *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                                <div *ngIf="apellido.errors?.required">
+                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                    El nombre es requerido
+                                </div>
+                                <div *ngIf="apellido.errors?.minlength">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                    El nombre debe contener un minimo de 4 caracteres
+                                </div>
+                                <div *ngIf="apellido.errors?.pattern">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                    Solo se permiten letras
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin group apellidos-->
+                        <!--group documento-->
+                        <div class="form-group mt-2">
+                            <label for="">Documento</label>
+                            <input type="text" class="p-inputtext form-control mt-2" pKeyFilter="pint"
+                                name="documentoJug" id="documentoJug" placeholder="Ingrese el documento del jugador"
+                                [(ngModel)]="detalleJugador.jugador.documento" #dni="ngModel" required minlength="7">
+                            <div class="alert-danger rounded mt-2" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                                <div *ngIf="dni.errors?.required">
+                                    <i class="ms-1 bi-x-circle-fill"></i>
+                                    El nombre es requerido
+                                </div>
+                                <div *ngIf="dni.errors?.minlength">
+                                    <i class=" ms-1 bi-x-circle-fill"></i>
+                                    El nombre debe contener un minimo de 7 caracteres
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin group documento-->
+                        <div class="col-6 mb-2">
+                            <!--group Fecha Nacimiento-->
+                            <label class="m-2" for="fechaNac">Fecha de Nacimiento</label><br>
+                            <p-calendar class="mt-2" inputId="basic"
+                                [(ngModel)]="detalleJugador.jugador.fechaNacimientoParsed" [maxDate]="fechaActual"
+                                [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [required]="true"
+                                [yearNavigator]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
+                        </div>
+                        <!--<button style="font-size: 15px" type="button" pButton class="p-button-info btn btn-sm p-button-rounded m-2" icon="far fa-chart-bar" label="Estadisticas"></button>
+                        <button style="font-size: 15px" type="button" pButton class="p-button-warning btn btn-sm p-button-rounded m-2" icon="bi bi-arrow-down-up" label="Historial clubes" routerLink="/jugadores/historialClubes/{{detalleJugador.jugador.id}}"></button>
+                        -->
+                        
+                    </div>
+                    <div class="card-footer mt-2 text-center">
+                        <div class="d-grid gap-2">
+                            <button pButton  class="p-button-success" label="Editar Jugador" [disabled]="!form.valid"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

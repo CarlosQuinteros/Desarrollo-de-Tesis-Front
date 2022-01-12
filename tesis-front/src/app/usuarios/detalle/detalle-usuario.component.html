@@ -5,9 +5,10 @@
         
 		<div class="col-md-12 mt-2">
             <!-- titulo-->
-            <h3>Editar Usuario</h3>
+            <!--<h3>Editar Usuario</h3>-->
 
-            <ol class="breadcrumb mb-4">
+            <ol class="breadcrumb mb-4 mt-2">
+                <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
                 <li class="breadcrumb-item"><a routerLink="/usuarios/lista">Usuarios</a></li>
                 <li class="breadcrumb-item active">Editar</li>
             </ol>
@@ -22,13 +23,14 @@
                                     <i class="bi bi-card-text me-1"></i>
                                     Formulario
                                 </div>
+                                <!--form nuevo usuario-->
+                                <form #formUsuario = ngForm (ngSubmit)="actualizarUsuario(usuario.id)" novalidate>
                                 <div class="card-body">
-                                    <!--form nuevo usuario-->
-                                    <form #formUsuario = ngForm (ngSubmit)="actualizarUsuario(usuario.id)" novalidate>
+                                    
                                         <!--group nombre -->
                                         <div class="form-group">
                                             <label for="labelNombre">Nombre</label>
-                                            <input type="text" class="form-control mt-2" name ="nombre" id="nombre" value={{usuario.nombre}}  placeholder="Ingrese el nombre" [(ngModel)]="usuario.nombre" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <input type="text" class="p-inputtext form-control mt-2" name ="nombre" id="nombre" value={{usuario.nombre}}  placeholder="Ingrese el nombre" [(ngModel)]="usuario.nombre" #nombreUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
                                             <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
                                                 <div *ngIf="nombreUs.errors?.required">
                                                     <i class="ms-1 bi-x-circle-fill"></i>
@@ -44,7 +46,7 @@
                                         <!--group apellido-->
                                         <div class="form-group mt-2">
                                             <label for="labelApellido">Apellidos</label>
-                                            <input type="text" class="form-control mt-2" name ="apellido"id="apellido"  placeholder="Ingrese el apellido" value={{usuario.apellido}} [(ngModel)]="usuario.apellido" #apellidoUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
+                                            <input type="text" class="p-inputtext form-control mt-2" name ="apellido"id="apellido"  placeholder="Ingrese el apellido" value={{usuario.apellido}} [(ngModel)]="usuario.apellido" #apellidoUs = "ngModel" pattern="^[a-zA-Z ]{2,254}" required>
                                             <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
                                                 <div *ngIf="apellidoUs.errors?.required">
                                                     <i class="ms-1 bi-x-circle-fill"></i>
@@ -60,7 +62,7 @@
                                         <!--group email-->
                                         <div class="form-group mt-2">
                                             <label for="labelEmail">Email</label>
-                                            <input type="email" class="form-control mt-2" name ="email"id="email"  placeholder="Ingrese el correo electronico" value={{usuario.email}} [(ngModel)]="usuario.email" #emailUs = "ngModel" required email>
+                                            <input type="email" pKeyFilter= "email"class="p-inputtext form-control mt-2" name ="email"id="email"  placeholder="Ingrese el correo electronico" value={{usuario.email}} [(ngModel)]="usuario.email" #emailUs = "ngModel" required email>
                                             <div class="alert-danger rounded mt-2" *ngIf="emailUs.invalid && (emailUs.dirty || emailUs.touched)">
                                                 <div *ngIf="emailUs.errors?.required">
                                                     <i class="ms-1 bi-x-circle-fill"></i>
@@ -76,7 +78,7 @@
                                         <!--group username-->
                                         <div class="form-group mt-2">
                                             <label for="labelUserName">Nombre de usuario</label>
-                                            <input type="text" class="form-control mt-2" name ="userName"id="userName"  placeholder="Ingrese el nombre de usuario" value={{usuario.nombreUsuario}} [(ngModel)]="usuario.nombreUsuario" #userNameUs = "ngModel" required minlength="4">
+                                            <input type="text" class="p-inputtext form-control mt-2" name ="userName"id="userName"  placeholder="Ingrese el nombre de usuario" value={{usuario.nombreUsuario}} [(ngModel)]="usuario.nombreUsuario" #userNameUs = "ngModel" required minlength="4">
                                             <div class="alert-danger rounded mt-2" *ngIf="userNameUs.invalid && (userNameUs.dirty || userNameUs.touched)">
                                                 <div *ngIf="userNameUs.errors?.required">
                                                 <i class="ms-1 bi-x-circle-fill"></i>
@@ -104,12 +106,15 @@
                                             </p>       
                                         </div>
                                         <!-- fin estado usuario -->
-                                    <div class="card-footer text-center mt-3">
-                                        <button class="btn btn-success" type="submit" [disabled]="!formUsuario.valid || usuario.nombreUsuario =='admin'">Actualizar Usuario</button>  
-                                    </div>
-                                    </form>
                                     <!-- fin form nuevo usuario-->
                                 </div>
+                                <div class="card-footer text-center">
+                                    <div class="d-flex justify-content-between">
+                                        <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" label="Cancelar" routerLink="/inicio" ></button>
+                                        <button pButton class="p-button-success p-button-rounded p-button-raised" label="Editar Usuario" type="submit" [disabled]="!formUsuario.valid || usuario.nombreUsuario =='admin'"></button>  
+                                    </div>
+                                </div>
+                            </form>
                             </div>
                         </div>
                         

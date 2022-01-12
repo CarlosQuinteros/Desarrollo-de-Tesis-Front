@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditarUsuarioDto } from 'src/app/Dtos/usuarios/editar-usuario-dto';
+import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import Swal from 'sweetalert2';
@@ -54,7 +55,7 @@ export class DetalleUsuarioComponent implements OnInit {
   }
 
   obtenerUsuario(id: number):void{
-    this.usuarioService.UsuarioPorId(id).subscribe(
+    this.usuarioService.UsuarioPorId(id).toPromise().then(
       data => {
         this.usuario = data;
         if(this.usuario.nombreUsuario == 'admin'){
@@ -67,7 +68,7 @@ export class DetalleUsuarioComponent implements OnInit {
     err => {
       this.msj = err.error.mensaje;
       this.router.navigate(['/usuarios/lista']);
-      Swal.fire(this.msj, 'Regresando al listado', 'error');
+      Swal.fire('Error',this.msj,'error');
 
     })
   }

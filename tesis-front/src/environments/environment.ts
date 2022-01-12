@@ -9,6 +9,9 @@ export const environment = {
   recuperarPasswordURL: 'http://localhost:8080/email-password',
   usuariosURL: 'http://localhost:8080/usuarios',
   clubesURL: 'http://localhost:8080/clubes',
+  logsURL: 'http://localhost:8080/logs',
+  jugadoresURL: 'http://localhost:8080/jugadores',
+  pasesJugadoresURL: 'http://localhost:8080/pases'
 
 };
 

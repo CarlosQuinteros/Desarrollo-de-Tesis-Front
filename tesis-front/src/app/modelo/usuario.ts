@@ -12,6 +12,7 @@ export class Usuario {
     tokenPassword: string = '';
 
 
+
     constructor(nombre: string,apellido: string,email:string, nombreUsuario:string,password: string){
         this.nombre = nombre;
         this.apellido = apellido;

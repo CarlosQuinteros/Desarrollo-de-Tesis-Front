@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" >ADM Competencias</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -21,7 +21,8 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" routerLink="/usuarios/nuevo">Nuevo usuario</a></li>
-                        <li><a class="dropdown-item" routerLink="/usuarios/lista">Listado Usuarios</a></li>
+                        <li><a class="dropdown-item" routerLink="/usuarios/lista">Lista Usuarios</a></li>
+                        <li><a class="dropdown-item" routerLink="/logs/lista">Logs de usuarios</a></li>
                     </ul>
                 </li>
                 <!-- menu jugadores -->
@@ -31,8 +32,9 @@
                         Jugadores
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li *ngIf="isUser || isAdmin || isEncargadoJugadores"><a class="dropdown-item">Lista Jugadores</a></li>
-                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" href="#">Transferencias</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" routerLink="/jugadores/nuevo">Nuevo Jugador</a></li>
+                        <li *ngIf="isUser || isAdmin || isEncargadoJugadores"><a class="dropdown-item" routerLink="/jugadores/lista">Lista Jugadores</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" routerLink="/pases/lista">Transferencias</a></li>
                     </ul>
                 </li>
                 <!-- menu clubes-->
@@ -42,7 +44,7 @@
                         Clubes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos"><a class="dropdown-item" routerLink="/clubes/nuevo">Nuevo Club</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" routerLink="/clubes/nuevo">Nuevo Club</a></li>
                         <li *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos"><a class="dropdown-item" routerLink="/clubes/lista">Lista Clubes</a></li>
                     </ul>
                 </li>

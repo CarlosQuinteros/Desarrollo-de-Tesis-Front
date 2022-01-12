@@ -36,4 +36,5 @@ export class ClubService{
   public cantidadTotalClubes():Observable<number>{
     return this.httpClient.get<number>(`${this.clubURL}/cantidadTotal`);
   }
+
 }

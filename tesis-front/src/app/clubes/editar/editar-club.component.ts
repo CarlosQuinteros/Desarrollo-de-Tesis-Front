@@ -30,14 +30,14 @@ export class EditarClubComponent implements OnInit {
     
   }
 
-  async obtenerClub(id: number): Promise<void> {
-   await this.clubService.detalleClub(id).subscribe(
+   obtenerClub(id: number): void {
+   this.clubService.detalleClub(id).toPromise().then(
       data => {
         this.club = data;
-        console.log(this.club);
         
       },err => {
-        this.msj = err.error.message; //probando
+        this.router.navigate(['/clubes/lista']);
+        this.msj = err.error.message;
         Swal.fire('Error', this.msj,'error');
       }
     )
