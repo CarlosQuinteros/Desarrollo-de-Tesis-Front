@@ -23,7 +23,7 @@
                   [filterDelay]="0">
                   <ng-template pTemplate="caption">
                     <div class="p-d-flex">
-                        <button pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                        <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
                     </div>
                 </ng-template>
                   <ng-template pTemplate="header">
@@ -97,7 +97,7 @@
                       <td>{{log.logAccion}}</td>
                       <td>{{log.descripcion}}</td>
                       <td class="text-center">
-                          <button pButton class="p-button-sm p-button-raised" (click)="detalleUsuario(log.usuario.id)" icon="fas fa-info-circle" pTooltip="Detalle usuario" tooltipPosition="top"></button>
+                          <button pButton class="p-button-rounded p-button-raised p-button-text" (click)="detalleUsuario(log.usuario.id)" icon="pi pi-info-circle" pTooltip="Detalle usuario" tooltipPosition="top"></button>
                       </td>
                     </tr>
                   </ng-template>

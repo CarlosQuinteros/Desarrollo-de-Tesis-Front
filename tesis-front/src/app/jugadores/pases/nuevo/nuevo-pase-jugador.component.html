@@ -87,9 +87,10 @@
                         </div>
                         <!--fin group motivo-->
                     </div>
-                    <div class="card-footer mt-2 text-center">
-                        <div class="d-grid gap-2">
-                            <button pButton class="p-button-success" label="Cambiar de Club" [disabled]="!form.valid || nuevoPase.idClub == 0"></button>
+                    <div class="card-footer mt-2">
+                        <div class="d-flex justify-content-between">
+                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" routerLink="/jugadores/historialClubes/{{idJugador}}"></button>
+                            <button pButton class="p-button-primary p-button-rounded p-button-raised" icon="pi pi-check"label="Cambiar de Club" [disabled]="!form.valid || nuevoPase.idClub == 0"></button>
 
                         </div>
                     </div>

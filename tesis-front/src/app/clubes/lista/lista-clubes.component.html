@@ -31,8 +31,8 @@
                   <ng-template pTemplate="caption">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button pButton class="p-button-sm p-button-rounded me-1" *ngIf="isAdmin || isEncargadoJugadores" icon="bi bi-plus-circle" label="Nuevo Club"  routerLink="/clubes/nuevo"></button>
-                            <button pButton class="p-button-sm p-button-outlined p-button-rounded me-1"  icon="pi pi-filter-slash" label="Limpiar Filtros" (click)="clear(dt)"></button>
+                            <button pRipple pButton class="p-button-sm p-button-rounded me-1" *ngIf="isAdmin || isEncargadoJugadores" icon="bi bi-plus-circle" label="Nuevo Club"  routerLink="/clubes/nuevo"></button>
+                            <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1"  icon="pi pi-filter-slash" label="Limpiar Filtros" (click)="clear(dt)"></button>
 
                         </div>
                         <!--<div>
@@ -86,13 +86,13 @@
                       <td>{{club.alias}}</td>
                       <td>{{club.email}}</td>
                       <td class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
-                        <button pButton class="p-button-success p-button p-button-rounded me-1" icon="fas fa-running" routerLink="/jugadores/club/{{club.id}}" pTooltip="Ver Jugadores" tooltipPosition = "top">
+                        <button pButton class="p-button-success p-button p-button-rounded p-button-raised p-button-text me-1" icon="fas fa-running" routerLink="/jugadores/club/{{club.id}}" pTooltip="Ver Jugadores" tooltipPosition = "top">
                             <!--<i class="fas fa-running"></i>-->
                         </button>
-                        <button pButton class="p-buttonm p-button-rounded me-1" icon="far fa-edit" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
+                        <button pButton class="p-button-primary p-button-rounded p-button-raised p-button-text me-1" icon="far fa-edit" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
                             <!--<i class="fas fa-edit"></i>-->
                         </button>
-                        <button pButton class="p-button-danger p-button-rounded" icon="pi pi-trash" (click)="eliminarClub(club.id)" pTooltip="Eliminar" tooltipPosition = "top">
+                        <button pButton class="p-button-danger p-button-rounded p-button-raised p-button-text" icon="pi pi-trash" (click)="eliminarClub(club.id)" pTooltip="Eliminar" tooltipPosition = "top">
                             <!--<i class="fas fa-trash"></i>-->
                         </button>
                       </td>

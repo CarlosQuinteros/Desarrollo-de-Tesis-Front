@@ -26,6 +26,8 @@ export class EnviarEmailComponent implements OnInit {
   enviarEmail(form: NgForm): void {
     this.alertaEnviandoemail();
     const emailValuesDto = new EmailValuesDto(this.mailTo, this.userName, this.token);
+    console.log(emailValuesDto);
+    
     this.recuperarPasswordService.enviarEmailPassword(emailValuesDto).subscribe(
       data =>{
         this.msj = data.mensaje;

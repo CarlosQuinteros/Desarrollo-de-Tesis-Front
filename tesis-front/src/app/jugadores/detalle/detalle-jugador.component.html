@@ -88,17 +88,17 @@
                             <label class="m-2" for="fechaNac">Fecha de Nacimiento</label><br>
                             <p-calendar class="mt-2" inputId="basic"
                                 [(ngModel)]="detalleJugador.jugador.fechaNacimientoParsed" [maxDate]="fechaActual"
-                                [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [required]="true"
-                                [yearNavigator]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
+                                [ngModelOptions]="{standalone: true}" [required]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
                         </div>
                         <!--<button style="font-size: 15px" type="button" pButton class="p-button-info btn btn-sm p-button-rounded m-2" icon="far fa-chart-bar" label="Estadisticas"></button>
                         <button style="font-size: 15px" type="button" pButton class="p-button-warning btn btn-sm p-button-rounded m-2" icon="bi bi-arrow-down-up" label="Historial clubes" routerLink="/jugadores/historialClubes/{{detalleJugador.jugador.id}}"></button>
                         -->
                         
                     </div>
-                    <div class="card-footer mt-2 text-center">
-                        <div class="d-grid gap-2">
-                            <button pButton  class="p-button-success" label="Editar Jugador" [disabled]="!form.valid"></button>
+                    <div class="card-footer mt-2">
+                        <div class="d-flex justify-content-between">
+                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" routerLink="/jugadores/lista/"></button>
+                            <button pRipple pButton  class="p-button-primary p-button-rounded p-button-raised" label="Editar Jugador" icon="pi pi-check" [disabled]="!form.valid"></button>
                         </div>
                     </div>
                 </form>

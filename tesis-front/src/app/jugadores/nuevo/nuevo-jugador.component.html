@@ -87,13 +87,13 @@
                                 <div class="col-6">
                                     <!--group Fecha Nacimiento-->
                                         <label class="m-2"for="fechaNac">Fecha de Nacimiento</label><br>
-                                        <p-calendar class="mt-2" inputId="basic" [(ngModel)]="fechaNac" [maxDate]="fechaActual" [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [required]="true" [yearNavigator]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
+                                        <p-calendar class="mt-2" inputId="basic" [(ngModel)]="fechaNac" [maxDate]="fechaActual" [ngModelOptions]="{standalone: true}" [required]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
                                 </div>
                                 <div class="col-6">
                                     <!--fin group Fecha Nacimiento-->
                                     <!--group Fecha Nacimiento-->
                                     <label class="m-2"for="fechaNac">Fecha de inscripción</label><br>
-                                    <p-calendar class="mt-2" inputId="basic" [(ngModel)]="fechaInsc" [maxDate]="fechaActual" [minDate]="fechaNac" [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [required]="true" [yearNavigator]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
+                                    <p-calendar class="mt-2" inputId="basic" [(ngModel)]="fechaInsc" [maxDate]="fechaActual" [minDate]="fechaNac" [ngModelOptions]="{standalone: true}" [required]="true" yearRange="1930:2030" [showIcon]="true"></p-calendar>
                                     <!--fin group Fecha Nacimiento-->
                                 </div>
 
@@ -113,9 +113,10 @@
                         <!-- fin group club-->
                         
                     </div>
-                    <div class="card-footer mt-2 text-center">
-                        <div class="d-grid gap-2">
-                            <button pButton class="p-button-success" label="Crear Jugador" [disabled]="!form.valid || nuevoJugador.idClub==0"></button>
+                    <div class="card-footer mt-2">
+                        <div class="d-flex justify-content-between">
+                            <button pButton type= "button" class="p-button-danger p-button-rounded p-button-text" label="Cancelar" icon="pi pi-times" routerLink="/inicio"></button>
+                            <button pButton class="p-button-primary p-button-rounded p-button-raised" label="Crear Jugador" icon="pi pi-check" [disabled]="!form.valid || nuevoJugador.idClub==0"></button>
                         </div>
                     </div>
                 </form>

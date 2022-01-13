@@ -28,9 +28,9 @@
                   [filterDelay]="0">
                   <ng-template pTemplate="caption">
                     <div class="p-d-flex">
-                        <button pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
-                        <button pButton class="p-button-sm p-button-success p-button-rounded me-1" *ngIf="jugadoresActuales" label="Ver Jugadores Actuales" (click)="mostrarJuagdoresActuales()"></button>
-                        <button pButton class="p-button-sm p-button-warning p-button-rounded me-1" *ngIf="exJugadores" label="Ver Ex Juagdores"  (click)="mostrarExJuagdores()"></button>
+                        <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                        <button pRipple pButton class="p-button-sm p-button-success p-button-rounded me-1" *ngIf="jugadoresActuales" label="Ver Jugadores Actuales" (click)="mostrarJuagdoresActuales()"></button>
+                        <button pRipple pButton class="p-button-sm p-button-warning p-button-rounded me-1" *ngIf="exJugadores" label="Ver Ex Juagdores"  (click)="mostrarExJuagdores()"></button>
                     </div>
                     
                 </ng-template>

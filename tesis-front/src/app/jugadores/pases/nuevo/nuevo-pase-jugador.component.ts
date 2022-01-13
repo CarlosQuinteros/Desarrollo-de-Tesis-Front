@@ -80,7 +80,9 @@ export class NuevoPaseJugadorComponent implements OnInit {
       showCancelButton: true,
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      this.solicitarCreacionPase(form);
+      if(result.isConfirmed){
+        this.solicitarCreacionPase(form);
+      }
     })
   }
 
