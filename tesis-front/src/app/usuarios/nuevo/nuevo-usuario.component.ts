@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { NuevoUsuario } from 'src/app/Dtos/usuarios/nuevo-usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -50,12 +51,21 @@ export class NuevoUsuarioComponent implements OnInit {
       description: 'Rol por defecto. Tiene permitido consultar jugadores y partidos.'
     }
   ];
-
+  home : MenuItem = {}
+  items : MenuItem[] = [];
 
   constructor(private router: Router, private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    
+    this.cargarItems();
+  }
+
+  cargarItems():void{
+    this.items = [
+      {label: 'Usuarios', routerLink: '/usuarios/lista'},
+      {label: 'Nuevo', disabled:true}
+    ]
+    this.home = {icon:'pi pi-home', routerLink:'/inicio'}
   }
 
   guardarUsuario(form: NgForm): void {
@@ -86,6 +96,7 @@ export class NuevoUsuarioComponent implements OnInit {
     this.usuarioService.crearUsuario(this.nuevoUsuario).subscribe(
       (data) => {
         this.msj = data.mensaje;
+        this.usuarioService.enviarEmailUsuarioNuevo(this.nuevoUsuario).subscribe();
         Swal.fire({
           icon: 'success',
           title: this.msj,

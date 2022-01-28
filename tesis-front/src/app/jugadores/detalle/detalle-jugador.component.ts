@@ -4,6 +4,7 @@ import { DetalleJugadorDto } from 'src/app/Dtos/jugadores/detalle-jugador-dto';
 import { JugadorService } from 'src/app/servicios/jugador.service';
 import Swal from 'sweetalert2';
 import { EditarJugador } from 'src/app/Dtos/jugadores/editar-jugador';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-detalle-jugador',
@@ -20,10 +21,21 @@ export class DetalleJugadorComponent implements OnInit {
   patronLetras: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
   loading :boolean = true
   id : number = 0;
+  home : MenuItem = {}
+  items : MenuItem[] = []
 
   ngOnInit(): void {
+    this.cargarItems();
     this.id = this.rutaActiva.snapshot.params.id;
     this.obtenerDetalleJugador(this.id);
+  }
+  
+  cargarItems(): void {
+    this.items = [
+      {label: 'Jugadores', routerLink:'/jugadores/lista'},
+      {label: 'Detalle', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   obtenerDetalleJugador(id: number) {

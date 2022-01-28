@@ -1,15 +1,9 @@
 <app-nav-bar></app-nav-bar>
-<div class="container-xxl">
-    <!--<h3 class="mt-2">Detalle Jugador</h3>-->
-    <ol class="breadcrumb mt-4 mb-4">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-        <li class="breadcrumb-item"><a routerLink="/jugadores/lista">Jugadores</a></li>
-        <li class="breadcrumb-item active">Detalle</li>
-    </ol>
+<div class="container-xxl fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card shadow mb-lg-4">
-                
                 <div class="card-header bg-primary text-white">
                     <i class=" bi bi-card-text me-1"></i>
                     Formulario
@@ -24,20 +18,10 @@
                                 placeholder="Ingrese los nombres del jugador"
                                 [(ngModel)]="detalleJugador.jugador.nombre" #nombre="ngModel" required minlength="3"
                                 pattern={{patronLetras}}>
-                            <div class="alert-danger rounded mt-2"
-                                *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-                                <div *ngIf="nombre.errors?.required">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                    El nombre es requerido
-                                </div>
-                                <div *ngIf="nombre.errors?.minlength">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                    El nombre debe contener un minimo de 3 caracteres
-                                </div>
-                                <div *ngIf="nombre.errors?.pattern">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                    Solo se permiten letras
-                                </div>
+                            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.minlength" severity="error" text="Debe tener al menos 3 letras"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.pattern"   severity="error" text="Solo se permiten letras"></p-message>
                             </div>
                         </div>
                         <!--fin group nombre-->
@@ -48,20 +32,10 @@
                                 placeholder="Ingrese el apellido del jugador"
                                 [(ngModel)]="detalleJugador.jugador.apellidos" #apellido="ngModel" required
                                 minlength="4" pattern={{patronLetras}}>
-                            <div class="alert-danger rounded mt-2"
-                                *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
-                                <div *ngIf="apellido.errors?.required">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                    El nombre es requerido
-                                </div>
-                                <div *ngIf="apellido.errors?.minlength">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                    El nombre debe contener un minimo de 4 caracteres
-                                </div>
-                                <div *ngIf="apellido.errors?.pattern">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                    Solo se permiten letras
-                                </div>
+                            <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                                <p-message styleClass="m-1" *ngIf="apellido.errors?.required" severity="error" text="El apellido es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="apellido.errors?.minlength" severity="error" text="De contener al menos 4 letras"></p-message>
+                                <p-message styleClass="m-1" *ngIf="apellido.errors?.pattern" severity="error" text="Solo se permiten letras"></p-message>
                             </div>
                         </div>
                         <!--fin group apellidos-->
@@ -71,15 +45,9 @@
                             <input type="text" class="p-inputtext form-control mt-2" pKeyFilter="pint"
                                 name="documentoJug" id="documentoJug" placeholder="Ingrese el documento del jugador"
                                 [(ngModel)]="detalleJugador.jugador.documento" #dni="ngModel" required minlength="7">
-                            <div class="alert-danger rounded mt-2" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
-                                <div *ngIf="dni.errors?.required">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                    El nombre es requerido
-                                </div>
-                                <div *ngIf="dni.errors?.minlength">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                    El nombre debe contener un minimo de 7 caracteres
-                                </div>
+                            <div *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                                <p-message styleClass="m-1" *ngIf="dni.errors?.required" severity="error" text="El documento es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="dni.errors?.minlength" severity="error" text="Debe tener al menos 7 digitos"></p-message>
                             </div>
                         </div>
                         <!--fin group documento-->

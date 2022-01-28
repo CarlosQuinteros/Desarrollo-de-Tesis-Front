@@ -70,16 +70,16 @@
                         <li><a class="dropdown-item" href="#">Arbitros</a></li>
                     </ul>
                 </li>
-                <!-- menu configuraciones -->
-                <li class="nav-item dropdown" *ngIf="isAdmin">
+                <!-- menu Reportes -->
+                <li class="nav-item dropdown" *ngIf="isAdmin || isEncargadoJugadores || isEncargadoTorneos">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Configuraciones
+                        Reportes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Localidades</a></li>
-                        <li><a class="dropdown-item" href="#"></a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li *ngIf="isAdmin"><a class="dropdown-item" routerLink="/reportes/usuarios/actividad">Usuarios</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" href="#">Jugadores</a></li>
+                        <li *ngIf="isAdmin || isEncargadoJugadores"><a class="dropdown-item" href="#">Clubes</a></li>
                     </ul>
                 </li>
                 <!-- fin de menus -->

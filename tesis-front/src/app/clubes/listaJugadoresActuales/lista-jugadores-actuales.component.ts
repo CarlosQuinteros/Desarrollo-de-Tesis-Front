@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Club } from 'src/app/modelo/club';
 import { Jugador } from 'src/app/modelo/jugador';
@@ -22,13 +23,24 @@ export class ListaJugadoresActualesComponent implements OnInit {
   msj : string = '';
   jugadoresActuales: boolean = false;
   exJugadores : boolean = true;
+  home : MenuItem = {}
+  items : MenuItem[] = [];
+
   constructor(private jugadorService :JugadorService, private clubService :ClubService, private rutaActiva: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    
     const id = this.rutaActiva.snapshot.params.id;
     this.obtenerClub(id);
     this.cargarJugadores(id);
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label: 'Clubes', routerLink:'/clubes/lista'},
+      {label: this.club.nombreClub},
+      {label: 'Jugadores', disabled:true}
+    ];
+    this.home = this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   cargarJugadores(idClub: number): void {
@@ -49,7 +61,8 @@ export class ListaJugadoresActualesComponent implements OnInit {
   obtenerClub(id:number){
     this.clubService.detalleClub(id).toPromise().then(
       data => {
-        this.club = data;        
+        this.club = data;
+        this.cargarItems();        
       },err => {
         this.msj = err.error.message;
         this.router.navigate(["clubes/lista"]);

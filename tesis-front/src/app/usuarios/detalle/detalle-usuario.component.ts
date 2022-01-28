@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { EditarUsuarioDto } from 'src/app/Dtos/usuarios/editar-usuario-dto';
 import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -13,8 +15,9 @@ import Swal from 'sweetalert2';
 })
 export class DetalleUsuarioComponent implements OnInit {
 
-  constructor(private ruteActiva : ActivatedRoute, private router : Router, private usuarioService : UsuarioService, private tokenService : TokenService) { }
+  constructor(private ruteActiva : ActivatedRoute, private location : Location,private router : Router, private usuarioService : UsuarioService, private tokenService : TokenService) { }
 
+  patronLetras: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
   msj : string = '';
   usuario : any // sera undefined hasta obtener el usuario desde la suscripción
   rolesDelUsuario: string[] = [];
@@ -47,11 +50,23 @@ export class DetalleUsuarioComponent implements OnInit {
       description: 'Rol por defecto. Tiene permitido consultar jugadores y partidos.'
     }
   ];
+  home : MenuItem = {}
+  items : MenuItem[] = [];
+
 
   ngOnInit(): void {
+    this.cargarItems();
     const id = this.ruteActiva.snapshot.params.id;
     this.obtenerUsuario(id);
     
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Usuarios', routerLink:'/usuarios/lista'},
+      {label:'Detalle',disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'}
   }
 
   obtenerUsuario(id: number):void{
@@ -59,8 +74,9 @@ export class DetalleUsuarioComponent implements OnInit {
       data => {
         this.usuario = data;
         if(this.usuario.nombreUsuario == 'admin'){
-          Swal.fire('No se puede editar el usuario admin del sistema', 'Selecciona otro usuario a editar', 'error');
-          this.router.navigate(["/usuarios/lista"]);
+          Swal.fire('No se puede ver o editar el usuario admin del sistema', 'Selecciona otro usuario a editar', 'error')
+            .then( (result) => {this.location.back()});
+          //this.router.navigate(["/usuarios/lista"]);
         }
         this.formatearRolesUsuario();
         

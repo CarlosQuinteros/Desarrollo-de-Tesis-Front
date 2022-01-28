@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { RecuperarPasswordDto } from 'src/app/Dtos/usuarios/recuperar-password-dto';
 import { Usuario } from 'src/app/modelo/usuario';
 import { RecuperarPasswordService } from 'src/app/servicios/recuperar-password.service';
@@ -20,6 +21,7 @@ export class RecuperarPasswordComponent implements OnInit {
   password : string = '';
   confirmarPassword : string = '';
   tokenPassword : string = '';
+  items : MenuItem[] = [];
 
   constructor(
     private router: Router, 
@@ -29,10 +31,16 @@ export class RecuperarPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.tokenPassword = this.rutaActiva.snapshot.params.tokenPassword;
     this.verificarTokenExiste(this.tokenPassword);
-    /*setTimeout(function(){
-      console.log("Luego de 5 segundos cargo");
-    },5000);*/
+    this.cargarItems();
 
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Usuarios'},
+      {label:'Recuperar contraseña'},
+      {label:'Cambiar contraseña', disabled:true}
+    ]
   }
 
   /*verifico si existe un usuario con ese token, lo obtengo. De lo contrario lo mando alerta y redirecciono*/

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { EmailValuesDto } from 'src/app/Dtos/usuarios/email-values-dto';
 import { RecuperarPasswordService } from 'src/app/servicios/recuperar-password.service';
 import Swal from 'sweetalert2';
@@ -16,11 +17,20 @@ export class EnviarEmailComponent implements OnInit {
   userName: string = '';
   token: string = '';
   msj : string = '';
+  items : MenuItem[] = [];
 
   constructor(private router : Router, private recuperarPasswordService : RecuperarPasswordService) { }
 
   ngOnInit(): void {
+    this.cargarItems();
+  }
 
+  
+  cargarItems(): void {
+    this.items = [
+      {label:'Usuarios'},
+      {label:'Enviar email', disabled:true}
+    ]
   }
 
   enviarEmail(form: NgForm): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -17,13 +18,23 @@ export class ListaUsuariosComponent implements OnInit {
   msj : string = '';
   loading : boolean = true;
   usuariosFiltrados: Usuario[] = [];
+  home : MenuItem = {}
+  items : MenuItem[] = [];
 
   constructor(private usuarioService: UsuarioService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
 
     this.cargarListado();
+    this.cargarItems();
+  }
 
+  cargarItems(): void {
+    this.items = [
+      {label:'Usuarios', routerLink:'/usuarios/listado'},
+      {label:'Listado', disabled:true}
+    ]
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   cargarListado():void {

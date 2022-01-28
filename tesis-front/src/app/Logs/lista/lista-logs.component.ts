@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Calendar } from 'primeng/calendar';
 import { Table } from 'primeng/table';
 import { Log } from 'src/app/modelo/log';
+import { FechaDesdeHastaService } from 'src/app/servicios/fecha-desde-hasta.service';
 import { LogService } from 'src/app/servicios/log.service';
 
 @Component({
@@ -15,18 +17,29 @@ export class ListaLogsComponent implements OnInit {
 
   loading = true;
   logs : Log[] = [];
-
   acciones: any = [];
+  home : MenuItem = {}
+  items : MenuItem[] = [];
+
 
   constructor(private logsService: LogService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarLogs();
     this.cargarAcciones();
+    this.cargarItems();   
   }
 
   clear(table : Table){
     table.clear();
+  }
+
+  cargarItems():void{
+    this.items = [
+      {label:'Logs de usuarios'},
+      {label:'Listado', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   cargarLogs(): void{
@@ -69,5 +82,6 @@ export class ListaLogsComponent implements OnInit {
   detalleUsuario(id: number): void {
     this.router.navigate([`/usuarios/detalle/${id}`]);
   }
+
 
 }

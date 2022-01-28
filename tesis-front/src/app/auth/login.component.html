@@ -18,14 +18,10 @@
                     <div class="input-group mt-2">
                         <i class="bi-person-fill btn btn-secondary"></i>
                         <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
-                        placeholder="Ingrese su usuario o correo" [(ngModel)]="nombreUsuario" required #nombre="ngModel" />
-                       
+                        placeholder="Ingrese su usuario o correo" [(ngModel)]="nombreUsuario" required #nombre="ngModel"/>
                     </div>
-                    <div class="alert-danger rounded mt-2" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-                        <div *ngIf="nombre.errors?.required">
-                           <i class="ms-1 bi-x-circle-fill"></i>
-                             El usuario es requerido
-                        </div>
+                    <div class="mt-1" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                      <p-message *ngIf="nombre.errors?.required" severity="error" text="El usuario es requerido"></p-message>
                   </div>
               </div>
               <!-- fin group usuario-->
@@ -39,11 +35,8 @@
                       <input type="password" [type]="hide ? 'password': 'text'" class="form-control" name="password"
                       id="password" placeholder="Ingrese su contraseña" [(ngModel)]="password" required #contrasenia ="ngModel" />
                   </div>
-                  <div class="alert-danger rounded mt-2" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
-                       <div *ngIf="contrasenia.errors?.required">
-                          <i class=" ms-1 bi bi-x-circle-fill"></i>
-                          La contraseña es requerida
-                    </div>
+                  <div class="mt-1" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+                    <p-message *ngIf="contrasenia.errors?.required" severity="error" text="La contraseña es requerida"></p-message>
                   </div>
               </div>
               <!--fin group contraseña-->

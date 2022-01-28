@@ -1,12 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<div class="container">
-  <ol class="breadcrumb mt-3">
-    <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-    <li class="breadcrumb-item">Pases</li>
-    <li class="breadcrumb-item active">Listado</li>
-  </ol>
-  <!--<button pButton class="p-button-help p-button-rounded m-2" icon = "bi bi-plus-circle" label="Nuevo Pase" (click)="showModalDialog()"></button>-->
-
+<div class="container fadein animation-iteration-1 animation-duration-500">
+  <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
   <p-dialog header={{headerModal}} styleClass="rounded" [(visible)]="displayModal" [modal]="true"
     [style]="{width: '40vw'}" [draggable]="false" [resizable]="false">
     <form #form="ngForm" (ngSubmit)="obtenerJugador(form)" novalidate>
@@ -17,15 +11,9 @@
           <input type="text" pKeyFilter="pint" class="p-inputtext form-control mt-2" name="documento" id="documento"
             placeholder="Ingrese el documento del jugador" [(ngModel)]="documentoJug" #Doc="ngModel" required
             minlength="7">
-          <div class="alert-danger rounded mt-2" *ngIf="Doc.invalid && (Doc.dirty || Doc.touched)">
-            <div *ngIf="Doc.errors?.required">
-              <i class="ms-1 bi-x-circle-fill"></i>
-              El documento es requerido
-            </div>
-            <div *ngIf="Doc.errors?.minlength">
-              <i class="ms-1 bi-x-circle-fill"></i>
-              El documento debe tener un minimo de 7 caracteres
-            </div>
+          <div *ngIf="Doc.invalid && (Doc.dirty || Doc.touched)">
+            <p-message styleClass="m-1" *ngIf="Doc.errors?.required" severity="error" text="El documento es requerido"></p-message>
+            <p-message styleClass="m-1" *ngIf="Doc.errors?.minlength" severity="error" text="Debe tener al menos 7 digitos"></p-message>
           </div>
         </div>
         <!--fin group email o usuario-->
@@ -45,7 +33,7 @@
         </div>
         <div class="card-body">
           <p-table #dt [value]="pases" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines"
-            dataKey="id" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading"
+            dataKey="id" [rows]="5" responsiveLayout="stack" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15,20]" [loading]="loading"
             [rowHover]="true" [paginator]="true"
             currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
             [filterDelay]="0">

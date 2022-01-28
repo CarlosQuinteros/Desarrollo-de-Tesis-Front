@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { NuevoClubDto } from 'src/app/Dtos/clubes/club-dto';
 import { Club } from 'src/app/modelo/club';
 import { ClubService } from 'src/app/servicios/club.service';
@@ -16,7 +17,8 @@ export class EditarClubComponent implements OnInit {
   msj : string = '';
   patron: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]{0,254}"
   clubEditar : NuevoClubDto = new NuevoClubDto();
-
+  home : MenuItem = {}
+  items : MenuItem[] = [];
 
   constructor(
     private router: Router,
@@ -27,7 +29,16 @@ export class EditarClubComponent implements OnInit {
   ngOnInit(): void {
     const id = this.rutaActiva.snapshot.params.id;
     this.obtenerClub(id);
+    this.cargarItems();
     
+  }
+  
+  cargarItems(): void {
+    this.items = [
+      {label: 'Clubes', routerLink:'/clubes/lista'},
+      {label: 'Detalle', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
    obtenerClub(id: number): void {

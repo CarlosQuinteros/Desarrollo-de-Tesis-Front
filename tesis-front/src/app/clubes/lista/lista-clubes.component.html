@@ -1,20 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <!-- inicio container-->
-<div class="container-xxl">
-    <!--<h3 class="mt-2">Listado de Clubes</h3>-->
-    <ol class="breadcrumb mt-4 mb-4">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-        <li class="breadcrumb-item">Clubes</li>
-        <li class="breadcrumb-item active">Listado</li>
-    </ol>
-    <!--<div class="mt-4">
-        <button class="btn btn-success" routerLink="/clubes/nuevo"> <i class="bi bi-plus-circle me-1"> </i> Nuevo Club</button>
-        <button pButton *ngIf="isAdmin || isEncargadoJugadores"class="p-button p-button-rounded p-button-help me-1" label="Nuevo Club" icon = "bi bi-plus-circle" routerLink="/clubes/nuevo"></button>
-    </div>  -->
-      <!--<h3 class="mt-2">Listado de Clubes</h3>-->
-
-    <div class="row justify-content-center mt-4">
-       
+<div class="container-xxl fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="row justify-content-center">
         <!-- tabla -->
         <div>
             <div class="card shadow">
@@ -24,7 +12,7 @@
               </div>
               <div class="card-body">
                 <p-table #dt [value]="clubes" styleClass="p-datatable-striped p-datatable-sm p-datatable-gridlines" dataKey="id" [rows]="5"
-                  [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+                  [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15,20,40]" [loading]="loading" [rowHover]="true"
                   [paginator]="true"
                   currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
                   [filterDelay]="0">
@@ -89,7 +77,7 @@
                         <button pButton class="p-button-success p-button p-button-rounded p-button-raised p-button-text me-1" icon="fas fa-running" routerLink="/jugadores/club/{{club.id}}" pTooltip="Ver Jugadores" tooltipPosition = "top">
                             <!--<i class="fas fa-running"></i>-->
                         </button>
-                        <button pButton class="p-button-primary p-button-rounded p-button-raised p-button-text me-1" icon="far fa-edit" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
+                        <button pButton class="p-button-primary p-button-rounded p-button-raised p-button-text me-1" icon="pi pi-pencil" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
                             <!--<i class="fas fa-edit"></i>-->
                         </button>
                         <button pButton class="p-button-danger p-button-rounded p-button-raised p-button-text" icon="pi pi-trash" (click)="eliminarClub(club.id)" pTooltip="Eliminar" tooltipPosition = "top">

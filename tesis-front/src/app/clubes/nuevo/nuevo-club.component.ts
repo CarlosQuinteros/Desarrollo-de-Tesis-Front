@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { NuevoClubDto } from 'src/app/Dtos/clubes/club-dto';
 import { Club } from 'src/app/modelo/club';
 import { ClubService } from 'src/app/servicios/club.service';
@@ -22,11 +23,21 @@ export class NuevoClubComponent implements OnInit {
   
   nuevoClub : NuevoClubDto = new NuevoClubDto();
   mensaje : string = '';
+  home: MenuItem = {};
+  items : MenuItem[] = [];
 
   constructor(private router: Router, private clubService: ClubService) { }
 
   ngOnInit(): void {
-      
+    this.cargarItems();
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Clubes', routerLink:'/clubes/lista'},
+      {label:'Nuevo', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'}
   }
 
   crearNuevoClub(form: NgForm){

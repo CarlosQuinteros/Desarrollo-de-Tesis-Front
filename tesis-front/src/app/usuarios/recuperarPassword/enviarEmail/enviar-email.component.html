@@ -6,11 +6,7 @@
 </nav>
 <!-- contenido-->
 <div class="container">
-    <h3 class="mt-2">Recuperar Contraseña</h3>
-        <ol class="breadcrumb mb-4 bg-se">
-            <li class="breadcrumb-item">Usuarios</li>
-            <li class="breadcrumb-item active">Enviar Email</li>
-        </ol>
+        <p-breadcrumb class="m-2" [model]="items"></p-breadcrumb>
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <!-- card-->
@@ -27,11 +23,8 @@
                             <div class="form-group">
                                 <label for="labelEmail">Correo electronico o nombre de usuario</label>
                                 <input type="text" class="p-inputtext form-control mt-2" name ="email"id="email"  placeholder="Ingrese su correo o su usuario" [(ngModel)]="mailTo" #emailUsuario = "ngModel" required>
-                                <div class="alert-danger rounded mt-2" *ngIf="emailUsuario.invalid && (emailUsuario.dirty || emailUsuario.touched)">
-                                    <div *ngIf="emailUsuario.errors?.required">
-                                       <i class="ms-1 bi-x-circle-fill"></i>
-                                         El campo es requerido
-                                    </div>
+                                <div *ngIf="emailUsuario.invalid && (emailUsuario.dirty || emailUsuario.touched)">
+                                    <p-message styleClass="m-1" *ngIf="emailUsuario.errors?.required"  severity="error" text="El campo es requerido"></p-message>
                                 </div>
                             </div>
                             <!--fin group email o usuario-->

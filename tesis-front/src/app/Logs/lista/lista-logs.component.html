@@ -1,13 +1,9 @@
 <app-nav-bar></app-nav-bar>
-<div class="container-xxl">
-    <ol class="breadcrumb mt-4 mb-4">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-        <li class="breadcrumb-item">Logs de usuarios</li>
-        <li class="breadcrumb-item active">Listado</li>
-    </ol>
+<div class="container-xxl fadein animation-iteration-1 animation-duration-500">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <!--<h3>Listado de Logs</h3>-->
 
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center">
         <!-- tabla con prime ng-->
         <div>
             <div class="card shadow">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MenuItem } from 'primeng/api';
 import { NuevoJugadorDto } from 'src/app/Dtos/jugadores/nuevo-jugador-dto';
 import { Club } from 'src/app/modelo/club';
 import { ClubService } from 'src/app/servicios/club.service';
@@ -23,13 +24,24 @@ export class NuevoJugadorComponent implements OnInit {
   clubSelec : Club = new Club('','','');
   patronLetras: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
   msj : string = '';
+  home: MenuItem = {}
+  items: MenuItem[] = [];
+
 
   constructor(private ClubService: ClubService, private jugadorService: JugadorService) { }
 
   ngOnInit(): void {
     this.cargarClubes();
-    
+    this.cargarItems();
 
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Jugadores', routerLink:'/jugadores/lista'},
+      {label:'Nuevo', disabled:true}
+    ]
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'}
   }
 
   cargarClubes(): void {

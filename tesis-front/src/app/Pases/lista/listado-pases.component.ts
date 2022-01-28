@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Pase } from 'src/app/modelo/pase';
 import { JugadorService } from 'src/app/servicios/jugador.service';
@@ -20,11 +21,23 @@ export class ListadoPasesComponent implements OnInit {
   documentoJug : string = '';
   displayModal : boolean = false
   headerModal : string = "Ingrese el Documento del Jugador";
+  home : MenuItem = {}
+  items : MenuItem[] = [];
+
 
   constructor(private router: Router, private pasesJugService: PasesService, private jugadorService: JugadorService) { }
 
   ngOnInit(): void {
     this.cargarListadoPases();
+    this.cargarItems();
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Pases'},
+      {label:'Listado', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   cargarListadoPases(): void {

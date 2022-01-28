@@ -1,13 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<div class="container">
-    <!--<h3>Crear Pase</h3>-->
-
-    <ol class="breadcrumb mt-3 mb-3">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-        <li class="breadcrumb-item"><a routerLink="/jugadores/lista">jugadores</a></li>
-        <li class="breadcrumb-item"><a routerLink="/jugadores/historialClubes/{{jugador.id}}">Historial</a></li>
-        <li class="breadcrumb-item active">Nuevo Pase</li>
-    </ol>
+<div class="container fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <div class="row justify-content-center">
         <div class="col-lg-7">
             <div class="card shadow mb-lg-4">
@@ -48,12 +41,10 @@
                                 <!--fin group fecha nacimiento-->
                             </div>
                         </div>
-                        <!--group fecha Nacimiento-->
                         <div class="form-group mt-2">
                             <label for="">Club actual del jugador</label>
                             <input type="text" class="p-inputtext form-control mt-2" name="clubActual" id="clubActual" [value]="(jugador.clubActual != null)? jugador.clubActual.nombreClub: 'Actualmente sin Club'" readonly disabled>
                         </div>
-                        <!--fin group fecha nacimiento-->
                         <!--group Fecha desde-->
                             <label class="m-2"for="fechaNac">Fecha desde</label><br>
                             <p-calendar class="mt-2" inputId="basic" [(ngModel)]="nuevoPase.fecha" [required]="true" [maxDate]="fechaActual" [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [required]="true" [yearNavigator]="true" yearRange="1960:{{yearActual}}" [showIcon]="true"></p-calendar>
@@ -73,25 +64,18 @@
                             <input type="text" class="p-inputtext form-control mt-2" name="motivo" id="motivo"
                                 placeholder="Ingrese el motivo de cambio de club" [(ngModel)]="nuevoPase.motivo"
                                 #motivo="ngModel" required minlength="8">
-                            <div class="alert-danger rounded mt-2"
-                                *ngIf="motivo.invalid && (motivo.dirty || motivo.touched)">
-                                <div *ngIf="motivo.errors?.required">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                    El campo es requerido
-                                </div>
-                                <div *ngIf="motivo.errors?.minlength">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                    El campo debe contener un minimo de 8 caracteres
-                                </div>
+                            <div *ngIf="motivo.invalid && (motivo.dirty || motivo.touched)">
+                                <p-message styleClass="m-1" *ngIf="motivo.errors?.required" severity="error" text="El campo es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="motivo.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
                             </div>
                         </div>
                         <!--fin group motivo-->
                     </div>
                     <div class="card-footer mt-2">
                         <div class="d-flex justify-content-between">
-                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" routerLink="/jugadores/historialClubes/{{idJugador}}"></button>
+                            <!--<button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" routerLink="/jugadores/historialClubes/{{idJugador}}"></button>-->
+                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" (click)="goBack()"></button>
                             <button pButton class="p-button-primary p-button-rounded p-button-raised" icon="pi pi-check"label="Cambiar de Club" [disabled]="!form.valid || nuevoPase.idClub == 0"></button>
-
                         </div>
                     </div>
                 </form>

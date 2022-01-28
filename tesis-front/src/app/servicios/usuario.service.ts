@@ -66,4 +66,8 @@ export class UsuarioService {
     public actualizarUsuario(id: number, editarUsuarioDto : EditarUsuarioDto):Observable<any>{
       return this.httpClient.put<any>(`${this.usuariosURL}/editar/${id}`, editarUsuarioDto);
     }
+
+    public enviarEmailUsuarioNuevo(nuevoUsuario : NuevoUsuario):Observable<any>{
+      return this.httpClient.post<any>(`${this.usuariosURL}/envio-email/usuario-nuevo`, nuevoUsuario);
+    }
 }

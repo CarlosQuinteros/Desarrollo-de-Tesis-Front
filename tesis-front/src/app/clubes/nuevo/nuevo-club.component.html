@@ -1,12 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <!-- inicio container-->
-<div class="container">
-    <!--<h3 class="mt-2">Crear Club</h3>-->
-    <ol class="breadcrumb m-4">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-         <li class="breadcrumb-item"><a routerLink="/clubes/lista">Clubes</a></li>
-        <li class="breadcrumb-item active">Nuevo</li>
-    </ol>
+<div class="container fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card shadow mb-lg-4">
@@ -22,19 +17,10 @@
                         <div class="form-group mt">
                             <label for="">Nombre del Club</label>
                             <input type="text" class="p-inputtext form-control mt-2" name="nombreClub" id="nombreClub" placeholder="Ingrese el nombre del club" [(ngModel)]="nuevoClub.nombre"  #nombre = "ngModel" required minlength="8" pattern={{patron}}>
-                            <div class="alert-danger rounded mt-2" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-                                <div *ngIf="nombre.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                     El nombre es requerido
-                                </div>
-                                <div *ngIf="nombre.errors?.minlength">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                      El nombre debe contener un minimo de 8 caracteres
-                                 </div>
-                                 <div *ngIf="nombre.errors?.pattern">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                        Solo se permiten letras
-                                 </div>
+                            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.pattern"    severity="error" text="Solo se permiten letras"></p-message>
                             </div>
                         </div>
                         <!--fin group nombre-->
@@ -42,36 +28,20 @@
                         <div class="form-group mt-2">
                             <label for="labelAlias">Alias del Club</label>
                             <input type="text" class="p-inputtext form-control mt-2" name ="aliasClub"id="aliasClub"  placeholder="Ingrese el alias o apodo del club" [(ngModel)]="nuevoClub.alias" #alias = "ngModel" required minlength="2" pattern={{patron}}>
-                            <div class="alert-danger rounded mt-2" *ngIf="alias.invalid && (alias.dirty || alias.touched)">
-                                <div *ngIf="alias.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                     El alias es requerido
-                                </div>
-                                <div *ngIf="alias.errors?.minlength">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                    El alias debe contener un minimo de 2 caracteres
-                                </div>
-                                <div *ngIf="alias.errors?.pattern">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                        Solo se permiten letras
-                                </div>
+                            <div *ngIf="alias.invalid && (alias.dirty || alias.touched)">
+                                <p-message styleClass="m-1" *ngIf="alias.errors?.required"  severity="error" text="El alias es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="alias.errors?.minlength" severity="error" text="Debe tener al menos 2 caracteres"></p-message>
+                                <p-message styleClass="m-1" *ngIf="alias.errors?.pattern"    severity="error" text="Solo se permiten letras"></p-message>
                             </div>
                         </div>
                         <!--fin group alias-->
-                        
                         <!--group email-->
                         <div class="form-group mt-2">
                             <label for="labelEmail">Email</label>
                             <input type="email" pKeyFilter= "email" class="p-inputtext form-control mt-2" name="emailClub" id="emailClub" placeholder="Ingtrese el email del club" [(ngModel)]="nuevoClub.email" #emailClub ="ngModel" email required>
-                            <div class="alert-danger rounded mt-2" *ngIf="emailClub.invalid && (emailClub.dirty || emailClub.touched)">
-                                <div *ngIf="emailClub.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                        El email es requerido
-                                </div>
-                                <div *ngIf="emailClub.errors?.email">
-                                    <i class=" ms-1 bi-x-circle-fill"></i>
-                                        El email debe tener el formato correcto
-                                </div>
+                            <div *ngIf="emailClub.invalid && (emailClub.dirty || emailClub.touched)">
+                                <p-message styleClass="m-1" *ngIf="emailClub.errors?.required"  severity="error" text="El email es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="emailClub.errors?.email"     severity="error" text="Debe tener el formato ejemplo@ejemplo.com"></p-message>
                             </div>
                         </div>
                         <!--fin group email-->

@@ -1,13 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <!-- inicio container-->
-<div class="container-xxl">
-    <ol class="breadcrumb mt-4">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-        <li class="breadcrumb-item"><a routerLink="/clubes/lista">Clubes</a>
-        <li class="breadcrumb-item">{{club.nombreClub}}</li>
-        <li class="breadcrumb-item active">Jugadores</li>
-    </ol>
-    <h3 class="mt-3">Listado de Jugadores del Club "{{club.nombreClub}}"</h3>
+<div class="container-xxl fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <p class="text-2xl">Listado de Jugadores del Club "{{club.nombreClub}}"</p>
     <div class="mt-4">
         <!--<button class="btn btn-success" routerLink="/clubes/nuevo"> <i class="bi bi-plus-circle me-1"> </i> Nuevo Club</button>-->
     </div>

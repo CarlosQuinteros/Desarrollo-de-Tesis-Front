@@ -48,10 +48,19 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {TooltipModule} from 'primeng/tooltip';
 import {ToolbarModule} from 'primeng/toolbar';
 import {RippleModule} from 'primeng/ripple';
+import { ChipModule } from 'primeng/chip';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {ChartModule} from 'primeng/chart';
+import {CardModule} from 'primeng/card';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 import { ListadoPasesJugadorComponent } from './jugadores/pases/lista/listado-pases-jugador.component';
 import { ListadoPasesComponent } from './Pases/lista/listado-pases.component';
 import { NuevoPaseJugadorComponent } from './jugadores/pases/nuevo/nuevo-pase-jugador.component';
+import { ReporteDeActividadComponent } from './reportes/usuarios/reporte-de-actividad.component';
+import { UsuariosMasActivosComponent } from './reportes/usuarios/usuariosMasActivos/usuarios-mas-activos.component';
+import { ActividadPorUsuarioComponent } from './reportes/usuarios/actividadPorUsuario/actividad-por-usuario.component';
 
 
 
@@ -80,7 +89,10 @@ registerLocaleData(localEs, "es-AR");
     DetalleJugadorComponent,
     ListadoPasesJugadorComponent,
     ListadoPasesComponent,
-    NuevoPaseJugadorComponent
+    NuevoPaseJugadorComponent,
+    ReporteDeActividadComponent,
+    UsuariosMasActivosComponent,
+    ActividadPorUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +119,13 @@ registerLocaleData(localEs, "es-AR");
     DialogModule,
     ToolbarModule,
     PanelModule,
-    RippleModule
+    RippleModule,
+    ChipModule,
+    InputNumberModule,
+    ChartModule,
+    CardModule,
+    MessagesModule,
+    MessageModule
 
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-AR'}, interceptorProvider],

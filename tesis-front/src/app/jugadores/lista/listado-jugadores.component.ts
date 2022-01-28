@@ -31,6 +31,8 @@ export class ListadoJugadoresComponent implements OnInit {
     { field: 'estadoJugador.estadoJugador', header: 'Estado', type:'text'},
   ];
 
+  items : MenuItem[] = [];
+  home : MenuItem = {}
   exportColumns: any[] = [];
 
   constructor(private router: Router, private jugadorService: JugadorService, private tokenService: TokenService) { }
@@ -39,6 +41,15 @@ export class ListadoJugadoresComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.isEncargadoJugadores = this.tokenService.isEncargadoJugadores();
     this.cargarJugadores();
+    this.cargarItems();
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Jugadores'},
+      {label:'Listado', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   cargarJugadores(): void {

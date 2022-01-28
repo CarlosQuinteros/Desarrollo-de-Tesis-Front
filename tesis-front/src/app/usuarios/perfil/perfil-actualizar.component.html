@@ -1,15 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <!-- contenido-->
 <!-- titulo-->
-<div class="container">
-    <!--<h3 class="mt-2">Datos personales</h3>-->
-    <ol class="breadcrumb mb-2 mt-4">
-        <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
-        <li class="breadcrumb-item active">Perfil</li>
-        <li class="breadcrumb-item active"> Datos Personales</li>
-    </ol>
-    <!-- fin titulo-->
-    <!--<p style="font-style: italic;">Nota: Deberás iniciar sesión nuevamente luego de actualizar tu información.</p>-->
+<div class="container fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card shadow mb-lg-4">
@@ -25,19 +18,10 @@
                         <div class="form-group">
                             <label for="label">Nombre</label>
                             <input type="text" class="p-inputtext form-control mt-2" name ="nombreUsuario" id = "nombreUsuario" value = {{usuario.nombre}} placeholder="Nombre" [(ngModel)] = "usuario.nombre" #nombreUs = "ngModel" pattern={{patronLetras}} minlength="3" required [disabled]="usuario.nombreUsuario == 'admin'">
-                            <div class="alert-danger rounded mt-2" *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
-                                <div *ngIf="nombreUs.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                     El nombre es requerido
-                                </div>
-                                <div *ngIf="nombreUs.errors?.pattern">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                      Solo se permiten letras
-                                 </div>
-                                 <div *ngIf="nombreUs.errors?.minlength">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                      El nombre debe tener al menos 3 caracteres
-                                 </div>
+                            <div *ngIf="nombreUs.invalid && (nombreUs.dirty || nombreUs.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombreUs.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombreUs.errors?.pattern"   severity="error" text="Solo se permiten letras"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombreUs.errors?.minlength" severity="error" text="Debe tener al menos 3 caracteres"></p-message>
                             </div>
                         </div>
                         <!--fin nombre-->
@@ -45,31 +29,20 @@
                         <div class="form-group mt-2">
                             <label for="labelApelldio">Apellido</label>
                             <input type="text" class="p-inputtext form-control mt-2" name ="apellido" value = {{usuario.apellido}} placeholder="Apellido" [(ngModel)]="usuario.apellido" #apellidoUs= "ngModel" pattern={{patronLetras}} minlength="3" required [disabled]="usuario.nombreUsuario == 'admin'">
-                            <div class="alert-danger rounded mt-2" *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
-                                <div *ngIf="apellidoUs.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                     El nombre es requerido
-                                </div>
-                                <div *ngIf="apellidoUs.errors?.pattern">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                      Solo se permiten letras
-                                 </div>
-                                 <div *ngIf="apellidoUs.errors?.minlength">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                      El apellido debe tener al menos 3 caracteres
-                                 </div>
+                            <div *ngIf="apellidoUs.invalid && (apellidoUs.dirty || apellidoUs.touched)">
+                                <p-message styleClass="m-1" *ngIf="apellidoUs.errors?.required"  severity="error" text="El apellido es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="apellidoUs.errors?.pattern"   severity="error" text="Solo se permiten letras"></p-message>
+                                <p-message styleClass="m-1" *ngIf="apellidoUs.errors?.minlength" severity="error" text="Debe tener al menos 3 caracteres"></p-message>
                             </div>
                         </div>
                         <!--fin apellido-->
                         <!--group nombre usuario-->
                         <div class="form-group mt-2">
                             <label for="label usuario">Nombre de usuario</label>
-                            <input type="text" class="p-inputtext form-control mt-2" name ="NombreUsuario" value = {{usuario.nombreUsuario}} placeholder= "Nombre de usuario" [(ngModel)]="usuario.nombreUsuario" #userName = "ngModel" required [disabled]="usuario.nombreUsuario == 'admin'">
-                            <div class="alert-danger rounded mt-2" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
-                                <div *ngIf="userName.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                     El nombre es requerido
-                                </div>
+                            <input type="text" class="p-inputtext form-control mt-2" name ="NombreUsuario" value = {{usuario.nombreUsuario}} placeholder= "Nombre de usuario" [(ngModel)]="usuario.nombreUsuario" #userName = "ngModel" required minlength="4" [disabled]="usuario.nombreUsuario == 'admin'">
+                            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                                <p-message styleClass="m-1" *ngIf="userName.errors?.required" severity="error" text="El nombre de usuario es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="userName.errors?.minlength" severity="error" text="Debe tener al menos 4 caracteres"></p-message>
                             </div>
                         </div>
                         <!--fin nombre usuario-->
@@ -77,15 +50,9 @@
                         <div class="form-group mt-2">
                             <label for="labelCorreo">Correo</label>
                             <input type="email" class="p-inputtext form-control mt-2" name="Correo" value= {{usuario.email}} placeholder="Correo electrónico" [(ngModel)]="usuario.email" #emailUs = "ngModel" required email [disabled]="usuario.nombreUsuario == 'admin'">
-                            <div class="alert-danger rounded mt-2" *ngIf="emailUs.invalid && (emailUs.dirty || emailUs.touched)">
-                                <div *ngIf="emailUs.errors?.required">
-                                   <i class="ms-1 bi-x-circle-fill"></i>
-                                     El nombre es requerido
-                                </div>
-                                <div *ngIf="emailUs.errors?.email">
-                                    <i class="ms-1 bi-x-circle-fill"></i>
-                                    El correo debe tener el formato correcto
-                                 </div>
+                            <div *ngIf="emailUs.invalid && (emailUs.dirty || emailUs.touched)">
+                                <p-message styleClass="m-1" *ngIf="emailUs.errors?.required" severity="error" text="El email es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="emailUs.errors?.email" severity="error" text="Debe tener el formato ejemplo@ejemplo.com"></p-message>
                             </div>
                             
                         </div>
@@ -94,13 +61,8 @@
                     <!-- footer card-->  
                     <div class="card-footer mb-2">
                         <div class="d-flex justify-content-between">
-                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" routerLink="/inicio"></button>
+                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" (click)= "goBack()"></button>
                             <button pRipple pButton class="p-button-primary p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
-
-                            <!--<div class="btn-group">
-                                <button pButton class="p-button-success" type="submit" label="Editar Datos Personales" [disabled]="!form.valid"></button>
-                                <button pButton class="p-button-danger" type="button" icon="pi pi-times" routerLink="/inicio"></button>
-                            </div> -->
                         </div>
                     </div>
                     <!-- fin footer card-->

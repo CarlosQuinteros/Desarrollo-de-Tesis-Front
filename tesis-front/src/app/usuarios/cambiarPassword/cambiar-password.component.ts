@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { CambiarPassword } from 'src/app/Dtos/usuarios/cambiar-password';
 import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -20,9 +22,10 @@ export class CambiarPasswordComponent implements OnInit {
   msj: string ='';
   usuario : Usuario | any;
   cambiarPasswordDto : CambiarPassword | any;
-  
+  home : MenuItem = {}
+  items : MenuItem[] = [];
 
-  constructor(private tokenService : TokenService, private router: Router, private usuarioService : UsuarioService) {
+  constructor(private tokenService : TokenService, private router: Router,private location: Location, private usuarioService : UsuarioService) {
   
    }
 
@@ -30,7 +33,20 @@ export class CambiarPasswordComponent implements OnInit {
     if(!this.tokenService.isLogged()){
       this.router.navigate(['/login']);
     }
+    this.cargarItems();
     this.obtenerUsuario();
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Perfil'},
+      {label:'Cambiar contraseña',disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
+  }
+
+  goBack(){
+    this.location.back();
   }
 
   existeToken():void{

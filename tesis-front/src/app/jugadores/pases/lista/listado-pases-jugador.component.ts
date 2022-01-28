@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { DetalleJugadorDto } from 'src/app/Dtos/jugadores/detalle-jugador-dto';
 import { Jugador } from 'src/app/modelo/jugador';
@@ -19,13 +20,23 @@ export class ListadoPasesJugadorComponent implements OnInit {
   fechaCorta : string = 'dd/MM/yyyy';
   detalleJugador  = <DetalleJugadorDto> {}
   pasesFiltrados : Pase[] = [];
+  home : MenuItem = {}
+  items : MenuItem[] = [];
 
   constructor(private router: Router, private jugadorService: JugadorService, private rutaActiva : ActivatedRoute) { }
 
   ngOnInit(): void {
     const idJugador = this.rutaActiva.snapshot.params.id;
+    this.cargarItems();
     this.obtenerDetalleJugador(idJugador);
-    
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Jugadores', routerLink:'/jugadores/lista'},
+      {label:'Pases', disabled:true}
+    ];
+    this.home = this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
   obtenerDetalleJugador(idJugador: number){

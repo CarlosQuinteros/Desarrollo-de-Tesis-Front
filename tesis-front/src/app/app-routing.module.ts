@@ -22,6 +22,7 @@ import { DetalleJugadorComponent } from './jugadores/detalle/detalle-jugador.com
 import { ListadoPasesJugadorComponent } from './jugadores/pases/lista/listado-pases-jugador.component';
 import { ListadoPasesComponent } from './Pases/lista/listado-pases.component';
 import { NuevoPaseJugadorComponent } from './jugadores/pases/nuevo/nuevo-pase-jugador.component';
+import { ReporteDeActividadComponent } from './reportes/usuarios/reporte-de-actividad.component';
 
 
 const USER = 'ROLE_USER';
@@ -58,7 +59,8 @@ const routes: Routes = [
   {path: 'jugadores/pases/nuevo/:id', component:NuevoPaseJugadorComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[ADMIN, ENCARGADO_DE_JUGADORES]}},
   /** rutas de pases o transferencias */
   {path: 'pases/lista', component:ListadoPasesComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN, ENCARGADO_DE_JUGADORES]}},
-
+  /** rutas de reportes */
+  {path: 'reportes/usuarios/actividad', component:ReporteDeActividadComponent, canActivate:[guardUsuarios], data:{rolesEsperados:[ADMIN]}},
   {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { PerfilUsuarioDto } from 'src/app/Dtos/usuarios/perfil-usuario-dto';
 import { Usuario } from 'src/app/modelo/usuario';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -19,11 +21,26 @@ export class PerfilActualizarComponent implements OnInit {
 
   usuario : Usuario = new Usuario('','','','',''); //sera undefined hasta que se obtenga en la suscripción
   msj : string = '';
+  home : MenuItem = {}
+  items : MenuItem[] = [];
 
-  constructor(private tokenService : TokenService, private router : Router, private usuarioService : UsuarioService) { }
+  constructor(private tokenService : TokenService, private router : Router, private location : Location,private usuarioService : UsuarioService) { }
 
   ngOnInit(): void {
+    this.cargarItems();
     this.obtenerUsuario();
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label:'Perfil'},
+      {label:'Editar Datos', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'}
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
    obtenerUsuario():void{

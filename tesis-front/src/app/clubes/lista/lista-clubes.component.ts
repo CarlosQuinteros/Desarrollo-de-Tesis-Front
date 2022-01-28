@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Club } from 'src/app/modelo/club';
 import { ClubService } from 'src/app/servicios/club.service';
@@ -20,9 +21,11 @@ export class ListaClubesComponent implements OnInit {
   loading : boolean = true
   isAdmin : boolean = false;
   isEncargadoJugadores : boolean = false;
-
   cols : any[] = [];
   exportColumns : any[] = [];
+  home : MenuItem = {}
+  items : MenuItem[] = [];
+
   constructor(
     private router : Router,
     private clubService : ClubService,
@@ -32,7 +35,16 @@ export class ListaClubesComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.isEncargadoJugadores = this.tokenService.isEncargadoJugadores();
+    this.cargarItems();
     this.cargarClubes();
+  }
+
+  cargarItems(): void {
+    this.items = [
+      {label: 'Clubes'},
+      {label: 'Listado', disabled:true}
+    ];
+    this.home = {icon: 'pi pi-home', routerLink:'/inicio'}
   }
 
   cargarClubes():void {
