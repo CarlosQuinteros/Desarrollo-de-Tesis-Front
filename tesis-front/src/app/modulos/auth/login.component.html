@@ -1,0 +1,67 @@
+<body class="image-fondo">
+  <div class="container">
+    <div class="row justify-content-center mt-lg-3">
+      <h2 class="text-center text-light fw-bold mt-1">ADMINISTRADOR DE COMPETENCIAS</h2>
+      <div class="col-lg-5 fadeInDown">
+
+        <!-- card -->
+        <div class="card shadow-lg border-0 mt-5">
+          <div class="card-header bg-gradient bg-dark text-white form-control-lg">
+            Iniciar Sesion
+          </div>
+          <div class="card-body mt-2">
+            <!-- form login -->
+            <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+              <!-- group usuario-->
+              <div class="form-group">
+                <label for="labelNombreUsuario">Nombre de Usuario</label>
+                    <div class="input-group mt-2">
+                        <i class="bi-person-fill btn btn-secondary"></i>
+                        <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
+                        placeholder="Ingrese su usuario o correo" [(ngModel)]="nombreUsuario" required #nombre="ngModel"/>
+                    </div>
+                    <div class="mt-1" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                      <p-message *ngIf="nombre.errors?.required" severity="error" text="El usuario es requerido"></p-message>
+                  </div>
+              </div>
+              <!-- fin group usuario-->
+
+              <!-- group contraseña-->
+              <div class="form-group mt-3">
+                 <label for="labelPassword">Contraseña</label>
+                  <div class="input-group mt-2">
+                      <i class="btn btn-secondary bi bi-eye-fill"
+                       [ngClass]="hide? 'btn btn-secondary bi bi-eye-fill' : 'btn btn-secondary bi bi-eye-slash-fill'" (click)="hidepassword()"></i>
+                      <input type="password" [type]="hide ? 'password': 'text'" class="form-control" name="password"
+                      id="password" placeholder="Ingrese su contraseña" [(ngModel)]="password" required #contrasenia ="ngModel" />
+                  </div>
+                  <div class="mt-1" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+                    <p-message *ngIf="contrasenia.errors?.required" severity="error" text="La contraseña es requerida"></p-message>
+                  </div>
+              </div>
+              <!--fin group contraseña-->
+
+              <!-- group boton ingresar -->
+              <div class="form-group mt-3">
+                  <div class="d-grid gap-2">
+                    <button pRipple class="btn btn-success" [disabled]="!f.valid">
+                      <i class="bi-arrow-right-circle me-1"></i>
+                      Ingresar
+                    </button>
+                  </div>
+              </div>
+              <!-- fin group ingresar -->
+              <!-- group Olvidaste contraseña-->
+              <div class="text-center mt-2">
+              <a routerLink="/recuperacion-password/enviarEmail" class="link-primary text-center"> ¿Olvidaste tu contraseña?</a>
+              </div>
+              <!-- fin olvidaste contraseña-->
+            </form>
+            <!-- fin form-->
+          </div>
+        </div>
+        <!-- fin card-->
+      </div>
+    </div>
+  </div>
+</body>

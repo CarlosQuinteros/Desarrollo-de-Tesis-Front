@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CambioDeClubDto } from '../Dtos/jugadores/cambio-de-club-dto';
-import { Pase } from '../modelo/pase';
+import { CambioDeClubDto } from 'src/app/core/Dtos/jugadores/cambio-de-club-dto';
+import { Pase } from 'src/app/core/modelo/pase';
 
 @Injectable({
   providedIn: 'root'

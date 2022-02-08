@@ -1,0 +1,185 @@
+<app-nav-bar></app-nav-bar>
+<div class="container fadein animation-iteration-1 animation-duration-500">
+  <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+  <p-dialog header={{headerModal}} styleClass="rounded" [(visible)]="displayModal" [modal]="true"
+    [style]="{width: '40vw'}" [draggable]="false" [resizable]="false">
+    <form #form="ngForm" (ngSubmit)="obtenerJugador(form)" novalidate>
+      <div class="card-body">
+        <!--group documento-->
+        <div class="form-group">
+          <label for="labelDoc">Documento</label>
+          <input type="text" pKeyFilter="pint" class="p-inputtext form-control mt-2" name="documento" id="documento"
+            placeholder="Ingrese el documento del jugador" [(ngModel)]="documentoJug" #Doc="ngModel" required
+            minlength="7">
+          <div *ngIf="Doc.invalid && (Doc.dirty || Doc.touched)">
+            <p-message styleClass="m-1" *ngIf="Doc.errors?.required" severity="error" text="El documento es requerido"></p-message>
+            <p-message styleClass="m-1" *ngIf="Doc.errors?.minlength" severity="error" text="Debe tener al menos 7 digitos"></p-message>
+          </div>
+        </div>
+        <!--fin group email o usuario-->
+        <div class="d-grid gap-2 mt-3">
+          <button pButton class="p-button-primary" label="Continuar" [disabled]="!form.valid"></button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+  <div class="row justify-content-center">
+    <!-- tabla -->
+    <div>
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <i class="bi bi-table me-1"></i>
+          Pases
+        </div>
+        <div class="card-body">
+          <p-table #dt [value]="pases" styleClass="p-datatable-striped p-datatable-sm"
+            dataKey="id" [rows]="5" responsiveLayout="stack" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15,20]" [loading]="loading"
+            [rowHover]="true" [paginator]="true"
+            currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+            [filterDelay]="0">
+            <ng-template pTemplate="caption">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <button pRipple pButton class="p-button-rounded p-button-sm me-1" icon="bi bi-plus-circle"
+                    label="Nuevo Pase" (click)="showModalDialog()"></button>
+                  <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1"
+                    icon="pi pi-filter-slash" label="Limpiar Filtros" (click)="clear(dt)"></button>
+
+                </div>
+                <div>
+                  <!--<button pButton class="p-button-danger p-button-sm me-1"  icon="pi pi-file-pdf" pTooltip="Exportar a PDF" tooltipPosition="top" (click)="exportarPdf(dt)"></button>-->
+                  <!--<button pButton class=" p-button-success p-button-sm me-1" icon="pi pi-file-excel" pTooltip="Exportar a Excel" tooltipPosition="bottom" (click)="exportarExcel(dt)"></button>-->
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr class="text-center">
+                <!--column Id-->
+                <th class="text-center" pSortableColumn="id">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Id
+                    <p-sortIcon field="id"></p-sortIcon>
+                    <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+                  </div>
+                </th>
+                <!--column Id Jugador-->
+                <th class="text-center" pSortableColumn="jugador.id">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Id Jugador
+                    <p-sortIcon field="jugador.id"></p-sortIcon>
+                    <p-columnFilter type="numeric" field="jugador.id" display="menu" class="p-ml-auto"></p-columnFilter>
+                  </div>
+                </th>
+                <!--column Jugador-->
+                <th class="text-center" pSortableColumn="jugador.apellidos">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Apellidos
+                    <p-sortIcon field="jugador.apellidos"></p-sortIcon>
+                    <p-columnFilter type="text" field="jugador.apellidos" display="menu" class="p-ml-auto">
+                    </p-columnFilter>
+                  </div>
+                </th>
+                <!--column Nombre-->
+                <th class="text-center" pSortableColumn="jugador.nombre">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Nombres
+                    <p-sortIcon field="jugador.nombre"></p-sortIcon>
+                    <p-columnFilter type="text" field="jugador.nombre" display="menu" class="p-ml-auto">
+                    </p-columnFilter>
+                  </div>
+                </th>
+                <!--column fecha-->
+                <th class="text-center" pSortableColumn="fechaParsed">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Fecha
+                    <p-sortIcon field="fechaParsed"></p-sortIcon>
+                    <p-columnFilter type="date" field="fechaParsed" display="menu" class="p-ml-auto"></p-columnFilter>
+                  </div>
+                </th>
+                <!-- column fecha desde-->
+                <th class="text-center" pSortableColumn="fechaDesdeParsed">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Fecha Desde
+                    <p-sortIcon field="fechaDesdeParsed"></p-sortIcon>
+                    <p-columnFilter type="date" field="fechaDesdeParsed" display="menu" class="p-ml-auto">
+                    </p-columnFilter>
+                  </div>
+                </th>
+                <!-- column fecha hasta-->
+                <th class="text-center" pSortableColumn="fechaHastaParsed">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Fecha Hasta
+                    <p-sortIcon field="fechaHastaParsed"></p-sortIcon>
+                    <p-columnFilter type="date" field="fechaHastaParsed" display="menu" class="p-ml-auto">
+                    </p-columnFilter>
+                  </div>
+                </th>
+                <!-- column edad en pase-->
+                <th class="text-center" pSortableColumn="edadEnPase">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Edad
+                    <p-sortIcon field="edadEnPase"></p-sortIcon>
+                    <p-columnFilter type="numeric" field="edadEnPase" display="menu" class="p-ml-auto"></p-columnFilter>
+                  </div>
+                </th>
+                <!-- column club destino-->
+                <th class="text-center" pSortableColumn="club.nombreClub">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Club
+                    <p-sortIcon field="club.nombreClub"></p-sortIcon>
+                    <p-columnFilter type="text" field="club.nombreClub" display="menu" class="p-ml-auto">
+                    </p-columnFilter>
+                  </div>
+                </th>
+                <!-- column motivo-->
+                <th class="text-center" pSortableColumn="motivo">
+                  <div class="p-d-flex p-jc-between p-ai-center">
+                    Motivo
+                    <p-sortIcon field="motivo"></p-sortIcon>
+                    <p-columnFilter type="text" field="motivo" display="menu" class="p-ml-auto"></p-columnFilter>
+                  </div>
+                </th>
+                <!-- columna acciones-->
+                <!--
+                        <th class="text-center">Acciones</th> -->
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pase>
+              <tr>
+                <td>{{pase.id}}</td>
+                <td>{{pase.jugador.id}}</td>
+                <td>{{pase.jugador.apellidos}}</td>
+                <td>{{pase.jugador.nombre}}</td>
+                <td>{{pase.fechaParsed | date : fechaCorta}}</td>
+                <td>{{pase.fechaDesdeParsed | date : fechaCorta}}</td>
+                <td>{{pase.fechaHastaParsed != null ? (pase.fechaHastaParsed | date : fechaCorta) : 'CONTINUA'}}</td>
+                <td>{{pase.edadEnPase}}</td>
+                <td>{{pase.club.nombreClub}}</td>
+                <td>{{pase.motivo}}</td>
+                <!--<td class="text-center">-->
+                <!--<button class="btn btn-success btn-sm me-1" routerLink="/jugadores/club/{{club.id}}" pTooltip="Ver Jugadores" tooltipPosition = "top">
+                            <i class="fas fa-running"></i>
+                        </button>
+                        <button class="btn btn-primary btn-sm me-1" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarClub(club.id)" pTooltip="Eliminar" tooltipPosition = "top">
+                            <i class="fas fa-trash"></i>
+                        </button>-->
+                <!--</td>-->
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td class="text-center" colspan="8">No se encontraron registros.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+      </div>
+    </div>
+    <!-- fin tabla-->
+  </div>
+</div>
+<app-footer></app-footer>

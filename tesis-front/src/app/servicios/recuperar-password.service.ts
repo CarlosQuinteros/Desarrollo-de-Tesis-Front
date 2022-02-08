@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { EmailValuesDto } from '../Dtos/usuarios/email-values-dto';
-import { RecuperarPasswordDto } from '../Dtos/usuarios/recuperar-password-dto';
-import { Usuario } from '../modelo/usuario';
+import { EmailValuesDto } from 'src/app/core/Dtos/usuarios/email-values-dto';
+import { RecuperarPasswordDto } from 'src/app/core/Dtos/usuarios/recuperar-password-dto';
+import { Usuario } from 'src/app/core/modelo/usuario';
 import { environment } from 'src/environments/environment';
 
 

@@ -1,0 +1,135 @@
+<app-nav-bar></app-nav-bar>
+<!-- inicio container-->
+<div class="container-xxl fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <p class="text-2xl">Listado de Jugadores del Club "{{club.nombreClub}}"</p>
+    <div class="mt-4">
+        <!--<button class="btn btn-success" routerLink="/clubes/nuevo"> <i class="bi bi-plus-circle me-1"> </i> Nuevo Club</button>-->
+    </div>
+    <div class="row justify-content-center mt-4">
+       
+        <!-- tabla con prime ng-->
+        <div>
+            <div class="card shadow">
+              <div class="card-header bg-primary text-white">
+                <i class="bi bi-table me-1"></i>
+                Jugadores
+              </div>
+              <div class="card-body">
+                <p-table #dt [value]="jugadores" styleClass="p-datatable-striped p-datatable-sm" dataKey="id" [rows]="5"
+                  [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+                  [paginator]="true"
+                  currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+                  [filterDelay]="0">
+                  <ng-template pTemplate="caption">
+                    <div class="p-d-flex">
+                        <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                        <button pRipple pButton class="p-button-sm p-button-success p-button-rounded me-1" *ngIf="jugadoresActuales" label="Ver Jugadores Actuales" (click)="mostrarJuagdoresActuales()"></button>
+                        <button pRipple pButton class="p-button-sm p-button-warning p-button-rounded me-1" *ngIf="exJugadores" label="Ver Ex Juagdores"  (click)="mostrarExJuagdores()"></button>
+                    </div>
+                    
+                </ng-template>
+                  <ng-template pTemplate="header">
+                    <tr class="text-center">
+                        <!--column Id-->
+                        <th class="text-center" pSortableColumn="id">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Id
+                                <p-sortIcon field="id"></p-sortIcon>
+                                <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column Apellidos-->
+                        <th class="text-center" pSortableColumn="apellidos">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Apellidos
+                                <p-sortIcon field="apellidos"></p-sortIcon>
+                                <p-columnFilter type="text" field="apellidos" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column Nombres-->
+                        <th class="text-center" pSortableColumn="nombre">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Nombres
+                                <p-sortIcon field="nombre"></p-sortIcon>
+                                <p-columnFilter type="text" field="nombre" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        
+                        <!--column DNI-->
+                        <th class="text-center" pSortableColumn="documento">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                DNI
+                                <p-sortIcon field="documento"></p-sortIcon>
+                                <p-columnFilter type="text" field="documento" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column Fecha Nacimiento-->
+                        <th class="text-center" pSortableColumn="fechaNacimientoParsed">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Fecha Nac.
+                                <p-sortIcon field="fechaNacimientoParsed"></p-sortIcon>
+                                <p-columnFilter type="date" field="fechaNacimientoParsed" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column edad-->
+                        <th class="text-center" pSortableColumn="edadActual">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Edad
+                                <p-sortIcon field="edadActual"></p-sortIcon>
+                                <p-columnFilter type="numeric" field="edadActual" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column Tarjetas Amarillas
+                        <th class="text-center" pSortableColumn="tarjetasAmarillasAcumuladas">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Tarjetas
+                                <p-sortIcon field="tarjetasAmarillasAcumuladas"></p-sortIcon>
+                                <p-columnFilter type="numeric" field="tarjetasAmarillasAcumuladas" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th> -->
+                        <!--column Club actual-->
+                        <th class="text-center" pSortableColumn="clubActual.nombreClub">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Club Actual
+                                <p-sortIcon field="clubActual.nombreClub"></p-sortIcon>
+                                <p-columnFilter type="text" field="clubActual.nombreClub" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                        <!--column Estado-->
+                        <th class="text-center" pSortableColumn="estadoJugador.estadoJugador">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Estado
+                                <p-sortIcon field="estadoJugador.estadoJugador"></p-sortIcon>
+                                <p-columnFilter type="text" field="estadoJugador.estadoJugador" display="menu" class="p-ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-jugador>
+                    <tr>
+                        <td>{{jugador.id}}</td>
+                        <td>{{jugador.apellidos}}</td>
+                        <td>{{jugador.nombre}}</td>
+                        <td>{{jugador.documento}}</td>
+                        <td>{{jugador.fechaNacimientoParsed | date:'dd/MM/YYYY' }}</td>
+                        <td>{{jugador.edadActual}}</td>
+                        <!--<td>{{jugador.tarjetasAmarillasAcumuladas}}</td> -->
+                        <td>{{jugador.clubActual != null ? jugador.clubActual.nombreClub : 'Sin Club'}}
+                        <td>{{jugador.estadoJugador.nombreEstado}}</td>                        
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" colspan="8">No se encontraron registros.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+      
+            </div>
+          </div>
+        <!-- fin tabla-->
+    </div>
+</div>
+<app-footer></app-footer>

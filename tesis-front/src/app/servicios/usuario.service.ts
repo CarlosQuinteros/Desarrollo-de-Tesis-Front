@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CambiarPassword } from '../Dtos/usuarios/cambiar-password';
-import { EditarUsuarioDto } from '../Dtos/usuarios/editar-usuario-dto';
-import { NuevoUsuario } from '../Dtos/usuarios/nuevo-usuario';
-import { PerfilUsuarioDto } from '../Dtos/usuarios/perfil-usuario-dto';
-import { Usuario } from '../modelo/usuario';
+import { CambiarPassword } from 'src/app/core/Dtos/usuarios/cambiar-password';
+import { EditarUsuarioDto } from 'src/app/core/Dtos/usuarios/editar-usuario-dto';
+import { NuevoUsuario } from 'src/app/core/Dtos/usuarios/nuevo-usuario';
+import { PerfilUsuarioDto } from 'src/app/core/Dtos/usuarios/perfil-usuario-dto';
+import { Usuario } from 'src/app/core/modelo/usuario';
 
 @Injectable({
   providedIn: 'root'

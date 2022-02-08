@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map, filter, reduce} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Log } from '../modelo/log';
+import { Log } from 'src/app/core/modelo/log';
 
 @Injectable({
   providedIn: 'root'

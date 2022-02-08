@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CambioDeClubDto } from '../Dtos/jugadores/cambio-de-club-dto';
-import { EditarJugador } from '../Dtos/jugadores/editar-jugador';
-import { NuevoJugadorDto } from '../Dtos/jugadores/nuevo-jugador-dto';
-import { Jugador } from '../modelo/jugador';
+import { CambioDeClubDto } from 'src/app/core/Dtos/jugadores/cambio-de-club-dto';
+import { EditarJugador } from 'src/app/core/Dtos/jugadores/editar-jugador';
+import { NuevoJugadorDto } from 'src/app/core/Dtos/jugadores/nuevo-jugador-dto';
+import { Jugador } from 'src/app/core/modelo/jugador';
 
 @Injectable({
   providedIn: 'root'

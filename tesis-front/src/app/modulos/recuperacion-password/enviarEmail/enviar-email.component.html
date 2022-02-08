@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" >ADM Competencias</a>
+        
+    </div>
+</nav>
+<!-- contenido-->
+<div class="container">
+        <p-breadcrumb class="m-2" [model]="items"></p-breadcrumb>
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <!-- card-->
+                <div class="card shadow mt-4">
+                    <div class="card-header bg-primary text-white">
+                        <i class=" bi bi-card-text me-1"></i>
+                        Formulario
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form #form = "ngForm" (ngSubmit) = "enviarEmail(form)" novalidate>
+                        <div class="card-body">
+                            <!--group email o usuario-->
+                            <div class="form-group">
+                                <label for="labelEmail">Correo electronico o nombre de usuario</label>
+                                <input type="text" class="p-inputtext form-control mt-2" name ="email"id="email"  placeholder="Ingrese su correo o su usuario" [(ngModel)]="mailTo" #emailUsuario = "ngModel" required>
+                                <div *ngIf="emailUsuario.invalid && (emailUsuario.dirty || emailUsuario.touched)">
+                                    <p-message styleClass="m-1" *ngIf="emailUsuario.errors?.required"  severity="error" text="El campo es requerido"></p-message>
+                                </div>
+                            </div>
+                            <!--fin group email o usuario-->
+                        </div>
+                      <div class="card-footer">
+                          <div class="d-grid gap-2">
+                            <button pRipple pButton class="p-button-primary p-button-raised" icon="pi pi-envelope" label="Enviar correo" [disabled]="!form.valid"></button>
+                          </div>
+                        <div class="text-center mt-3">
+                            <a routerLink="/auth" class="link-primary text-center"><i class="bi bi-arrow-left-circle"></i>  Iniciar sesión</a>
+                        </div>
+                      </div>
+                      
+                    </form>
+                </div>
+                <!-- fin card-->
+            </div>
+        </div>
+    
+
+</div>
+<!---fin contenido-->
+<app-footer></app-footer>
+
