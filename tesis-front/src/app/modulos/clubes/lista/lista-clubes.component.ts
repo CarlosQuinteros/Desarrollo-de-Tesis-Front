@@ -49,7 +49,7 @@ export class ListaClubesComponent implements OnInit {
 
   cargarClubes():void {
     this.clubService.listaClubes().subscribe(
-      data => {
+      data => { 
         this.clubes = data;
         this.clubesFiltrados = data;
         this.loading = false;

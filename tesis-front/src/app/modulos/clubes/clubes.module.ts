@@ -13,6 +13,7 @@ import { EditarClubComponent } from 'src/app/modulos/clubes/editar/editar-club.c
 import { NuevoClubComponent } from 'src/app/modulos/clubes/nuevo/nuevo-club.component';
 import { ListaJugadoresActualesComponent } from 'src/app/modulos/clubes/listaJugadoresActuales/lista-jugadores-actuales.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     RouterModule,
     ButtonModule,
     BreadcrumbModule,
-    SharedModule
+    SharedModule,
+    ScrollTopModule
   ]
 })
 export class ClubesModule { }

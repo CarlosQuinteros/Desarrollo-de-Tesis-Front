@@ -5,6 +5,7 @@ import { JugadorService } from 'src/app/servicios/jugador.service';
 import Swal from 'sweetalert2';
 import { EditarJugador } from 'src/app/core/Dtos/jugadores/editar-jugador';
 import { MenuItem } from 'primeng/api';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-jugador',
@@ -12,7 +13,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./detalle-jugador.component.css'],
 })
 export class DetalleJugadorComponent implements OnInit {
-  constructor(private jugadorService: JugadorService,private rutaActiva : ActivatedRoute, private router: Router) { }
+  constructor(private jugadorService: JugadorService,private rutaActiva : ActivatedRoute, private router: Router, private location: Location) { }
 
   fechaCorta: string = 'dd/MM/yyyy';
   detalleJugador  = <DetalleJugadorDto> {}
@@ -88,5 +89,9 @@ export class DetalleJugadorComponent implements OnInit {
         Swal.fire('Error', err.error.message, 'error');
       }
     )
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

@@ -6,6 +6,7 @@ import { CambioDeClubDto } from 'src/app/core/Dtos/jugadores/cambio-de-club-dto'
 import { EditarJugador } from 'src/app/core/Dtos/jugadores/editar-jugador';
 import { NuevoJugadorDto } from 'src/app/core/Dtos/jugadores/nuevo-jugador-dto';
 import { Jugador } from 'src/app/core/modelo/jugador';
+import { EditarPaseJugadorDto } from '../core/Dtos/jugadores/editar-pase-jugador-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +66,11 @@ export class JugadorService {
     return this.httpClient.post<any>(`${this.jugadoresURL}/pases/nuevo`, nuevoPaseDto);
   }
 
+  public eliminarPase(id : number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.jugadoresURL}/pases/eliminar/${id}`);
+  }
 
-
-  //TODO: falta cambiar de club, historial de clubes, club actual y ultima transferencia
+  public editarPase(id: number, editarPaseDto : EditarPaseJugadorDto): Observable<any> {
+    return this.httpClient.put<any>(`${this.jugadoresURL}/pases/editar/${id}`, editarPaseDto );
+  }
 }

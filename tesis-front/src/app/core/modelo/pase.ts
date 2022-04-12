@@ -3,7 +3,7 @@ import { Jugador } from "./jugador";
 
 export interface Pase {
     id:number;
-    jugador?: Jugador;
+    jugador: Jugador;
     fechaParsed: Date;
     fechaDesdeParsed: Date;
     fechaHastaParsed: Date;

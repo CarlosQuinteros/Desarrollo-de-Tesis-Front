@@ -25,4 +25,8 @@ export default class PasesService {
   public prueba(cambioDeClubDto : CambioDeClubDto):Observable<any>{
     return this.httpClient.post<any>(`${this.pasesJug}/prueba`, cambioDeClubDto);
   }
+
+  public detallePase(id : number):Observable<Pase>{
+    return this.httpClient.get<Pase>(`${this.pasesJug}/detalle/${id}`);
+  }
 }

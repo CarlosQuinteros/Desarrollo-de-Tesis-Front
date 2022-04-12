@@ -17,6 +17,8 @@ import { PerfilActualizarComponent } from 'src/app/modulos/usuarios/perfil/perfi
 import { CambiarPasswordComponent } from 'src/app/modulos/usuarios/cambiarPassword/cambiar-password.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
+import {TabViewModule} from 'primeng/tabview';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ButtonModule,
     KeyFilterModule,
     ValidateEqualModule,
-    SharedModule
+    SharedModule,
+    TabViewModule,
+    ScrollTopModule
   ]
 })
 export class UsuariosModule { }

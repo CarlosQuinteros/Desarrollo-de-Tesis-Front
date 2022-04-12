@@ -1,19 +1,21 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-xl fadein animation-iteration-1 animation-duration-500">
     <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
-    <div class="card shadow mb-4">
+    <div class="card shadow-sm mb-4">
       <div class="card-header bg-primary text-white"><i class="fas fa-running me-1"></i> Jugador</div>
       <div class="card-body p-text-normal">
           <p class="text-2xl font-normal">Historial de Clubes de "{{detalleJugador.jugador.apellidos}}, {{detalleJugador.jugador.nombre}}"</p>
-          <p-chip styleClass="text-lg font-normal mr-2"> DNI: {{detalleJugador.jugador.documento | number}}</p-chip>
-          <p-chip styleClass="text-lg font-normal mr-2">Fecha de Nacimiento: {{detalleJugador.jugador.fechaNacimientoParsed | date:fechaCorta}}</p-chip>      
+          <p-tag styleClass="text-base font-normal m-1" [severity]="getTagServerityClubActual()" [value]="clubActualJugador()" icon="pi pi-shield" [rounded]="true"></p-tag>
+          <p-chip styleClass="text-base p-1 font-normal m-1 px-2"> DNI: {{detalleJugador.jugador.documento | number}}</p-chip>
+          <p-chip styleClass="text-base p-1 font-normal m-1 px-2">Fecha de Nacimiento: {{detalleJugador.jugador.fechaNacimientoParsed | date:fechaCorta}}</p-chip>
+          <button pButton class="p-button-sm p-button-secondary p-button-rounded p-button-text" label="Datos" icon="pi pi-pencil" routerLink="/jugadores/detalle/{{detalleJugador.jugador.id}}"></button>
       </div>
     </div>
     <!--<button pButton class="p-button-help p-button-rounded m-2" icon = "bi bi-plus-circle" label="Nuevo Pase" routerLink="/jugadores/pases/nuevo/{{detalleJugador.jugador.id}}"></button>-->
     <div class="row justify-content-center mt-lg-3">
          <!-- tabla -->
-         <div>
-            <div class="card shadow">
+         <div class="col">
+            <div class="card shadows-sm">
               <div class="card-header bg-primary text-white">
                 <i class="bi bi-table me-1"></i>
                 Historial de Clubes
@@ -110,15 +112,8 @@
                       <td>{{pase.club.nombreClub}}</td>
                       <td>{{pase.motivo}}</td>
                       <td class="text-center">
-                        <!--<button class="btn btn-success btn-sm me-1" routerLink="/jugadores/club/{{club.id}}" pTooltip="Ver Jugadores" tooltipPosition = "top">
-                            <i class="fas fa-running"></i>
-                        </button>
-                        <button class="btn btn-primary btn-sm me-1" routerLink="/clubes/detalle/{{club.id}}" pTooltip="Editar" tooltipPosition="top">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" (click)="eliminarClub(club.id)" pTooltip="Eliminar" tooltipPosition = "top">
-                            <i class="fas fa-trash"></i>
-                        </button>-->
+                        <button pButton class="p-button-sm p-button-rounded p-button-raised p-button-text" icon="pi pi-pencil" routerLink="/jugadores/pases/editar/{{pase.id}}" pTooltip="Editar" tooltipPosition="top"></button>
+                        <button pButton class="p-button-danger p-button-rounded p-button-sm p-button-raised p-button-text" icon="pi pi-trash" (click)="eliminarPase(pase.id)" pTooltip="Eliminar Pase" tooltipPosition = "top"></button>
                       </td>
                     </tr>
                   </ng-template>
@@ -133,6 +128,7 @@
             </div>
           </div>
         <!-- fin tabla-->
+        <p-scrollTop></p-scrollTop>
     </div>
 </div>
 <app-footer></app-footer>

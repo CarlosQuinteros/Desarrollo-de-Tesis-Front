@@ -18,6 +18,9 @@ import { DetalleJugadorComponent } from './detalle/detalle-jugador.component';
 import { ListadoPasesJugadorComponent } from './pases/lista/listado-pases-jugador.component';
 import { NuevoPaseJugadorComponent } from './pases/nuevo/nuevo-pase-jugador.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ScrollTopModule } from 'primeng/scrolltop';
+import {TagModule } from 'primeng/tag';
+import { EditarPaseComponent } from './pases/editar/editar-pase.component';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ListadoJugadoresComponent,
     DetalleJugadorComponent,
     ListadoPasesJugadorComponent,
-    NuevoPaseJugadorComponent
+    NuevoPaseJugadorComponent,
+    EditarPaseComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MessageModule,
     CalendarModule,
     KeyFilterModule,
-    ChipModule
+    ChipModule,
+    ScrollTopModule,
+    TagModule
   ]
 })
 export class JugadoresModule { }

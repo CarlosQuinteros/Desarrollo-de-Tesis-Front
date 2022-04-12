@@ -5,7 +5,7 @@
         <div class="row">
             <!-- inicio card usuarios-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin">
-                <div class="card bg-primary bg-gradient shadow-lg text-white mb-4" >
+                <div class="card bg-primary bg-gradient shadow-sm text-white mb-4" >
                     <div class="card-body">
                         <h4>Usuarios {{cantidadUsuarios}}</h4>
                         <div class="d-flex align-items-center justify-content-between">
@@ -29,7 +29,7 @@
             </div>
             <!-- inicio card jugadores-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoJugadores || isUser">
-                <div class="card border-2 bg-success shadow-lg text-white mb-4">
+                <div class="card border-2 bg-success shadow-sm text-white mb-4">
                     <div class="card-body">
                         <h3>Jugadores</h3>
                         <div class="d-flex align-items-center justify-content-between">
@@ -48,7 +48,7 @@
             </div>
             <!-- inicio card clubes-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoJugadores">
-                <div class="card bg-warning shadow-lg mb-4">
+                <div class="card bg-warning shadow-sm mb-4">
                     <div class="card-body">
                         <h3 class="strong">Clubes</h3>
                         <div class="d-flex align-items-center justify-content-between">
@@ -64,7 +64,7 @@
             </div>
             <!-- inicio card transferencias-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoJugadores">
-                <div class="card bg-success shadow-lg text-white mb-4">
+                <div class="card bg-success shadow-sm text-white mb-4">
                     <div class="card-body">
                         <h3 class="strong">Pases</h3>
                         <div class="d-flex align-items-center justify-content-between">
@@ -80,7 +80,7 @@
             </div>
             <!-- inicio card competencias-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoTorneos">
-                <div class="card border-2 shadow-lg bg-info mb-4">
+                <div class="card border-2 shadow-sm bg-info mb-4">
                     <div class="card-body">
                         <h3>Competencias</h3>
                         <div class="d-flex align-items-center justify-content-between">
@@ -98,7 +98,7 @@
             </div>
             <!-- inicio card arbitros-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin || isEncargadoTorneos">
-                <div class="card border-2 bg-light shadow-lg mb-4">
+                <div class="card border-2 surface-card shadow-sm mb-4">
                     <div class="card-body">
                         <h3>Arbitros</h3>
                         <div class="d-flex align-items-center justify-content-between">
@@ -116,7 +116,7 @@
             </div>
             <!-- inicio card Sanciones-->
             <div class="col-lg-3 col-6" *ngIf="isAdmin  || isEncargadoSanciones">
-                <div class="card bg-danger  shadow-lg text-white mb-4">
+                <div class="card bg-danger  shadow-sm text-white mb-4">
                     <div class="card-body">
                         <h3 class="strong">Sanciones</h3>
                         <div class="d-flex align-items-center justify-content-between">
@@ -132,9 +132,9 @@
             </div>
         </div>
         <!--fin dashboard-->
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-3">
             <div>
-                <div class="card shadow">
+                <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
                         <h5 class="card-title">Tus Roles son</h5>
                     </div>

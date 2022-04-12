@@ -5,6 +5,7 @@ import { Calendar } from 'primeng/calendar';
 import { Table } from 'primeng/table';
 import { Log } from 'src/app/core/modelo/log';
 import { FechaDesdeHastaService } from 'src/app/servicios/fecha-desde-hasta.service';
+import { LogAccionService } from 'src/app/servicios/log-accion.service';
 import { LogService } from 'src/app/servicios/log.service';
 
 @Component({
@@ -22,7 +23,11 @@ export class ListaLogsComponent implements OnInit {
   items : MenuItem[] = [];
 
 
-  constructor(private logsService: LogService, private router: Router) { }
+  constructor(
+    private logsService: LogService, 
+    private router: Router,
+    private logAccionService : LogAccionService
+    ) { }
 
   ngOnInit(): void {
     this.cargarLogs();
@@ -54,29 +59,7 @@ export class ListaLogsComponent implements OnInit {
   }
 
   cargarAcciones():void{
-    this.acciones = [
-      {label: 'Usuarios', value:'USUARIO'},
-      {label: 'Accesos al sistema', value: 'USUARIO_LOGIN'},
-      {label: 'Creacion Usuario', value: 'USUARIO_CREACION'},
-      {label: 'Alta Usuario', value: 'USUARIO_ALTA'},
-      {label: 'Baja Usuario', value: 'USUARIO_BAJA'},
-      {label: 'Error acceso al sistema', value: 'USUARIO_ERROR_LOGIN'},
-      {label: 'Intento login usuario inactivo', value: 'USUARIO_ERROR_LOGIN_USUARIO_INACTIVO'},
-
-      {label: 'Clubes', value: 'CLUBES'},
-      {label: 'Creacion Club', value: 'CLUBES_CREACION'},
-      {label: 'Modificacion Club', value: 'CLUBES_MODIFICACION'},
-      {label: 'Eliminacion Club', value: 'CLUBES_ELIMINACION'},
-
-      {label:'Jugadores', value: 'JUGADORES'},
-      {label: 'Creacion Jugador', value: 'JUGADORES_CREACION'},
-      {label: 'Modificacion Jugador', value: 'JUGADORES_MODIFICACION'},
-      {label: 'Alta Jugador', value: 'JUGADORES_ALTA'},
-      {label: 'Baja Jugador', value: 'JUGADORES_BAJA'},
-
-      {label:'Pases', value: 'PASES'},
-      {label: 'Creacion Pase', value: 'PASES_CREACION'}      
-    ]
+    this.acciones = this.logAccionService.getAccionesLog();   
   }
 
   detalleUsuario(id: number): void {

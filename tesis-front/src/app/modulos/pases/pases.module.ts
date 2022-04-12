@@ -13,6 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ListadoPasesComponent } from './lista/listado-pases.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DialogModule,
     ButtonModule,
     SharedModule,
+    ScrollTopModule
   ]
 })
 export class PasesModule { }

@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
+import {ScrollTopModule} from 'primeng/scrolltop';
 import { ListaLogsComponent } from './lista/lista-logs.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -25,7 +26,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     TableModule,
     RouterModule,
     SharedModule,
-    DropdownModule
+    DropdownModule,
+    ScrollTopModule
   ]
 })
 export class LogsModule { }

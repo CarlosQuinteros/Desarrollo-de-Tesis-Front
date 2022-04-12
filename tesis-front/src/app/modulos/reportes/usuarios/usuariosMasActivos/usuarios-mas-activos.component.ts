@@ -48,14 +48,16 @@ export class UsuariosMasActivosComponent implements OnInit {
     nombresDeUsuarios.forEach( username => {
       usuariosActivos[username] = !usuariosActivos[username] ? 1 : usuariosActivos[username] + 1;
     })
-    //transforma el objeto en un array de objetos [{usuario, times}]
+    //transforma el objeto en un array de objetos ordenado Desc [{usuario, times}]
     let masActivos = Object.keys(usuariosActivos)
                         .map(username => ({usuario: username, times: usuariosActivos[username]}))
                         .sort((a, b) => b.times - a.times)
                         .slice(0, cantidadMaxima);
 
+    //obtengo labels y datos del grafico
     const labels = masActivos.map(usuario => usuario.usuario)
     const cantidad = masActivos.map(usuario => usuario.times);
+    //grafico
     this.data = {
       labels : labels,
       datasets : [
@@ -75,26 +77,31 @@ export class UsuariosMasActivosComponent implements OnInit {
     this.rangoFechas = this.FechaDesdeHastaService.getFechaDesdeHasta(this.rangoFechas[0], this.rangoFechas[1]);
     const fechaDesde = this.rangoFechas[0];
     const fechaHasta = this.rangoFechas[1];
-    this.cardSubtitulo = `Desde ${fechaDesde.toLocaleDateString()} hasta ${fechaHasta.toLocaleDateString()}`;
-    
-    
+    this.cardSubtitulo = `Desde ${fechaDesde.toLocaleDateString()} hasta ${fechaHasta.toLocaleDateString()}. `;
     let usuariosActivos : {[key: string]: number} = {};
+
     //obtengo los nombres de usuarios, excepto 'admin'
-    const nombresDeUsuarios = this.Logs.filter(log => new Date(log.fecha)>= fechaDesde && new Date(log.fecha) <= fechaHasta)
+    const nombresDeUsuarios = this.Logs
+                                  .filter(log => new Date(log.fecha)>= fechaDesde && new Date(log.fecha) <= fechaHasta)
                                   .map(log => log.usuario.nombreUsuario)
                                   .filter(usernames => usernames != 'admin');
+
     //en el objeto cargo, 'usuario': veces que aparece
     nombresDeUsuarios.forEach( username => {
       usuariosActivos[username] = !usuariosActivos[username] ? 1 : usuariosActivos[username] + 1;
     })
-    //transforma el objeto en un array de objetos [{usuario, times}]
+
+    //transforma el objeto en un array de objetos ordenado Desc [{usuario, times}]
     let masActivos = Object.keys(usuariosActivos)
                         .map(username => ({usuario: username, times: usuariosActivos[username]}))
                         .sort((a, b) => b.times - a.times)
                         .slice(0, this.cantidadMax);
 
+    //obtengo labes y datos
     const labels = masActivos.map(usuario => usuario.usuario)
     const cantidad = masActivos.map(usuario => usuario.times);
+    //grafico
+    masActivos.length === 0 ? this.cardSubtitulo += 'Sin actividad' : null;
     this.data = {
       labels : labels,
       datasets : [

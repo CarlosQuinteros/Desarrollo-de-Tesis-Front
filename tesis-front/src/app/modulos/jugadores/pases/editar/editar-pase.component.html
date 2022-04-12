@@ -1,0 +1,104 @@
+<div class="container fadein animation-iteration-1 animation-duration-500">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-7">
+            <div class="card shadow-sm mb-lg-4">
+                <div class="card-header bg-primary text-white">
+                    <i class="bi bi-card-text me-1"></i>
+                    Formulario
+                </div>
+                <!-- /.card-header -->
+                <form #form="ngForm" (ngSubmit)="editarPase(form)" novalidate>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--group Apellido-->
+                                <div class="form-group">
+                                    <label for="">Apellidos</label>
+                                    <input type="text" class="p-inputtext form-control mt-2" name="apellidoJug"
+                                        id="apellidoJug" value="{{ jugador.apellidos }}" readonly disabled />
+                                </div>
+                                <!--fin group apellido-->
+                                <!--group documento-->
+                                <div class="form-group mt-2">
+                                    <label for="">Documento</label>
+                                    <input type="text" class="p-inputtext form-control mt-2" name="docJug" id="docJug"
+                                        value="{{ jugador.documento }}" readonly disabled />
+                                </div>
+                                <!--fin group documento-->
+                            </div>
+                            <div class="col-6">
+                                <!--group nombre-->
+                                <div class="form-group">
+                                    <label for="">Nombres</label>
+                                    <input type="text" class="p-inputtext form-control mt-2" name="nombreJug"
+                                        id="nombreJug" value="{{ jugador.nombre }}" readonly disabled />
+                                </div>
+                                <!--fin group nombre-->
+                                <!--group fecha Nacimiento-->
+                                <div class="form-group mt-2">
+                                    <label for="">Fecha de Nacimiento</label>
+                                    <input type="text" class="p-inputtext form-control mt-2" name="fechaJug"
+                                        id="fechaJug" value="{{jugador.fechaNacimientoParsed.toLocaleDateString()}}" readonly disabled />
+                                </div>
+                                <!--fin group fecha nacimiento-->
+                            </div>
+                        </div>
+                        <!--group Fecha desde-->
+                        <div>
+                            <label class="form-label" for="fechaDes">Fecha desde</label><br />
+                            <p-calendar class="my-2" inputId="basic" [(ngModel)]="paseEditarDto.fechaDesde"
+                                [required]="true" [ngModelOptions]="{ standalone: true }" [showIcon]="true">
+                            </p-calendar>
+                        </div>
+                        <!--fin group Fecha desde-->
+
+                        <!--group Fecha hasta-->
+                        <div>
+                            <label class="form-label mt-2" for="fechaHas">Fecha Hasta</label><br />
+                            <p-calendar class="my-2" inputId="basic" [minDate]="paseEditarDto.fechaDesde"
+                                [(ngModel)]="paseEditarDto.fechaHasta" [required]="true"
+                                [ngModelOptions]="{ standalone: true }" [showIcon]="true"></p-calendar>
+                        </div>
+                        <!--fin group Fecha hasta-->
+
+                        <!-- inicio group club-->
+                        <div class="form-group mt-2">
+                            <label class="mb-2" for="fechaNac">Selecciona el club</label><br />
+                            <select class="form-select" [ngModelOptions]="{ standalone: true }"
+                                [(ngModel)]="paseEditarDto.idClub" aria-label=".form-select-sm example" required>
+                                <option [value]="club.id" *ngFor="let club of clubes">
+                                    {{ club.nombreClub }}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- fin group club-->
+                        <!--group motivo-->
+                        <div class="form-group mt-2">
+                            <label for="labelMotivo">Motivo u observacion</label>
+                            <input type="text" class="p-inputtext form-control mt-2" name="motivo" id="motivo"
+                                placeholder="Ingrese el motivo de cambio de club" [(ngModel)]="paseEditarDto.motivo"
+                                #motivo="ngModel" required minlength="8" />
+                            <div *ngIf="motivo.invalid && (motivo.dirty || motivo.touched)">
+                                <p-message styleClass="m-1" *ngIf="motivo.errors?.required" severity="error"
+                                    text="El campo es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="motivo.errors?.minlength" severity="error"
+                                    text="Debe tener al menos 8 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <!--fin group motivo-->
+                    </div>
+                    <div class="card-footer mt-2">
+                        <div class="d-flex justify-content-between">
+                            <!--<button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" routerLink="/jugadores/historialClubes/{{idJugador}}"></button>-->
+                            <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text"
+                                icon="pi pi-times" label="Cancelar" (click)="goBack()"></button>
+                            <button pButton class="p-button-primary p-button-rounded p-button-raised" icon="pi pi-check"
+                                label="Cambiar de Club" [disabled]="!form.valid"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
