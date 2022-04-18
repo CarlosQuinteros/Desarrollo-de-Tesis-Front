@@ -66,7 +66,7 @@ export class DetalleJugadorComponent implements OnInit {
     this.editarJugador.apellidos = this.detalleJugador.jugador.apellidos;
     this.editarJugador.documento = this.detalleJugador.jugador.documento;
     this.editarJugador.fechaNacimiento = this.detalleJugador.jugador.fechaNacimientoParsed.toISOString().split("T")[0];
-    console.log(this.editarJugador);
+    //console.log(this.editarJugador);
     Swal.fire({
       title: "¿Realmente deseas editar el Jugador?",
       showCancelButton: true,
@@ -85,7 +85,8 @@ export class DetalleJugadorComponent implements OnInit {
         this.detalleJugador.jugador = data.datos;
         this.detalleJugador.jugador.fechaNacimientoParsed = new Date(this.detalleJugador.jugador.fechaNacimientoParsed)
         Swal.fire(data.mensaje,'', 'success');
-      },err => {
+      },
+      err => {
         Swal.fire('Error', err.error.message, 'error');
       }
     )

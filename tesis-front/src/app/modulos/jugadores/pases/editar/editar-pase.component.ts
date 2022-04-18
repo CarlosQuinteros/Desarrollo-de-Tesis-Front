@@ -70,7 +70,10 @@ export class EditarPaseComponent implements OnInit {
         this.jugador = data.jugador;
         this.jugador.fechaNacimientoParsed = new Date(data.jugador.fechaNacimientoParsed);
         this.paseJugadorObtenido = data;
-        console.log(this.paseJugadorObtenido);
+        //console.log(this.paseJugadorObtenido);
+      },
+      err=>{
+        console.log(err.error);
       }
     )
   }
@@ -95,7 +98,7 @@ export class EditarPaseComponent implements OnInit {
   }
 
   editarPase(form : NgForm) : void{
-    console.log(this.paseEditarDto);
+    //console.log(this.paseEditarDto);
     const texto = this.formatearTextoSwal();
     Swal.fire({
       icon: 'question',
@@ -119,7 +122,7 @@ export class EditarPaseComponent implements OnInit {
         this.router.navigate([`/jugadores/historialClubes/${this.jugador.id}`]);
       },
       err => {
-        Swal.fire('Error','La operacion no se realizo con exito', 'error');
+        Swal.fire('Error',err.error.message, 'error');
       }
     )
   }

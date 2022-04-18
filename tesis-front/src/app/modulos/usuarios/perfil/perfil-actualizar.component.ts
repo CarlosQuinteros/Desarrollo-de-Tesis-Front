@@ -91,8 +91,9 @@ export class PerfilActualizarComponent implements OnInit {
           }
         });
 
-      }, err => {
-        this.msj = err.error.mensaje;
+      }, 
+      err => {
+        this.msj = err.error.message;
         Swal.fire('Datos no actualizados correctamente', this.msj, 'error');
     })
   }

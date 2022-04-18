@@ -16,7 +16,7 @@ export class EditarClubComponent implements OnInit {
   club : Club = new Club('','','');
   msj : string = '';
   patron: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]{0,254}"
-  clubEditar : NuevoClubDto = new NuevoClubDto();
+  clubEditar : NuevoClubDto = new NuevoClubDto('','','');
   home : MenuItem = {}
   items : MenuItem[] = [];
 
@@ -69,14 +69,16 @@ export class EditarClubComponent implements OnInit {
 
   }
 
-  async solicitarActualizacionClub(id: number): Promise<void> {
+  solicitarActualizacionClub(id: number): void{
     this.clubEditar.nombre = this.club.nombreClub;
     this.clubEditar.alias = this.club.alias;
     this.clubEditar.email = this.club.email;
-    await this.clubService.editarClub(this.clubEditar, id).subscribe(
+    this.clubService.editarClub(this.clubEditar, id).toPromise().then(
       data => {
-        this.club = data.club;
+        this.club = data.datos;
         this.msj = data.mensaje;
+        console.log(data);
+        
         Swal.fire(this.msj, '', 'success');
       },err => {
         this.msj = err.error.message;

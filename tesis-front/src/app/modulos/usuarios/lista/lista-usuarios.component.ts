@@ -47,7 +47,7 @@ export class ListaUsuariosComponent implements OnInit {
         
       },
       err => {
-        console.log(err);
+        console.log(err.error);
         
       }
     )
@@ -78,7 +78,7 @@ export class ListaUsuariosComponent implements OnInit {
         this.cargarListado();
       }, 
       (err) => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
         Swal.fire('Error al dar de alta', this.msj, 'error')
 
       })
@@ -110,7 +110,7 @@ export class ListaUsuariosComponent implements OnInit {
         this.cargarListado();
       }, 
       (err) => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
         Swal.fire('Error al dar de baja', this.msj, 'error')
 
       })

@@ -21,7 +21,7 @@ export class NuevoClubComponent implements OnInit {
   // cambio el + por * 
   patron: string = "^[a-z A-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-z A-ZÀ-ÿ\u00f1\u00d1]*)*[a-z A-ZÀ-ÿ\u00f1\u00d1]+$"
   
-  nuevoClub : NuevoClubDto = new NuevoClubDto();
+  nuevoClub : NuevoClubDto = new NuevoClubDto('','','');
   mensaje : string = '';
   home: MenuItem = {};
   items : MenuItem[] = [];
@@ -63,6 +63,7 @@ export class NuevoClubComponent implements OnInit {
         form.resetForm();
       },
       err => {
+        //console.log(err.error);
         this.mensaje = err.error.message;
         Swal.fire("Error al crear el Club",this.mensaje, 'error');
       }

@@ -57,7 +57,7 @@ export class NuevoJugadorComponent implements OnInit {
     this.nuevoJugador.fechaNacimiento = this.fechaNac.toISOString().split("T")[0];
     this.nuevoJugador.fechaInscripcion = this.fechaInsc.toISOString().split("T")[0];
     let club : Club = this.clubes.filter(c => c.id == this.nuevoJugador.idClub)[0];
-    console.log(this.nuevoJugador);
+    //console.log(this.nuevoJugador);
 
     Swal.fire({
       title: '¿Realmente deseas crear un Jugador nuevo?',
@@ -84,6 +84,8 @@ export class NuevoJugadorComponent implements OnInit {
         this.fechaInsc = this.fechaActual;
       },
       err => {
+        console.log(err.error);
+        
         this.msj = err.error.message;
         Swal.fire('Error', this.msj, 'error');
       }

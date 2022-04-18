@@ -61,17 +61,10 @@ export class LoginComponent implements OnInit {
           this.isLogged = false;
           this.isLoginFail = true;
           this.errMsj = err.error.mensaje;
-          if(!this.errMsj){
-            this.errMsj = "Si el problema persiste, consulte con el administrador.";
-           } 
-
-          //console.log(this.errMsj);
-
-          //sweetalert2 con error
           Swal.fire({
             icon: 'error',
             title: 'Error al iniciar sesion',
-            text: `${this.errMsj}`
+            text: err.error.message
           })
         }
       )

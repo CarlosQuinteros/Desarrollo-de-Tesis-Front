@@ -104,7 +104,7 @@ export class IndexComponent implements OnInit {
         data =>{
           this.cantidadTotalJugadores = data;
         },err=>{
-          console.log(err.error.message);
+          console.log(err.error);
           
         }
       )

@@ -19,7 +19,13 @@ export class ListadoPasesJugadorComponent implements OnInit {
   loading = true;
   msj: string = '';
   fechaCorta: string = 'dd/MM/yyyy';
-  detalleJugador = <DetalleJugadorDto>{}
+  detalleJugador = <DetalleJugadorDto>{
+    jugador:{
+      apellidos:'',
+      nombre: '',
+      documento:'',
+    }
+  }
   pasesFiltrados: Pase[] = [];
   home: MenuItem = {}
   items: MenuItem[] = [];

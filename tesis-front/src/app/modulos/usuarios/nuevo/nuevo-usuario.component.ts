@@ -106,7 +106,7 @@ export class NuevoUsuarioComponent implements OnInit {
         this.resetRoles();
       },
       (err) => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
         Swal.fire({
           icon: 'error',
           title: 'Error al crear el usuario',

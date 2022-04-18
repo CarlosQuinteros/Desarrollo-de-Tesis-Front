@@ -140,7 +140,9 @@ export class DetalleUsuarioComponent implements OnInit {
         Swal.fire('Usuario actualizado correctamente', '', 'success');
       },
       err => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
+        console.log(err.error);
+        
         Swal.fire('Usuario no actualizado', this.msj, 'error');
       }
     )
@@ -203,7 +205,7 @@ export class DetalleUsuarioComponent implements OnInit {
         this.ngOnInit();
       }, 
       (err) => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
         Swal.fire('Error al dar de baja', this.msj, 'error')
 
       })

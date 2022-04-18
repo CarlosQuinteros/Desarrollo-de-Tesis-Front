@@ -57,8 +57,6 @@ export class CambiarPasswordComponent implements OnInit {
   }
 
   cambiarPassword(form: NgForm):void{
-    /*al hacer click en el boton cambiar Contraseña */
-    console.log(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     this.cambiarPasswordDto = new CambiarPassword(this.passwordActual, this.passwordNuevo, this.repetirPassword);
     Swal.fire({
       title: '¿Realmente deseas cambiar la contraseña?',
@@ -89,7 +87,7 @@ export class CambiarPasswordComponent implements OnInit {
         form.resetForm();
       }, 
       err => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la contraseña',
@@ -107,16 +105,10 @@ export class CambiarPasswordComponent implements OnInit {
         this.usuario = data;        
       },
       err => {
-        this.msj = err.error.mensaje;
+        this.msj = err.error.message;
         
       }
     )
-  }
-
-  restablecerFormulario():void{
-    this.passwordActual = '';
-    this.passwordNuevo = '';
-    this.repetirPassword = '';
   }
 
 

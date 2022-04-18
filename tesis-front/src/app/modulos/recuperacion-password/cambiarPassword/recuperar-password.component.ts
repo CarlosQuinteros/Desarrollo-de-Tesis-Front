@@ -53,8 +53,7 @@ export class RecuperarPasswordComponent implements OnInit {
         Swal.fire('Token de recuperación válido', `Usuario: ${this.nombreUsuario}<br/>Correo: ${this.email}`, 'success');
       },
       err =>{
-        this.msj = err.error.mensaje;
-        Swal.fire(this.msj, 'Debes generar nuevamente el token', 'error');        
+        Swal.fire(err.error.message, 'Debes generar nuevamente el token', 'error');        
         this.router.navigate(['/recuperacion-password/enviarEmail']);
       }
       )
@@ -86,8 +85,7 @@ export class RecuperarPasswordComponent implements OnInit {
         this.router.navigate(['/auth']);
       },
       err => {
-        this.msj = err.error.mensaje;
-        Swal.fire(this.msj, '', 'error');
+        Swal.fire('Error',err.error.message, 'error');
       }
     )
   }

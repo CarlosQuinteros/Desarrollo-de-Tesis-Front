@@ -47,7 +47,7 @@ export class EnviarEmailComponent implements OnInit {
       },
       err =>{
         this.msj = err.error.mensaje;
-        Swal.fire('Error al enviar el correo', this.msj, 'error');
+        Swal.fire('Error al enviar el correo', err.error.message, 'error');
       }
     )
   }
