@@ -11,7 +11,8 @@ export const environment = {
   clubesURL: 'http://localhost:8080/clubes',
   logsURL: 'http://localhost:8080/logs',
   jugadoresURL: 'http://localhost:8080/jugadores',
-  pasesJugadoresURL: 'http://localhost:8080/pases'
+  pasesJugadoresURL: 'http://localhost:8080/pases',
+  juecesURL: 'http://localhost:8080/jueces'
 
 };
 

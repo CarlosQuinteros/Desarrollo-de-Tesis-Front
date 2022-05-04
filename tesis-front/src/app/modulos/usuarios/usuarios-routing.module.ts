@@ -14,17 +14,43 @@ const USER = 'ROLE_USER';
 const routes: Routes = [
   {
     path: '',
-    children:[
-      {path: '', redirectTo:'lista'},
-      {path: 'lista', component:ListaUsuariosComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
-      {path: 'detalle/:id', component:DetalleUsuarioComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
-      {path: 'nuevo', component:NuevoUsuarioComponent,canActivate:[guardUsuarios], data:{rolesEsperados: [ADMIN]}},
-      {path: 'perfil/cambiarContraseña', component:CambiarPasswordComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [USER]}},
-      {path: 'perfil/actualizarDatos', component:PerfilActualizarComponent, canActivate:[guardUsuarios], data:{rolesEsperados: [USER]}},
-      {path: '**', redirectTo:'lista'}
-    ]
-  }
+    children: [
+      { path: '', redirectTo: 'lista' },
+      {
+        path: 'lista',
+        component: ListaUsuariosComponent,
+        canActivate: [guardUsuarios],
+        data: { rolesEsperados: [ADMIN] },
+      },
+      {
+        path: 'detalle/:id',
+        component: DetalleUsuarioComponent,
+        canActivate: [guardUsuarios],
+        data: { rolesEsperados: [ADMIN] },
+      },
+      {
+        path: 'nuevo',
+        component: NuevoUsuarioComponent,
+        canActivate: [guardUsuarios],
+        data: { rolesEsperados: [ADMIN] },
+      },
+      {
+        path: 'perfil/cambiarContraseña',
+        component: CambiarPasswordComponent,
+        canActivate: [guardUsuarios],
+        data: { rolesEsperados: [USER] },
+      },
+      {
+        path: 'perfil/actualizarDatos',
+        component: PerfilActualizarComponent,
+        canActivate: [guardUsuarios],
+        data: { rolesEsperados: [USER] },
+      },
+      { path: '**', redirectTo: 'lista' },
+    ],
+  },
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

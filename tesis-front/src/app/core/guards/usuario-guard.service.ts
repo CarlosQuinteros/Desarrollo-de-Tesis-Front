@@ -32,7 +32,7 @@ export class UsuarioGuardService implements CanActivate {
       return false;
     }
 
-    /** comprobamos si no expirto el token para cargar el componente */    
+    /** comprobamos si no expiro el token para cargar el componente */    
     if(this.tokenService.isTokenExpired()){
       this.router.navigate(['/login']);
       Swal.fire('Sesión Expirada', 'Debes iniciar sesion nuevamente', 'info');

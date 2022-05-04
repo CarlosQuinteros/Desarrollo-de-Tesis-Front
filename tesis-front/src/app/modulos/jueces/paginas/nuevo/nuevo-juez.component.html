@@ -1,0 +1,68 @@
+<app-nav-bar></app-nav-bar>
+<div class="container fadein animation-iteration-1 animation-duration-400">
+    <div class="row justify-content-center">
+        <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+        <div class="col-lg-6 mt-2">
+            <div class="card shadow-sm mb-lg-4">
+                <div class="card-header bg-primary text-white">
+                    <i class=" bi bi-card-text me-1"></i>
+                    Crear nuevo juez
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form #form = "ngForm" (ngSubmit) = "crearNuevoJuez(form)" novalidate>
+                    <div class="card-body">
+                        <!--group nombres-->
+                        <div class="form-group mt">
+                            <label for="labelNombres" class="form-label">Nombre del Juez</label>
+                            <input type="text" class="p-inputtext form-control" name="nombreJuez" id="nombreJuez" placeholder="Ingrese el nombre del juez" [(ngModel)]="nuevoJuezDto.nombres"  #nombre = "ngModel" required minlength="4" pattern={{patron}}>
+                            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.minlength" severity="error" text="Debe tener al menos 4 caracteres"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.pattern"    severity="error" text="Solo se permiten letras"></p-message>
+                            </div>
+                        </div>
+                        <!--fin group nombre-->
+                        <!--group apellidos-->
+                        <div class="form-group mt-2">
+                            <label for="labelApellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="p-inputtext form-control" name ="apellidosJuez" id="apellidosJuez"  placeholder="Ingrese el apellido del juez" [(ngModel)]="nuevoJuezDto.apellidos" #apellidos = "ngModel" required minlength="4" pattern={{patron}}>
+                            <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                                <p-message styleClass="m-1" *ngIf="apellidos.errors?.required"  severity="error" text="El apellido es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="apellidos.errors?.minlength" severity="error" text="Debe tener al menos 4 caracteres"></p-message>
+                                <p-message styleClass="m-1" *ngIf="apellidos.errors?.pattern"   severity="error" text="Solo se permiten letras"></p-message>
+                            </div>
+                        </div>
+                        <!--fin group apellidos-->
+                        <!--group documento-->
+                        <div class="form-group mt-2">
+                            <label for="labelDni" class="form-label">Documento</label>
+                            <input type="text" pKeyFilter= "pint" class="p-inputtext form-control" name="dniJuez" id="dniJuez" placeholder="Ingrese el documento" [(ngModel)]="nuevoJuezDto.documento" #dni ="ngModel" required>
+                            <div *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                                <p-message styleClass="m-1" *ngIf="dni.errors?.required"  severity="error" text="El documento es requerido"></p-message>
+                            </div>
+                        </div>
+                        <!--fin group documento-->
+                        <!--group legajo-->
+                        <div class="form-group mt-2">
+                            <label for="labelLegajo" class="form-label">Legajo</label>
+                            <input type="text" [pKeyFilter]= "blockSpace" class="p-inputtext form-control" name="legajoJuez" id="legajoJuez" placeholder="Ingrese el legajo" [(ngModel)]="nuevoJuezDto.legajo" #legajo ="ngModel" required>
+                            <div *ngIf="legajo.invalid && (legajo.dirty || legajo.touched)">
+                                <p-message styleClass="m-1" *ngIf="legajo.errors?.required"  severity="error" text="El legajo es requerido"></p-message>
+                            </div>
+                        </div>
+                        <!--fin group legajo-->
+                    </div>
+                  <div class="card-footer">
+                      <div class="d-flex justify-content-between">
+                        <button pRipple pButton type= "button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" (click)="goBack()"></button>
+                        <button pRipple pButton type= "submit" class="p-button-primary p-button-rounded p-button-raised" icon="pi pi-check"  label="Crear" [disabled]="!form.valid"></button>
+                      </div>
+                    
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

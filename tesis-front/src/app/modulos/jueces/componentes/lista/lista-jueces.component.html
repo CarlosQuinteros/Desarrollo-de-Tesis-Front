@@ -1,0 +1,83 @@
+<div class="card shadow">
+  <div class="card-header bg-primary text-white">
+    <i class="bi bi-table me-1"></i>
+    Listado de Jueces
+  </div>
+  <div class="card-body">
+    <p-table #dt [value]="jueces" styleClass="p-datatable-sm p-datatable-striped" dataKey="id" [rows]="5"
+      [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+      [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+      [filterDelay]="0">
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+          <button pRipple pButton class="p-button-sm p-button-rounded me-1" label="Nuevo Juez" icon="pi pi-plus-circle" routerLink="/jueces/nuevo"></button>
+          <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros"
+            icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr class="text-center">
+          <!--column Id-->
+          <th style="width:min-content;" pSortableColumn="id">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Id
+              <p-sortIcon field="id"></p-sortIcon>
+              <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna Nombres-->
+          <th pSortableColumn="nombres">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Nombres
+              <p-sortIcon field="nombres"></p-sortIcon>
+              <p-columnFilter type="text" field="nombres" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna Apellidos-->
+          <th pSortableColumn="apellidos">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Apellidos
+              <p-sortIcon field="apellidos"></p-sortIcon>
+              <p-columnFilter type="text" field="apellidos" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna Documento-->
+          <th pSortableColumn="documento">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Documento
+              <p-sortIcon field="documento"></p-sortIcon>
+              <p-columnFilter type="text" field="documento" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna Legajo-->
+          <th pSortableColumn="legajo">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Legajo
+              <p-sortIcon field="legajo"></p-sortIcon>
+              <p-columnFilter type="text" field="legajo" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- Columna acciones -->
+          <th class="text-center">Acciones</th>
+      </ng-template>
+      <ng-template pTemplate="body" let-juez>
+        <tr>
+          <td>{{juez.id}}</td>
+          <td>{{juez.nombres}}</td>
+          <td>{{juez.apellidos}}</td>
+          <td>{{juez.documento | number}}</td>
+          <td>{{juez.legajo}}</td>
+          <td class="text-center">
+            <button pButton class="p-button-rounded p-button-sm p-button-raised p-button-text" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" routerLink="/jueces/detalle/{{juez.id}}"></button>
+            <button pButton class="p-button-rounded p-button-sm p-button-raised p-button-text p-button-danger" icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="top"(click)="eliminarJuez(juez.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="8">No se encontraron registros.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

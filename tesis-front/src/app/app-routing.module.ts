@@ -43,6 +43,11 @@ const routes: Routes = [
     path: 'clubes',
     loadChildren:() => import('./modulos/clubes/clubes.module').then(m => m.ClubesModule)
   },
+  {
+    path: 'jueces',
+    loadChildren: () => import('./modulos/jueces/jueces.module').then(m => m.JuecesModule)
+  },
+  
   {path: '**', redirectTo: 'auth', pathMatch: 'full' }
 
 ];

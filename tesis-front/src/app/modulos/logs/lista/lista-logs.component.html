@@ -63,10 +63,7 @@
                               <p-sortIcon field="logAccion"></p-sortIcon>
                               <p-columnFilter type="text" field="logAccion" matchMode="contains" [showMenu]="false" class="p-ml-auto">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="acciones" (onChange)="filter($event.value)" placeholder="Todos" [showClear]="true">
-                                        <ng-template let-option pTemplate="item">
-                                            <span>{{option.label}}</span>
-                                        </ng-template>
+                                    <p-dropdown [ngModel]="value" [options]="acciones" optionLabel="label" optionValue="value" (onChange)="filter($event.value)" placeholder="Todos" [showClear]="true">
                                     </p-dropdown>
                                 </ng-template>
                               </p-columnFilter>

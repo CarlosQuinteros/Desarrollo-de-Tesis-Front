@@ -57,6 +57,7 @@ export class ListaUsuariosComponent implements OnInit {
     /* alerta de confirmacion */
     Swal.fire({
       title: '¿Realmente quieres dar de alta este usuario?',
+      text: 'El usuario nuevamente podrá acceder al sistema',
       showCancelButton: true,
       icon: 'question',
       confirmButtonText: `Dar alta`,
@@ -88,6 +89,7 @@ export class ListaUsuariosComponent implements OnInit {
     /* alerta de confirmacion */
     Swal.fire({
       title: '¿Realmente quieres dar de baja este usuario?',
+      text:'El usuario ya no podrá acceder al sistema hasta su proxima habilitación',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: `Dar baja`,
