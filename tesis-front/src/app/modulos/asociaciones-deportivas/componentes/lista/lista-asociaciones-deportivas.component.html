@@ -1,0 +1,71 @@
+<p-card header="Asociaciones Deportivas" styleClass="shadow-1">
+  <p-table #dt [value]="asociacionesDeportivas" styleClass="p-datatable-sm p-datatable-striped" dataKey="id" [rows]="5"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+    [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+    [filterDelay]="0">
+    <ng-template pTemplate="caption">
+      <div class="d-flex">
+          <button pRipple pButton class="p-button-sm p-button-rounded me-1" label="Nueva Asociacion" icon="pi pi-plus-circle"
+          routerLink="/asociaciones-deportivas/nuevo"></button>
+        <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros"
+          icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr class="text-center">
+        <!--column Id-->
+        <th style="width:min-content;" pSortableColumn="id">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Id
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <!-- columna Nombre-->
+        <th pSortableColumn="nombre">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Nombre
+            <p-sortIcon field="nombre"></p-sortIcon>
+            <p-columnFilter type="text" field="nombre" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <!-- columna alias-->
+        <th pSortableColumn="alias">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Alias
+            <p-sortIcon field="alias"></p-sortIcon>
+            <p-columnFilter type="text" field="alias" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <!-- columna email-->
+        <th pSortableColumn="email">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Email
+            <p-sortIcon field="email"></p-sortIcon>
+            <p-columnFilter type="text" field="email" display="menu" class="p-ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <!-- Columna acciones -->
+        <th class="text-center">Acciones</th>
+    </ng-template>
+    <ng-template pTemplate="body" let-asociacion>
+      <tr>
+        <td>{{asociacion.id}}</td>
+        <td>{{asociacion.nombre}}</td>
+        <td>{{asociacion.alias}}</td>
+        <td>{{asociacion.email}}</td>
+        <td class="text-center">
+          <button pButton class="p-button-rounded p-button-sm p-button-raised p-button-text" icon="pi pi-pencil"
+            pTooltip="Editar" tooltipPosition="top" routerLink="/asociaciones-deportivas/detalle/{{asociacion.id}}"></button>
+          <button pButton class="p-button-rounded p-button-sm p-button-raised p-button-text p-button-danger"
+            icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="top" (click)="eliminarAsociacion(asociacion.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="text-center" colspan="8">No se encontraron registros.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

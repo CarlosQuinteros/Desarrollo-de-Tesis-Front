@@ -64,6 +64,14 @@ export class ListadoJugadoresComponent implements OnInit {
       })
   }
 
+  getSeverityByEstado(jugador : Jugador) : string{
+    const classByEstado : {[key: string]: string} = {
+      activo : '',
+      inactivo: 'danger'
+    }
+    return classByEstado[jugador.estadoJugador.nombreEstado.toLowerCase()]
+  }
+
   clear(table : Table) {
     table.clear();
   }

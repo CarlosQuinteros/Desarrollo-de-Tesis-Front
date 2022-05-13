@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="card-footer text-center">
                                     <div class="d-flex justify-content-between">
-                                        <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text " icon="pi pi-times"label="Cancelar" routerLink="/usuarios/lista" ></button>
+                                        <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text " icon="pi pi-times"label="Cancelar" (click)="goBack()" ></button>
                                         <button pRipple pButton class="p-button-primary p-button-rounded p-button-raised" icon="pi pi-check" label="Editar Usuario" type="submit" [disabled]="!formUsuario.valid || usuario.nombreUsuario =='admin'"></button>  
                                     </div>
                                 </div>

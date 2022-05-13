@@ -1,10 +1,5 @@
-<div class="card shadow">
-  <div class="card-header bg-primary text-white">
-    <i class="bi bi-table me-1"></i>
-    Listado de Jueces
-  </div>
-  <div class="card-body">
-    <p-table #dt [value]="jueces" styleClass="p-datatable-sm p-datatable-striped" dataKey="id" [rows]="5"
+<p-card styleClass="shadow-1 mb-4" header="Listado de Jueces">
+  <p-table #dt [value]="jueces" styleClass="p-datatable-sm p-datatable-striped" dataKey="id" [rows]="5"
       [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
       [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
       [filterDelay]="0">
@@ -79,5 +74,4 @@
         </tr>
       </ng-template>
     </p-table>
-  </div>
-</div>
+</p-card>

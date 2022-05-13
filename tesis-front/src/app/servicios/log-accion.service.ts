@@ -43,6 +43,11 @@ export class LogAccionService {
       {label:'Creacion Arbitro', value: 'JUEZ_CREACION'},
       {label:'Modificacion Arbitro', value: 'JUEZ_MODIFICACION'},
       {label:'Eliminacion Arbitro', value:'JUEZ_ELIMINACION'},
+      
+      {label:'Asociaciones Dept.', value: 'ASOCIACION'},
+      {label:'Creacion Asociacion', value:'ASOCIACION_DEP_CREACION'},
+      {label:'Modificacion Asociacion', value:'ASOCIACION_DEP_MODIFICACION'},
+      {label:'Eliminacion Asociacion', value:'ASOCIACION_DEP_ELIMINACION'},
 
       {label:'Partidos', value: 'PARTIDOS'},
       {label:'Creacion Partidos', value: 'CREACION_PARTIDOS'},

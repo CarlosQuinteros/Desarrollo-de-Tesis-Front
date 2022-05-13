@@ -212,6 +212,10 @@ export class DetalleUsuarioComponent implements OnInit {
 
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
 
 
 }

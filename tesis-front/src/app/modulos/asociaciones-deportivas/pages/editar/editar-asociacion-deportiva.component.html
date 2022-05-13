@@ -1,0 +1,48 @@
+<app-nav-bar></app-nav-bar>
+<div class="container fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="row justify-content-center">
+        <div class="col col-sm-10 col-md-8 col-lg-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <i class=" bi bi-card-text me-1"></i>
+                    Editar Asociacion Deportiva
+                </div>
+                <form #form = "ngForm" (ngSubmit)="editarAsociacion()" novalidate>
+                    <div class="card-body d-grid gap-2">
+                        <div class="p-2">
+                            <label for="labelNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control p-inputtext" #nombre="ngModel" [(ngModel)]="asociacionDeportivaDto.nombre" name="nombreAsoc" id="nombreAsoc" placeholder="Ingrese el nombre" required minlength="8" pattern={{patron}}>
+                            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.pattern"   severity="error" text="Solo se permiten letras"></p-message>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="labelAlias" class="form-label">Alias, abreviatura o apodo</label>
+                            <input type="text" class="form-control p-inputtext" #alias="ngModel" [(ngModel)]="asociacionDeportivaDto.alias" name="aliasAsoc" id="aliasAsoc" placeholder="Ingrese el apodo, alias o abreviatura" required minlength="4">
+                            <div *ngIf="alias.invalid && (alias.dirty || alias.touched)">
+                                <p-message styleClass="m-1" *ngIf="alias.errors?.required"  severity="error" text="El campo es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="alias.errors?.minlength" severity="error" text="Debe tener al menos 4 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="labelEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control p-inputtext" #email="ngModel" [(ngModel)]="asociacionDeportivaDto.email" name="emailAsoc" id="emailAsoc" placeholder="Ingrese el correo de la asociacion" required email>
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <p-message styleClass="m-1" *ngIf="email.errors?.required"  severity="error" text="El email es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="email.errors?.email" severity="error" text="Debe tener el formato ejemplo@ejemplo.com"></p-message>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" (click)="goBack()"></button>
+                        <button pRipple pButton type="submit" class="p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

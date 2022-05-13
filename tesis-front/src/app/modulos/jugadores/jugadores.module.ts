@@ -21,6 +21,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import {TagModule } from 'primeng/tag';
 import { EditarPaseComponent } from './pases/editar/editar-pase.component';
+import { CardModule } from 'primeng/card';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { EditarPaseComponent } from './pases/editar/editar-pase.component';
     KeyFilterModule,
     ChipModule,
     ScrollTopModule,
-    TagModule
+    TagModule,
+    CardModule
   ]
 })
 export class JugadoresModule { }

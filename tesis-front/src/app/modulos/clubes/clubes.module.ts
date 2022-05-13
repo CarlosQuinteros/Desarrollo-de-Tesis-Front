@@ -14,6 +14,7 @@ import { NuevoClubComponent } from 'src/app/modulos/clubes/nuevo/nuevo-club.comp
 import { ListaJugadoresActualesComponent } from 'src/app/modulos/clubes/listaJugadoresActuales/lista-jugadores-actuales.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { CardModule } from 'primeng/card';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ScrollTopModule } from 'primeng/scrolltop';
     ButtonModule,
     BreadcrumbModule,
     SharedModule,
-    ScrollTopModule
+    ScrollTopModule,
+    CardModule
   ]
 })
 export class ClubesModule { }

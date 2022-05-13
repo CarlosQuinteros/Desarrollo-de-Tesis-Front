@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { LoginUsuario } from 'src/app/core/Dtos/usuarios/login-usuario';
 import { JwtDTO } from 'src/app/core/Dtos/usuarios/jwt-dto';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,6 @@ export class AuthService {
   }
 
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO>{
-    return this.httpClient.post<JwtDTO>(`${this.authURL}/login`, loginUsuario);
+    return this.httpClient.post<JwtDTO>(`${this.authURL}/login`, loginUsuario)
   }
 }

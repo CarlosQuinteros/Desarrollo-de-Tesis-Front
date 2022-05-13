@@ -33,6 +33,7 @@ import { ScrollTopModule } from 'primeng/scrolltop';
     DialogModule,
     ButtonModule,
     SharedModule,
+    CardModule,
     ScrollTopModule
   ]
 })

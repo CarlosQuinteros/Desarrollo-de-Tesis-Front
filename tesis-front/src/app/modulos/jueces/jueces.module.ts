@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { MessageModule } from 'primeng/message';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { EditarJuezComponent } from './paginas/editar/editar-juez.component';
+import { CardModule } from 'primeng/card';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { EditarJuezComponent } from './paginas/editar/editar-juez.component';
     ScrollTopModule,
     BreadcrumbModule,
     RouterModule,
-    KeyFilterModule
+    KeyFilterModule,
+    CardModule
   ]
 })
 export class JuecesModule { }

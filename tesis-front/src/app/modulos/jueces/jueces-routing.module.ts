@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path:'', redirectTo: "lista"},
+      { path:'', redirectTo: 'lista'},
       {
         path: 'lista',
         component: ListadoJuecesComponent,

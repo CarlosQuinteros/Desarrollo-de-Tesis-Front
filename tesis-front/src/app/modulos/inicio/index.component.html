@@ -1,164 +1,147 @@
 <app-nav-bar></app-nav-bar>
-    <div class="container fadein animation-iteration-1 animation-duration-500">
-        <p class="display-5 my-4">Bienvenido {{nombreUsuario}}</p>
-        <!-- inicio dashboard -->
-        <div class="row">
-            <!-- inicio card usuarios-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin">
-                <div class="card bg-primary bg-gradient shadow-sm text-white mb-4" >
-                    <div class="card-body">
-                        <h4>Usuarios {{cantidadUsuarios}}</h4>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <!--<h6>Total {{cantidadUsuarios}}</h6>-->
-                                <h6 class="badge rounded-pill bg-success shadow">Activos {{cantidadActivos}}</h6><br>
-                                <h6 class="badge rounded-pill bg-danger shadow">Inactivos {{cantidadInactivos}}</h6>
-                            </div>
-                            <span style="font-size: 32px;">
-                                <i class="fas fa-users"></i>
+<div class="container fadein animation-iteration-1 animation-duration-500">
+    <p class="display-5 my-4">Bienvenido {{nombreUsuario}}</p>
+    <!-- inicio dashboard -->
+    <div class="row">
+        <!-- inicio card usuarios-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin">
+            <div class="card bg-primary bg-gradient shadow-sm text-white mb-4">
+                <div class="card-body">
+                    <h4>Usuarios {{cantidadUsuarios}}</h4>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <!--<h6>Total {{cantidadUsuarios}}</h6>-->
+                            <h6 class="badge rounded-pill bg-success shadow">Activos {{cantidadActivos}}</h6><br>
+                            <h6 class="badge rounded-pill bg-danger shadow">Inactivos {{cantidadInactivos}}</h6>
+                        </div>
+                        <span style="font-size: 32px;">
+                            <i class="fas fa-users"></i>
 
-                            </span>
-                            
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" routerLink= "/usuarios/lista">Ver detalles</a>
-                        <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
+                        </span>
+
                     </div>
                 </div>
-            </div>
-            <!-- inicio card jugadores-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoJugadores || isUser">
-                <div class="card border-2 bg-success shadow-sm text-white mb-4">
-                    <div class="card-body">
-                        <h3>Jugadores</h3>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3>{{cantidadTotalJugadores}}</h3>
-                            <span style="font-size: 32px;">
-                                <i class="fas fa-running"></i>
-                                <i class="fas fa-futbol" style="font-size:16px"></i>
-                            </span>                       
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" routerLink="/jugadores/lista">Ver detalles</a>
-                        <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
-                    </div>
-                </div>
-            </div>
-            <!-- inicio card clubes-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoJugadores">
-                <div class="card bg-warning shadow-sm mb-4">
-                    <div class="card-body">
-                        <h3 class="strong">Clubes</h3>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3>{{cantidadTotalClubes}}</h3>
-                            <span style="font-size: 32px"><i class="fas fa-shield-alt"></i></span>                    
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-dark stretched-link" routerLink="/clubes/lista">Ver detalles</a>
-                        <div class="small "><i class="bi bi-arrow-right-circle-fill"></i></div>
-                    </div>
-                </div>
-            </div>
-            <!-- inicio card transferencias-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoJugadores">
-                <div class="card bg-success shadow-sm text-white mb-4">
-                    <div class="card-body">
-                        <h3 class="strong">Pases</h3>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3>{{cantidadTotalPases}}</h3>
-                            <span style="font-size:32px"><i class="bi bi-arrow-down-up"></i></span>                      
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" routerLink="/pases/lista">Ver detalles</a>
-                        <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
-                    </div>
-                </div>
-            </div>
-            <!-- inicio card competencias-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoTorneos">
-                <div class="card border-2 shadow-sm bg-info mb-4">
-                    <div class="card-body">
-                        <h3>Competencias</h3>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3>25</h3>
-                            <span style="font-size: 32px;">
-                                <i class="fas fa-trophy"></i>
-                            </span>                       
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-dark stretched-link" href="#">Ver detalles</a>
-                        <div class="small text-dark"><i class="bi bi-arrow-right-circle-fill"></i></div>
-                    </div>
-                </div>
-            </div>
-            <!-- inicio card arbitros-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoTorneos">
-                <div class="card border-2 surface-card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h3>Jueces</h3>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3>{{cantidadTotalJueces}}</h3>
-                            <span style="font-size: 32px;">
-                                <img src="../assets/imagenes/silbato-con-detalle-blanco.png">
-                            </span>                
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-dark stretched-link" routerLink="/jueces">Ver detalles</a>
-                        <div class="small text-dark"><i class="bi bi-arrow-right-circle-fill"></i></div>
-                    </div>
-                </div>
-            </div>
-            <!-- inicio card Sanciones-->
-            <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin  || isEncargadoSanciones">
-                <div class="card bg-danger  shadow-sm text-white mb-4">
-                    <div class="card-body">
-                        <h3 class="strong">Sanciones</h3>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3>8</h3>
-                            <span style="font-size:32px"> <i class="fas fa-gavel"></i></span>               
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Ver detalles</a>
-                        <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
-                    </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" routerLink="/usuarios/lista">Ver detalles</a>
+                    <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
                 </div>
             </div>
         </div>
-        <!--fin dashboard-->
-        <div class="row justify-content-center mt-3">
-            <div>
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="card-title">Tus Roles son</h5>
+        <!-- inicio card jugadores-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoJugadores || isUser">
+            <div class="card border-2 bg-success shadow-sm text-white mb-4">
+                <div class="card-body">
+                    <h3>Jugadores</h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3>{{cantidadTotalJugadores}}</h3>
+                        <span style="font-size: 32px;">
+                            <i class="fas fa-running"></i>
+                            <i class="fas fa-futbol" style="font-size:16px"></i>
+                        </span>
                     </div>
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr class="text-center">
-                                                <th scope="col">Nombre</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-center" *ngFor="let rol of roles">
-                                                <td>{{ rol }}</td>
-                                        </tr>
-                                     </tbody>
-                                </table>
-                            </div>
-                        </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" routerLink="/jugadores/lista">Ver detalles</a>
+                    <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- inicio card clubes-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoJugadores">
+            <div class="card bg-warning shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="strong">Clubes</h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3>{{cantidadTotalClubes}}</h3>
+                        <span style="font-size: 32px"><i class="fas fa-shield-alt"></i></span>
                     </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-dark stretched-link" routerLink="/clubes/lista">Ver detalles</a>
+                    <div class="small "><i class="bi bi-arrow-right-circle-fill"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- inicio card transferencias-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoJugadores">
+            <div class="card bg-success shadow-sm text-white mb-4">
+                <div class="card-body">
+                    <h3 class="strong">Pases</h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3>{{cantidadTotalPases}}</h3>
+                        <span style="font-size:32px"><i class="bi bi-arrow-down-up"></i></span>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" routerLink="/pases/lista">Ver detalles</a>
+                    <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- inicio card competencias-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoTorneos">
+            <div class="card border-2 shadow-sm bg-info mb-4">
+                <div class="card-body">
+                    <h3>Competencias</h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3>25</h3>
+                        <span style="font-size: 32px;">
+                            <i class="fas fa-trophy"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-dark stretched-link" href="#">Ver detalles</a>
+                    <div class="small text-dark"><i class="bi bi-arrow-right-circle-fill"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- inicio card arbitros-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin || isEncargadoTorneos">
+            <div class="card border-2 surface-card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3>Jueces</h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3>{{cantidadTotalJueces}}</h3>
+                        <span style="font-size: 32px;">
+                            <img src="../assets/imagenes/silbato-con-detalle-blanco.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-dark stretched-link" routerLink="/jueces">Ver detalles</a>
+                    <div class="small text-dark"><i class="bi bi-arrow-right-circle-fill"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- inicio card Sanciones-->
+        <div class="col-lg-3 col-md-4 col-6" *ngIf="isAdmin  || isEncargadoSanciones">
+            <div class="card bg-danger  shadow-sm text-white mb-4">
+                <div class="card-body">
+                    <h3 class="strong">Sanciones</h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3>8</h3>
+                        <span style="font-size:32px"> <i class="fas fa-gavel"></i></span>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">Ver detalles</a>
+                    <div class="small text-white"><i class="bi bi-arrow-right-circle"></i></div>
                 </div>
             </div>
         </div>
     </div>
+    <!--fin dashboard-->
+    <div class="row justify-content-center mt-3">
+        <div class="col col-sm-10 col-md-8 col-lg-5">
+            <p-card styleClass="shadow-2 mb-4" header="Tus roles de acceso son">
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <p-chip styleClass="m-2" *ngFor="let rol of roles">{{rol}} </p-chip>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>

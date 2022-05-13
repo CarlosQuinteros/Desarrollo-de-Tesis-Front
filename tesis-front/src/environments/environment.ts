@@ -12,7 +12,8 @@ export const environment = {
   logsURL: 'http://localhost:8080/logs',
   jugadoresURL: 'http://localhost:8080/jugadores',
   pasesJugadoresURL: 'http://localhost:8080/pases',
-  juecesURL: 'http://localhost:8080/jueces'
+  juecesURL: 'http://localhost:8080/jueces',
+  asociacionesURL: 'http://localhost:8080/asociaciones-deportivas'
 
 };
 

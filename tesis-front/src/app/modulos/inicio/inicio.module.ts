@@ -5,6 +5,8 @@ import { InicioRoutingModule } from './inicio-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { IndexComponent } from './index.component';
+import { CardModule } from 'primeng/card';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { IndexComponent } from './index.component';
     CommonModule,
     InicioRoutingModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    CardModule,
+    ChipModule
   ]
 })
 export class InicioModule { }

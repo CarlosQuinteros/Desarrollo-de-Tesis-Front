@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'jueces',
     loadChildren: () => import('./modulos/jueces/jueces.module').then(m => m.JuecesModule)
   },
+  {
+    path: 'asociaciones-deportivas',
+    loadChildren: () => import('./modulos/asociaciones-deportivas/asociaciones-deportivas.module').then(m => m.AsociacionesDeportivasModule)
+  },
   
   {path: '**', redirectTo: 'auth', pathMatch: 'full' }
 

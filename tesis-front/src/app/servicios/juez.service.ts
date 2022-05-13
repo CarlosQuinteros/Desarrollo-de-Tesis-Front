@@ -41,5 +41,9 @@ export class JuezService {
     return this.httpClient.get<number>(`${this.juecesURL}/cantidad`);
   }
 
+  public listadoNombreRolJuez(): Observable<string>{
+    return this.httpClient.get<string>(`${this.juecesURL}/roles`);
+  }
+
   
 }

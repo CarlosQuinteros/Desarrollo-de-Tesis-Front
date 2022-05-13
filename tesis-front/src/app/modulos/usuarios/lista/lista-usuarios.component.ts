@@ -37,14 +37,20 @@ export class ListaUsuariosComponent implements OnInit {
     this.home = {icon: 'pi pi-home', routerLink:'/inicio'};
   }
 
+  getSeverityByEstado(usuario : Usuario): string {
+    const serverityByEstado : {[key: string]: string} = {
+      true : 'success',
+      false: 'danger'
+    };
+    return serverityByEstado[`${usuario.activo}`];
+  }
+
   cargarListado():void {
     this.usuarioService.listaUsuarios().toPromise().then(
       data => {
-        this.usuarios = data;
-        this.loading = false;  
-
+        this.usuarios = data.filter(u => u.nombreUsuario != 'admin');
+        this.loading = false;
         this.usuarios.forEach(usuario => {usuario.fechaCreacion = new Date(usuario.fechaCreacion)});
-        
       },
       err => {
         console.log(err.error);

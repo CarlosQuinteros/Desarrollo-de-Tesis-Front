@@ -19,6 +19,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import {TabViewModule} from 'primeng/tabview';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ScrollTopModule } from 'primeng/scrolltop';
     ValidateEqualModule,
     SharedModule,
     TabViewModule,
-    ScrollTopModule
+    CardModule,
+    ScrollTopModule,
+    TagModule
   ]
 })
 export class UsuariosModule { }

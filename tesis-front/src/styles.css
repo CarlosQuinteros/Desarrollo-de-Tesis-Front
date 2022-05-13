@@ -18,6 +18,9 @@ html, body, app-root {
 .container-xl {
     min-height: calc(100vh - 112px);
 }
+.container-lg{
+    min-height: calc(100vh - 112px);
+}
 
 .container-xxl {
     min-height: calc(100vh - 112px);

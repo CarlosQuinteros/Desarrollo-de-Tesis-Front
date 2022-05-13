@@ -1,149 +1,139 @@
 <app-nav-bar></app-nav-bar>
 <!-- inicio container-->
-<div class="container-xxl fadein animation-iteration-1 animation-duration-500">
+<div class="container-lg fadein animation-iteration-1 animation-duration-500">
     <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <div class="row justify-content-center">
-       
-        <!-- tabla con prime ng-->
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                  <i class="bi bi-table me-1"></i>
-                  Jugadores
+        <p-card styleClass="shadow-1 mb-4" header="Jugadores">
+            <p-table #dt [value]="jugadores" styleClass="p-datatable-striped p-datatable-sm" dataKey="id" [rows]="5"
+              [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15,20]" [loading]="loading" [rowHover]="true"
+              [paginator]="true"
+              currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+              [filterDelay]="0">
+              <ng-template pTemplate="caption">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <button pRipple *ngIf="isAdmin || isEncargadoJugadores" pButton class="p-button-rounded p-button-sm me-1"  icon="bi bi-plus-circle" label="Nuevo Jugador" routerLink="/jugadores/nuevo"></button>
+                        <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1"  icon="pi pi-filter-slash" label="Limpiar Filtros" (click)="clear(dt)"></button>
+
+                    </div>
+                    <!--<div>
+                        <button pButton class="p-button-danger p-button-sm me-1"  icon="pi pi-file-pdf" pTooltip="Exportar a PDF" tooltipPosition="top" (click)="exportarPdf(dt)"></button>
+                        <button pButton class=" p-button-success p-button-sm me-1" icon="pi pi-file-excel" pTooltip="Exportar a Excel" tooltipPosition="bottom" (click)="exportarExcel(dt)"></button>
+                    </div>-->
                 </div>
-                <div class="card-body">
-                  <p-table #dt [value]="jugadores" styleClass="p-datatable-striped p-datatable-sm" dataKey="id" [rows]="5"
-                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15,20]" [loading]="loading" [rowHover]="true"
-                    [paginator]="true"
-                    currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
-                    [filterDelay]="0">
-                    <ng-template pTemplate="caption">
-                      <div class="d-flex justify-content-between">
-                          <div>
-                              <button pRipple *ngIf="isAdmin || isEncargadoJugadores" pButton class="p-button-rounded p-button-sm me-1"  icon="bi bi-plus-circle" label="Nuevo Jugador" routerLink="/jugadores/nuevo"></button>
-                              <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1"  icon="pi pi-filter-slash" label="Limpiar Filtros" (click)="clear(dt)"></button>
-    
-                          </div>
-                          <!--<div>
-                              <button pButton class="p-button-danger p-button-sm me-1"  icon="pi pi-file-pdf" pTooltip="Exportar a PDF" tooltipPosition="top" (click)="exportarPdf(dt)"></button>
-                              <button pButton class=" p-button-success p-button-sm me-1" icon="pi pi-file-excel" pTooltip="Exportar a Excel" tooltipPosition="bottom" (click)="exportarExcel(dt)"></button>
-                          </div>-->
-                      </div>
-                  </ng-template>
-                    <ng-template pTemplate="header">
-                      <tr class="text-center">
-                          <!--column Id-->
-                          <th class="text-center" pSortableColumn="id">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Id
-                                  <p-sortIcon field="id"></p-sortIcon>
-                                  <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <!--column Apellidos-->
-                          <th class="text-center" pSortableColumn="apellidos">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Apellidos
-                                  <p-sortIcon field="apellidos"></p-sortIcon>
-                                  <p-columnFilter type="text" field="apellidos" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <!--column Nombres-->
-                          <th class="text-center" pSortableColumn="nombre">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Nombres
-                                  <p-sortIcon field="nombre"></p-sortIcon>
-                                  <p-columnFilter type="text" field="nombre" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          
-                          <!--column DNI-->
-                          <th class="text-center" pSortableColumn="documento">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  DNI
-                                  <p-sortIcon field="documento"></p-sortIcon>
-                                  <p-columnFilter type="text" field="documento" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <!--column Fecha Nacimiento-->
-                          <th class="text-center" pSortableColumn="fechaNacimientoParsed">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Fecha Nac.
-                                  <p-sortIcon field="fechaNacimientoParsed"></p-sortIcon>
-                                  <p-columnFilter type="date" field="fechaNacimientoParsed" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <!--column edad-->
-                          <th class="text-center" pSortableColumn="edadActual">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Edad
-                                  <p-sortIcon field="edadActual"></p-sortIcon>
-                                  <p-columnFilter type="numeric" field="edadActual" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <!--column Tarjetas Amarillas
-                          <th class="text-center" pSortableColumn="tarjetasAmarillasAcumuladas">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Tarjetas
-                                  <p-sortIcon field="tarjetasAmarillasAcumuladas"></p-sortIcon>
-                                  <p-columnFilter type="numeric" field="tarjetasAmarillasAcumuladas" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th> -->
-  
-                          <!--column Club actual-->
-                          <th class="text-center" pSortableColumn="clubActual.nombreClub">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Club Actual
-                                  <p-sortIcon field="clubActual.nombreClub"></p-sortIcon>
-                                  <p-columnFilter type="text" field="clubActual.nombreClub" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <!--column Estado-->
-                          <th class="text-center" pSortableColumn="estadoJugador.nombreEstado">
-                              <div class="p-d-flex p-jc-between p-ai-center">
-                                  Estado
-                                  <p-sortIcon field="estadoJugador.nombreEstado"></p-sortIcon>
-                                  <p-columnFilter type="text" field="estadoJugador.nombreEstado" display="menu" class="p-ml-auto"></p-columnFilter>
-                              </div>
-                          </th>
-                          <th class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
-                              Acciones
-                          </th>
-                      </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-jugador>
-                      <tr>
-                          <td>{{jugador.id}}</td>
-                          <td>{{jugador.apellidos}}</td>
-                          <td>{{jugador.nombre}}</td>
-                          <td>{{jugador.documento | number}}</td>
-                          <td>{{jugador.fechaNacimientoParsed | date:'dd/MM/YYYY' }}</td>
-                          <td>{{jugador.edadActual}}</td>
-                          <!--<td>{{jugador.tarjetasAmarillasAcumuladas}}</td> -->
-                          <td>{{jugador.clubActual != null ? (jugador.clubActual.nombreClub) : 'Sin Club'}}</td>
-                          <td>{{jugador.estadoJugador.nombreEstado}}</td>
-                          <td class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
-                              <button pButton class="p-button-rounded p-button-raised p-button-text" icon="pi pi-arrows-h" routerLink="/jugadores/historialClubes/{{jugador.id}}" pTooltip="Historial clubes" tooltipPosition="top">
-                                  <!--<i class="bi bi-arrow-down-up"></i>-->
-                              </button>
-                              <button pButton class="p-button-rounded p-button-raised p-button-text" icon="pi pi-pencil" routerLink="/jugadores/detalle/{{jugador.id}}" pTooltip="Detalle" tooltipPosition="top">
-                                  <!--<i class="fas fa-edit"></i>-->
-                              </button>
-                          </td>
-                          
-                      </tr>
-                    </ng-template>
-                    <ng-template pTemplate="emptymessage">
-                      <tr>
-                          <td class="text-center" colspan="8">No se encontraron registros.</td>
-                      </tr>
-                    </ng-template>
-                  </p-table>
-                </div>
-        
-              </div>
-        </div>
-        <!-- fin tabla-->
+            </ng-template>
+              <ng-template pTemplate="header">
+                <tr class="text-center">
+                    <!--column Id-->
+                    <th class="text-center" pSortableColumn="id">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Id
+                            <p-sortIcon field="id"></p-sortIcon>
+                            <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <!--column Apellidos-->
+                    <th class="text-center" pSortableColumn="apellidos">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Apellidos
+                            <p-sortIcon field="apellidos"></p-sortIcon>
+                            <p-columnFilter type="text" field="apellidos" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <!--column Nombres-->
+                    <th class="text-center" pSortableColumn="nombre">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Nombres
+                            <p-sortIcon field="nombre"></p-sortIcon>
+                            <p-columnFilter type="text" field="nombre" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    
+                    <!--column DNI-->
+                    <th class="text-center" pSortableColumn="documento">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            DNI
+                            <p-sortIcon field="documento"></p-sortIcon>
+                            <p-columnFilter type="text" field="documento" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <!--column Fecha Nacimiento-->
+                    <th class="text-center" pSortableColumn="fechaNacimientoParsed">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Fecha Nac.
+                            <p-sortIcon field="fechaNacimientoParsed"></p-sortIcon>
+                            <p-columnFilter type="date" field="fechaNacimientoParsed" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <!--column edad-->
+                    <th class="text-center" pSortableColumn="edadActual">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Edad
+                            <p-sortIcon field="edadActual"></p-sortIcon>
+                            <p-columnFilter type="numeric" field="edadActual" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <!--column Tarjetas Amarillas
+                    <th class="text-center" pSortableColumn="tarjetasAmarillasAcumuladas">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Tarjetas
+                            <p-sortIcon field="tarjetasAmarillasAcumuladas"></p-sortIcon>
+                            <p-columnFilter type="numeric" field="tarjetasAmarillasAcumuladas" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th> -->
+
+                    <!--column Club actual-->
+                    <th class="text-center" pSortableColumn="clubActual.nombreClub">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Club Actual
+                            <p-sortIcon field="clubActual.nombreClub"></p-sortIcon>
+                            <p-columnFilter type="text" field="clubActual.nombreClub" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <!--column Estado-->
+                    <th class="text-center" pSortableColumn="estadoJugador.nombreEstado">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Estado
+                            <p-sortIcon field="estadoJugador.nombreEstado"></p-sortIcon>
+                            <p-columnFilter type="text" field="estadoJugador.nombreEstado" display="menu" class="p-ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
+                        Acciones
+                    </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-jugador>
+                <tr>
+                    <td>{{jugador.id}}</td>
+                    <td>{{jugador.apellidos}}</td>
+                    <td>{{jugador.nombre}}</td>
+                    <td>{{jugador.documento | number}}</td>
+                    <td>{{jugador.fechaNacimientoParsed | date:'dd/MM/YYYY' }}</td>
+                    <td>{{jugador.edadActual}}</td>
+                    <!--<td>{{jugador.tarjetasAmarillasAcumuladas}}</td> -->
+                    <td>{{jugador.clubActual != null ? (jugador.clubActual.nombreClub) : 'Sin Club'}}</td>
+                    <td>
+                        <p-tag styleClass="mx-2" [rounded]="true" [severity]="getSeverityByEstado(jugador)">{{jugador.estadoJugador.nombreEstado}}</p-tag>
+                    </td>
+                    <td class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
+                        <button pButton class="p-button-rounded p-button-raised p-button-text" icon="pi pi-arrows-h" routerLink="/jugadores/historialClubes/{{jugador.id}}" pTooltip="Historial clubes" tooltipPosition="top">
+                            <!--<i class="bi bi-arrow-down-up"></i>-->
+                        </button>
+                        <button pButton class="p-button-rounded p-button-raised p-button-text" icon="pi pi-pencil" routerLink="/jugadores/detalle/{{jugador.id}}" pTooltip="Detalle" tooltipPosition="top">
+                            <!--<i class="fas fa-edit"></i>-->
+                        </button>
+                    </td>
+                    
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="8">No se encontraron registros.</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-card>
     </div>
     <p-scrollTop></p-scrollTop>
 </div>
