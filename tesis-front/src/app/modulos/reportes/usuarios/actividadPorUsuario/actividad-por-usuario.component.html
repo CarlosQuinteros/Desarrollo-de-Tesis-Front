@@ -6,7 +6,7 @@
                 <div class="justify-content-center">
                     <div class="form-group ml-1">
                         <label class="mt-2 mb-2">Fecha desde y fecha hasta</label><br/>
-                        <p-calendar  [(ngModel)]="rangoFechas"  [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                        <p-calendar  [(ngModel)]="rangoFechas" styleClass="w-100"  [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
                         <p-message styleClass="m-1" *ngIf="rangoFechas[1] == null" severity="error" text="Debes seleccionar la fecha hasta"></p-message>
                     </div>
                     <div class="form-group">
@@ -79,9 +79,9 @@
       </ng-template>
       <ng-template pTemplate="body" let-log>
         <tr>
-          <td class="text-sm">{{log.fecha | date:'short'}}</td>
-          <td class="text-sm">{{log.logAccion}}</td>
-          <td class="text-sm">{{log.descripcion}}</td>
+          <td class="text-center">{{log.fecha | date:'short'}}</td>
+          <td class="text-center">{{log.logAccion}}</td>
+          <td class="text-center">{{log.descripcion}}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">

@@ -45,6 +45,7 @@ export class NuevaAsociacionDeportivaComponent implements OnInit {
     Swal.fire(
       {
         title: '¿Crear una nueva Asociacion?',
+        icon: 'question',
         showCancelButton: true,
         showConfirmButton: true,
         confirmButtonText: 'Crear',

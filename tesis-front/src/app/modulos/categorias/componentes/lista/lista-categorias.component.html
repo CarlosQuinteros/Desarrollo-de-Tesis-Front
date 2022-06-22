@@ -1,0 +1,92 @@
+<p-card header="Categorias" styleClass="shadow-1">
+    <p-table #dt [value]="categorias" styleClass="p-datatable-sm p-datatable-striped" dataKey="id" [rows]="5"
+      [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+      [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+      [filterDelay]="0">
+      <ng-template pTemplate="caption">
+        <div class="d-flex">
+            <button pRipple pButton class="p-button-sm p-button-rounded me-1" label="Nueva Categoria" icon="pi pi-plus-circle"
+            routerLink="/categorias/nuevo"></button>
+            <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros"
+            icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr class="text-center">
+          <!--column Id-->
+          <!-- <th style="width:min-content;" pSortableColumn="id">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Id
+              <p-sortIcon field="id"></p-sortIcon>
+              <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th> -->
+          <!-- columna Nombre-->
+          <th pSortableColumn="nombre">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Nombre
+              <p-sortIcon field="nombre"></p-sortIcon>
+              <p-columnFilter type="text" field="nombre" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna descripcion-->
+          <th pSortableColumn="descripcion">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Descripcion
+              <p-sortIcon field="descripcion"></p-sortIcon>
+              <p-columnFilter type="text" field="descripcion" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna descripcion-->
+          <th pSortableColumn="tipo">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Tipo
+              <p-sortIcon field="tipo"></p-sortIcon>
+              <p-columnFilter type="text" field="tipo" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna edadMinima-->
+          <th pSortableColumn="edadMinima">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Edad Min
+              <p-sortIcon field="edadMinima"></p-sortIcon>
+              <p-columnFilter type="numeric" field="edadMinima" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna edadMaxima-->
+          <th pSortableColumn="edadMaxima">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Edad Max
+              <p-sortIcon field="edadMaxima"></p-sortIcon>
+              <p-columnFilter type="numeric" field="edadMaxima" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- Columna acciones -->
+          <th class="text-center">Acciones</th>
+      </ng-template>
+      <ng-template pTemplate="body" let-categoria>
+        <tr>
+          <!-- <td>{{categoria.id}}</td> -->
+          <td>{{categoria.nombre}}</td>
+          <td>{{categoria.descripcion}}</td>
+          <td class="text-center">
+            <p-tag [styleClass]="claseSpanPorTipoCategoria(categoria)" [rounded]="true" value={{categoria.tipo}}></p-tag>
+            <!-- <span [ngClass]="claseSpanPorTipoCategoria(categoria)">{{categoria.tipo}}</span> -->
+          </td>
+          <td>{{categoria.edadMinima}}</td>
+          <td>{{categoria.edadMaxima}}</td>
+          <td class="text-center">
+            <button pButton class="p-button-rounded p-button-sm p-button-raised p-button-text" icon="pi pi-pencil"
+              pTooltip="Editar" tooltipPosition="top" routerLink="/categorias/detalle/{{categoria.id}}"></button>
+            <button pButton class="p-button-rounded p-button-sm p-button-raised p-button-text p-button-danger"
+              icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="top" (click)="eliminarCategoria(categoria.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="8">No se encontraron registros.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>

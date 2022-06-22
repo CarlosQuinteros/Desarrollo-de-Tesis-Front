@@ -45,7 +45,9 @@ export class AppComponent implements OnInit {
       monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun","Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
       today: 'Hoy',
       dateFormat: 'dd/mm/yy'
-    })  
+    })
+    document.documentElement.style.fontSize = '15px';
+
   }
 
   title = 'tesis-front';

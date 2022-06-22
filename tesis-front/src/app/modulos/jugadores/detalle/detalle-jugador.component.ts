@@ -69,6 +69,7 @@ export class DetalleJugadorComponent implements OnInit {
     //console.log(this.editarJugador);
     Swal.fire({
       title: "¿Realmente deseas editar el Jugador?",
+      icon: 'question',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       confirmButtonText: 'Editar',

@@ -2,7 +2,7 @@
 <div class="container fadein animation-iteration-1 animation-duration-500">
   <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
   <p-dialog header={{headerModal}} styleClass="rounded" [(visible)]="displayModal" [modal]="true"
-    [style]="{width: '40vw'}" [draggable]="false" [resizable]="false">
+  [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
     <form #form="ngForm" (ngSubmit)="obtenerJugador(form)" novalidate>
       <div class="card-body">
         <!--group documento-->
@@ -108,7 +108,7 @@
               </div>
             </th>
             <!-- column edad en pase-->
-            <th class="text-center" pSortableColumn="edadEnPase">
+            <th class="text-center" pSortableColumn="edadEnPase" pTooltip="Edad en que realizo el pase">
               <div class="p-d-flex p-jc-between p-ai-center">
                 Edad
                 <p-sortIcon field="edadEnPase"></p-sortIcon>

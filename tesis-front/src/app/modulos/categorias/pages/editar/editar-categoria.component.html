@@ -1,0 +1,64 @@
+<app-nav-bar></app-nav-bar>
+<div class="container fadein animation-iteration-1 animation-duration-400">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="row justify-content-center">
+        <div class="col col-sm-10 col-md-8 col-lg-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <i class=" bi bi-card-text me-1"></i>
+                    Editar Categoria
+                </div>
+                <form #form = "ngForm" (ngSubmit)="editarCategoria()" novalidate>
+                    <div class="card-body d-grid gap-2">
+                        <div class="p-2">
+                            <label for="labelNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control p-inputtext" #nombre="ngModel" [(ngModel)]="categoriaDto.nombre"  name="nombreCat" id="nombreCat" placeholder="Ingrese el nombre" required minlength="4">
+                            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="labelDesc" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control p-inputtext" #desc="ngModel" [(ngModel)]="categoriaDto.descripcion" name="descpCat" id="descpCat" placeholder="Ingrese una descripcion" required minlength="8">
+                            <div *ngIf="desc.invalid && (desc.dirty || desc.touched)">
+                                <p-message styleClass="m-1" *ngIf="desc.errors?.required"  severity="error" text="La descripcion es requerida"></p-message>
+                                <p-message styleClass="m-1" *ngIf="desc.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="labelTipoCat" id="tipoCat"  class="form-label">Tipo Categoria</label><br>
+                            <p-dropdown name="tipoCat" [options]="tipoCategorias" [(ngModel)]="selectedTipo" (onChange)="onChangeTipo($event)" optionLabel="tipo" optionValue="tipo"></p-dropdown>
+                            <p-message severity="info" styleClass="ml-2" text={{textoInfo}}></p-message>
+                        </div>
+                        <div class="pe-2 px-2  row">
+                            <div class="col" *ngIf="visibleEdadMin">
+                                <label for="labelEdadMin" class="form-label">Edad Minima Permitida</label>
+                                <input type="number" class="form-control p-inputtext" #edadMin="ngModel" [(ngModel)]="categoriaDto.edadMinima" name="edadMinCat" id="edadMinCat" placeholder="Ingrese la edad minima" required min="5" max="65">
+                                <div *ngIf="edadMin.invalid && (edadMin.dirty || edadMin.touched)">
+                                    <p-message styleClass="m-1" *ngIf="edadMin.errors?.required"  severity="error" text="La edad es requerida"></p-message>
+                                    <p-message styleClass="m-1" *ngIf="edadMin.errors?.min" severity="error" text="La edad minima debe ser mayor o igual a 5"></p-message>
+                                    <p-message styleClass="m-1" *ngIf="edadMin.errors?.max" severity="error" text="La edad minima debe ser menor o igual a 65"></p-message>
+                                </div>
+                            </div>
+                            <div class="col" *ngIf="visibleEdadMax">
+                                <label for="labelEdadMax" class="form-label">Edad Maxima Permitida</label>
+                                <input type="number" class="form-control p-inputtext" #edadMax="ngModel" [(ngModel)]="categoriaDto.edadMaxima" name="edadMaxCat" id="edadMaxCat" placeholder="Ingrese la edad maxima" required min="5" max="65">
+                                <div *ngIf="edadMax.invalid && (edadMax.dirty || edadMax.touched)">
+                                    <p-message styleClass="m-1" *ngIf="edadMax.errors?.required"  severity="error" text="La edad es requerida"></p-message>
+                                    <p-message styleClass="m-1" *ngIf="edadMax.errors?.min" severity="error" text="La edad maxima debe ser mayor o igual a 5"></p-message>
+                                    <p-message styleClass="m-1" *ngIf="edadMax.errors?.max" severity="error" text="La edad maxima debe ser menor o igual a 65"></p-message>
+                                </div>
+                            </div>
+                        </div>                 
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" (click)="goBack()"></button>
+                        <button pRipple pButton type="submit" class="p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -6,12 +6,12 @@
                 <div class="justify-content-center">
                     <div class="form-group ml-1">
                         <label class="mt-2 mb-2">Fecha desde y fecha hasta</label><br/>
-                        <p-calendar  [(ngModel)]="rangoFechas" [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                        <p-calendar  [(ngModel)]="rangoFechas" styleClass="w-100" [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
                         <p-message styleClass="m-1" *ngIf="rangoFechas[1] == null" severity="error" text="Debes seleccionar la fecha hasta"></p-message>
                     </div>
-                    <div class="form-group ml-1">
+                    <div class="form-group ml-1 p">
                         <label class="mt-2 mb-2" for="inputCantMax">Maximo de usuarios</label><br/>
-                        <p-inputNumber mode="decimal" inputStyleClass="form-control p-inputtext" [(ngModel)]="cantidadMax" [showButtons]="true" inputId="inputCantMax" [min]="1"></p-inputNumber>    
+                        <p-inputNumber mode="decimal" styleClass="w-100" inputStyleClass="w-100 form-control p-inputtext" [(ngModel)]="cantidadMax" [showButtons]="true" inputId="inputCantMax" [min]="1"></p-inputNumber>    
                     </div>
                     <div class="form-group mt-4">
                         <div class="d-grid gap-2">

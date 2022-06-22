@@ -104,4 +104,14 @@ export class ListadoJugadoresComponent implements OnInit {
     })
   }
 
+  obtenerCantidadPasesPorJugador(id: number) : number {
+    let cantidad : number = 0;
+    this.jugadorService.historialClubes(id).toPromise().then(
+      data => {
+        cantidad = data.length;
+      }
+    )
+    return cantidad;
+  }
+
 }

@@ -51,13 +51,17 @@ const routes: Routes = [
     path: 'asociaciones-deportivas',
     loadChildren: () => import('./modulos/asociaciones-deportivas/asociaciones-deportivas.module').then(m => m.AsociacionesDeportivasModule)
   },
+  {
+    path: 'categorias',
+    loadChildren: () => import('./modulos/categorias/categorias.module').then(m => m.CategoriasModule)
+  },
   
   {path: '**', redirectTo: 'auth', pathMatch: 'full' }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration:'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -58,6 +58,7 @@ export class EditarAsociacionDeportivaComponent implements OnInit {
     Swal.fire(
       {
         title: '¿Realmente deseas editar la Asociacion?',
+        icon: 'question',
         showCancelButton: true,
         showConfirmButton: true,
         confirmButtonText: 'Editar',

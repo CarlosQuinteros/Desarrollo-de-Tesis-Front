@@ -2,7 +2,7 @@
 <div class="container-xl fadein animation-iteration-1 animation-duration-500">
     <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
     <p-card styleClass="shadow-1 mb-4" header="Datos del Jugador">
-      <p class="text-2xl font-normal">Historial de Clubes de "{{detalleJugador.jugador.apellidos}}, {{detalleJugador.jugador.nombre}}"</p>
+          <p class="text-2xl font-normal">Historial de Clubes de "{{detalleJugador.jugador.apellidos}}, {{detalleJugador.jugador.nombre}}"</p>
           <p-tag styleClass="text-base font-normal m-1" [severity]="getTagServerityClubActual()" [value]="clubActualJugador()" icon="pi pi-shield" [rounded]="true"></p-tag>
           <p-chip styleClass="text-base p-1 font-normal m-1 px-2"> DNI: {{detalleJugador.jugador.documento | number}}</p-chip>
           <p-chip styleClass="text-base p-1 font-normal m-1 px-2">Fecha de Nacimiento: {{detalleJugador.jugador.fechaNacimientoParsed | date:fechaCorta}}</p-chip>
@@ -11,7 +11,7 @@
     <!--<button pButton class="p-button-help p-button-rounded m-2" icon = "bi bi-plus-circle" label="Nuevo Pase" routerLink="/jugadores/pases/nuevo/{{detalleJugador.jugador.id}}"></button>-->
     <div class="row justify-content-center mt-lg-3">
       <p-card styleClass="shadow-1 mb-4" header="Historial de clubes">
-          <p-table #dt [value]="detalleJugador.historialClubes" styleClass="p-datatable-striped p-datatable-sm" dataKey="id" [rows]="5"
+          <p-table #dt tableStyleClass="text-base" [value]="detalleJugador.historialClubes" styleClass="p-datatable-striped p-datatable-sm" dataKey="id" [rows]="5"
             [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
             [paginator]="true"
             currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"

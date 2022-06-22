@@ -7,6 +7,7 @@ import { EditarJugador } from 'src/app/core/Dtos/jugadores/editar-jugador';
 import { NuevoJugadorDto } from 'src/app/core/Dtos/jugadores/nuevo-jugador-dto';
 import { Jugador } from 'src/app/core/modelo/jugador';
 import { EditarPaseJugadorDto } from '../core/Dtos/jugadores/editar-pase-jugador-dto';
+import { Pase } from '../core/modelo/pase';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class JugadorService {
     return this.httpClient.put<any>(`${this.jugadoresURL}/editar/${id}`,editarJugador);
   }
 
-  public historialClubes(id : number): Observable<any>{
-    return this.httpClient.get<any>(`${this.jugadoresURL}/historialClubes/${id}`)
+  public historialClubes(id : number): Observable<Pase[]>{
+    return this.httpClient.get<Pase[]>(`${this.jugadoresURL}/historialClubes/${id}`)
   }
 
   public crearJugador(nuevoJugadorDto : NuevoJugadorDto):Observable<any> {

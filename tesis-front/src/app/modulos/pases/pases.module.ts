@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { ListadoPasesComponent } from './lista/listado-pases.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ScrollTopModule } from 'primeng/scrolltop';
     ButtonModule,
     SharedModule,
     CardModule,
-    ScrollTopModule
+    ScrollTopModule,
+    TooltipModule
   ]
 })
 export class PasesModule { }
