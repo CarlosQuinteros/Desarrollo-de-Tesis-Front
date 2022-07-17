@@ -1,0 +1,23 @@
+<br><p-message *ngIf="partidos.length === 0" styleClass="mt-4" severity="info" text="La jornada no cuenta con partidos"></p-message>
+<p-table [value]="partidos" styleClass="p-datatable-sm p-datatable-striped" responsiveLayout="stack" [rowHover]="true">
+    <ng-template pTemplate="body" let-partido>
+        <tr>
+            <td class="font-bold">{{partido.fecha | date:'H:mm'}} HS</td>
+            <td>{{partido.fecha | date:'E, d MMM, y'}}</td>
+            <td style="max-width: 200px;" class="line-height-2">{{partido.clubLocal}}</td>
+            <td class="text-center font-bold bg-bluegray-100">{{partido.cantidadGolesClubLocal}}</td>
+            <td>vs</td>
+            <td class="text-center font-bold bg-bluegray-100">{{partido.cantidadGolesClubVisitante}}</td>
+            <td style="max-width: 200px;" class="line-height-2">{{partido.clubVisitante}}</td>
+            <td>
+                <p-tag [styleClass]="classPorEstadoPartido(partido.estado)" [rounded]="true" value={{partido.estado}}></p-tag>
+            </td>
+            <td class="text-center" *ngIf="accionesVisibles">
+                <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text m-1" icon="pi pi-pencil" (click)="navegarAEdicionPartido(partido.idPartido)" pTooltip="Editar" tooltipPosition="top"></button>
+                <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text m-1" icon="fas fa-futbol" pTooltip="Ficha" tooltipPosition="top"></button>
+                <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text p-button-danger m-1" icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="top" (click)="eliminarPartido(partido.idPartido)"></button>
+            </td>
+        </tr>
+        
+    </ng-template>
+</p-table>

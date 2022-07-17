@@ -1,0 +1,108 @@
+<app-nav-bar></app-nav-bar>
+<div class="container fadein animation-iteration-1 animation-duration-500">
+    <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-lg-6">
+            <!-- <p-multiSelect styleClass="w-full" [overlayVisible]="false" [options]="clubes" [resetFilterOnHide]="true" [(ngModel)]="clubesParticipantes" defaultLabel="Selecciona los clubes" optionLabel="nombreClub" selectedItemsLabel="{0} Clubes seleccionados"></p-multiSelect>
+            <label class="form-label">Selecciona los clubes que participaran</label>
+            <p class="font-bold">{{leyendaClubesSelccionados()}} seleccionados</p>
+            <p-listbox [options]="clubes" [(ngModel)]="clubesParticipantes" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="nombreClub" [listStyle]="{'max-height':'300px'}" [style]="{'width':'100%'}"></p-listbox> -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <i class=" bi bi-card-text me-1"></i>
+                    Crear nueva competencia
+                </div>
+                <form #form = "ngForm" (ngSubmit)="editarCompetencia()" novalidate>
+                    <div class="card-body ">
+                        <div class="p-2">
+                            <label for="labelNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control p-inputtext" #nombre="ngModel" [(ngModel)]="competenciaDto.nombre" name="nombreComp" id="nombreComp" placeholder="Ingrese el nombre" required minlength="8">
+                            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.required"  severity="error" text="El nombre es requerido"></p-message>
+                                <p-message styleClass="m-1" *ngIf="nombre.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="labelDesc" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control p-inputtext" #descripcion="ngModel" [(ngModel)]="competenciaDto.descripcion" name="descComp" id="descComp" placeholder="Ingrese una descripcion" required minlength="8">
+                            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                                <p-message styleClass="m-1" *ngIf="descripcion.errors?.required"  severity="error" text="La descripcion es requerida"></p-message>
+                                <p-message styleClass="m-1" *ngIf="descripcion.errors?.minlength" severity="error" text="Debe tener al menos 8 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="labelTemporada" class="form-label">Temporada</label>
+                            <input type="text" class="p-inputtext form-control" #temporada="ngModel" [(ngModel)]="competenciaDto.temporada" name="temporadaComp" id="temporadaComp" placeholder="Ingrese la temporada" required minlength="4">
+                            <div *ngIf="temporada.invalid && (temporada.dirty || temporada.touched)">
+                                <p-message styleClass="m-1" *ngIf="temporada.errors?.required"  severity="error" text="La temporada es requerida"></p-message>
+                                <p-message styleClass="m-1" *ngIf="temporada.errors?.minlength" severity="error" text="Debe tener al menos 4 caracteres"></p-message>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="p-2">
+                                    <label for="labelGenero" class="form-label">Genero</label><br>
+                                    <p-dropdown name="generoComp" [options]="generos" [(ngModel)]="competenciaDto.genero" placeholder="Seleccione"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2">
+                                    <label for="labelcategoria" class="form-label">Categoria</label><br>
+                                    <p-dropdown styleClass="max-w-full" name="categoriaComp" [options]="categorias" optionLabel="nombre" optionValue="id" [(ngModel)]="competenciaDto.idCategoria" placeholder="Seleccione" [filter]="true" filterBy="nombre" [showClear]="false">
+                                        <ng-template let-categoria pTemplate="item">
+                                            <div>
+                                                <p>{{categoria.nombre}}</p>
+                                                <p class="text-gray-700 text-sm">{{categoria.descripcion}}</p>
+                                            </div>
+                                        </ng-template>
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="p-2">
+                                    <label for="labelAsociacion" class="form-label">Organiza</label><br>
+                                    <p-dropdown styleClass="max-w-full" name="asociacionComp" [options]="asociaciones" optionLabel="nombre" optionValue="id" [(ngModel)]="competenciaDto.idAsociacionDeportiva" placeholder="Seleccione" [filter]="true" filterBy="nombre"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2">
+                                    <label for="labeltarjetas" class="form-label">Amarallias Permitidas</label><br>
+                                    <input type="number" name="tarjetasComp" [(ngModel)]="competenciaDto.tarjetasAmarillasPermitidas" #tarjetas="ngModel" class="p-inputtext" min="5" max="8" value="5" required>
+                                    <div *ngIf="tarjetas.invalid && (tarjetas.dirty || tarjetas.touched)">
+                                        <p-message styleClass="m-1" *ngIf="tarjetas.errors?.required"  severity="error" text="La cantidad es requerida"></p-message>
+                                        <p-message styleClass="m-1" *ngIf="tarjetas.errors?.min" severity="error" text="La cantidad minima es 5"></p-message>
+                                        <p-message styleClass="m-1" *ngIf="tarjetas.errors?.max" severity="error" text="La cantidad maxima es 8"></p-message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                 
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button pRipple pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-times" label="Cancelar" (click)="goBack()"></button>
+                        <button pRipple pButton type="submit" class="p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <p class="text-lg text-gray-800">Seleccione los clubes que participaran. Cuando se carguen partidos, se tendrá en cuenta este listado.</p>
+            <p class="text-lg text-bluegray-600 font-bold">{{leyendaClubesSelccionados()}}</p>
+            <p-pickList [source]="clubes" sourceHeader="Clubes" [dragdrop]="true" [responsive]="false" targetHeader="Participan"
+                [target]="clubesParticipantes" filterBy="nombreClub" [sourceStyle]="{'height':'20rem'}"
+                [targetStyle]="{'height':'20rem'}" sourceFilterPlaceholder="Buscar por nombre"
+                targetFilterPlaceholder="Buscar por nombre" [showSourceControls]="false" [showTargetControls]="false">
+                <ng-template let-club pTemplate="item">
+                    <div>
+                        <p>{{club.nombreClub}}</p>
+                    </div>
+                </ng-template>
+            </p-pickList>
+        </div>
+    </div>
+    
+
+</div>
+<app-footer></app-footer>

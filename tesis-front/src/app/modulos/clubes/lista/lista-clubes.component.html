@@ -62,10 +62,10 @@
           </ng-template>
           <ng-template pTemplate="body" let-club>
             <tr>
-              <td >{{club.id}}</td>
-              <td>{{club.nombreClub}}</td>
+              <td>{{club.id}}</td>
+              <td style="max-width: 250px;" class="line-height-2">{{club.nombreClub}}</td>
               <td>{{club.alias}}</td>
-              <td>{{club.email}}</td>
+              <td style="max-width: 200px;" class="line-height-2">{{club.email}}</td>
               <td class="text-center" *ngIf="isAdmin || isEncargadoJugadores">
                 <button pButton class="p-button-success p-button p-button-rounded p-button-raised p-button-text me-1" icon="fas fa-running" routerLink="/clubes/{{club.id}}/jugadores" pTooltip="Ver Jugadores" tooltipPosition = "top">
                     <!--<i class="fas fa-running"></i>-->

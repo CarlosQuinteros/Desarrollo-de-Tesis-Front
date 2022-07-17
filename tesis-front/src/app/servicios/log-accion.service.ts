@@ -34,10 +34,10 @@ export class LogAccionService {
       {label: 'Modificacion Pase', value: 'PASES_MODIFICACION'},
       {label: 'Eliminacion Pase', value: 'PASES_ELIMINACION'},
       
-      {label:'Torneos', value: 'TORNEOS'},
-      {label:'Creacion Torneos', value: 'TORNEOS_CREACION'},
-      {label:'Modificacion torneo', value: 'TORNEOS_ MODIFICACION'},
-      {label:'Eliminacion torneo', value:'TORNEOS_ELIMINACION'},
+      {label:'Competencias', value: 'COMPETENCIAS'},
+      {label:'Creacion Competencias', value: 'COMPETENCIAS_CREACION'},
+      {label:'Modificacion Competencias', value: 'COMPETENCIAS_MODIFICACION'},
+      {label:'Eliminacion Competencias', value:'COMPETENCIAS_ELIMINACION'},
 
       {label:'Jueces', value: 'JUEZ'},
       {label:'Creacion Arbitro', value: 'JUEZ_CREACION'},
@@ -50,8 +50,9 @@ export class LogAccionService {
       {label:'Eliminacion Asociacion', value:'ASOCIACION_DEP_ELIMINACION'},
 
       {label:'Partidos', value: 'PARTIDOS'},
-      {label:'Creacion Partidos', value: 'CREACION_PARTIDOS'},
-      {label:'Modificacion Partido', value: 'MODIFICACION_PARTIDO'},
+      {label:'Creacion Partidos', value: 'PARTIDO_CREACION'},
+      {label:'Modificacion Partido', value: 'PARTIDO_MODIFICACION'},
+      {label:'Eliminacion Partido', value: 'PARTIDO_ELIMINACION'}
     ]
     return acciones;
   }

@@ -14,7 +14,17 @@ export const environment = {
   pasesJugadoresURL: 'http://localhost:8080/pases',
   juecesURL: 'http://localhost:8080/jueces',
   asociacionesURL: 'http://localhost:8080/asociaciones-deportivas',
-  categoriasURL: 'http://localhost:8080/categorias'
+  categoriasURL: 'http://localhost:8080/categorias',
+  generosURL: 'http://localhost:8080/generos',
+  competenciasURL: 'http://localhost:8080/competencias',
+  partidosURL: 'http://localhost:8080/partidos',
+  jornadaURL: 'http://localhost:8080/jornadas',
+  juezRolURL: 'http://localhost:8080/participaciones-jueces',
+  jugadorPartidoURL: 'http://localhost:8080/participaciones-jugadores',
+  anotacionesURL: 'http://localhost:8080/anotaciones',
+  sustitucionesURL: 'http://localhost:8080/sustituciones'
+
+
 
 };
 

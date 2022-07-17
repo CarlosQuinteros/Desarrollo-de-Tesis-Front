@@ -35,10 +35,10 @@ export class ListaCategoriasComponent implements OnInit {
 
   claseSpanPorTipoCategoria(categoria : Categoria) : string{
     const clasesCss : {[key: string]: string}= {
-      SIN_RESTRICCIONES:'w-min p-tag bg-green-600 text-center',
-      HASTA_EDAD:'w-min p-tag bg-blue-600 text-center',
-      DESDE_EDAD:'w-min p-tag bg-orange-600 text-center',
-      ENTRE_EDADES:'w-min p-tag bg-pink-600 text-center',
+      SIN_RESTRICCIONES:'w-min p-tag bg-green-200 text-green-800 text-center',
+      HASTA_EDAD:'w-min p-tag bg-blue-200 text-blue-800 text-center',
+      DESDE_EDAD:'w-min p-tag bg-orange-200 text-orange-800 text-center',
+      ENTRE_EDADES:'w-min p-tag bg-pink-200 text-pink-800 text-center',
     }
     return clasesCss[categoria.tipo];
 

@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'categorias',
     loadChildren: () => import('./modulos/categorias/categorias.module').then(m => m.CategoriasModule)
   },
+  {
+    path: 'competencias',
+    loadChildren: () => import('./modulos/competencias/competencias.module').then(m => m.CompetenciasModule)
+  },
   
   {path: '**', redirectTo: 'auth', pathMatch: 'full' }
 

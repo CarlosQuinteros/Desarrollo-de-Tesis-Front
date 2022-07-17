@@ -12,6 +12,7 @@ import {ScrollTopModule} from 'primeng/scrolltop';
 import { ListaLogsComponent } from './lista/lista-logs.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CardModule } from 'primeng/card';
+import { TabViewModule } from 'primeng/tabview';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CardModule } from 'primeng/card';
     SharedModule,
     DropdownModule,
     ScrollTopModule,
-    CardModule
+    CardModule,
+    TabViewModule
   ]
 })
 export class LogsModule { }

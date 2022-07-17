@@ -1,0 +1,102 @@
+<p-card header="Competencias" styleClass="shadow-1">
+    <p-table #dt [value]="competencias" styleClass="p-datatable-sm p-datatable-striped" dataKey="id" [rows]="5"
+      [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading" [rowHover]="true"
+      [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last} de un total de {totalRecords} registros"
+      [filterDelay]="0">
+      <ng-template pTemplate="caption">
+        <div class="d-flex">
+            <button pRipple pButton class="p-button-sm p-button-rounded me-1" label="Nueva Competencia" icon="pi pi-plus-circle"
+            routerLink="/competencias/nuevo"></button>
+          <button pRipple pButton class="p-button-sm p-button-outlined p-button-rounded me-1" label="Limpiar Filtros"
+            icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr class="text-center">
+          <!--column Id-->
+          <th style="width:min-content;" pSortableColumn="id">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Id
+              <p-sortIcon field="id"></p-sortIcon>
+              <p-columnFilter type="numeric" field="id" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna Asociacion-->
+          <th pSortableColumn="asociacionDeportiva.alias">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Asoc
+              <p-sortIcon field="asociacionDeportiva.alias"></p-sortIcon>
+              <p-columnFilter type="text" field="asociacionDeportiva.alias" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna Nombre-->
+          <th pSortableColumn="nombre">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Nombre
+              <p-sortIcon field="nombre"></p-sortIcon>
+              <p-columnFilter type="text" field="nombre" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna temporada-->
+          <th pSortableColumn="temporada">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Temporada
+              <p-sortIcon field="temporada"></p-sortIcon>
+              <p-columnFilter type="text" field="temporada" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna genero-->
+          <th pSortableColumn="genero">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Genero
+              <p-sortIcon field="genero"></p-sortIcon>
+              <p-columnFilter type="text" field="genero" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna categoria-->
+          <th pSortableColumn="categoria.descripcion">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Categoria
+              <p-sortIcon field="categoria.descripcion"></p-sortIcon>
+              <p-columnFilter type="text" field="categoria.descripcion" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- columna estado-->
+          <th pSortableColumn="estado">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Estado
+              <p-sortIcon field="estado"></p-sortIcon>
+              <p-columnFilter type="text" field="estado" display="menu" class="p-ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <!-- Columna acciones -->
+          <th class="text-center">Acciones</th>
+      </ng-template>
+      <ng-template pTemplate="body" let-competencia>
+        <tr>
+          <td>{{competencia.id}}</td>
+          <td>{{competencia.asociacionDeportiva.alias}}</td>
+          <td style="max-width: 200px;">{{competencia.nombre}}</td>
+          <td style="max-width: 170px;">{{competencia.temporada}}</td>
+          <td>{{competencia.genero}}</td>
+          <td style="max-width: 200px;" class="line-height-2">{{competencia.categoria.descripcion}}</td>
+          <td>
+            <p-tag [styleClass]="clasePorEstadoCompetencia('PENDIENTE')" [rounded]="true" value="PENDIENTE"></p-tag>
+          </td>
+          <td class="text-center">
+            <button pButton class="p-button-rounded p-button-raised p-button-text" icon="pi pi-pencil"
+              pTooltip="Editar" tooltipPosition="top" routerLink="/competencias/editar/{{competencia.id}}"></button>
+            <button pButton class="p-button-rounded p-button-raised p-button-text" icon="pi pi-flag"
+              pTooltip="Calendario" tooltipPosition="top" routerLink="/competencias/{{competencia.id}}/calendario"></button>
+            <button pButton class="p-button-rounded p-button p-button-raised p-button-text p-button-danger"
+              icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="top" (click)="eliminarCompetencia(competencia.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="8">No se encontraron registros</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>

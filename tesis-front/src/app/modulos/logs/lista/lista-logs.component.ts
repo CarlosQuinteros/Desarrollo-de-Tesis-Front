@@ -3,8 +3,13 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Calendar } from 'primeng/calendar';
 import { Table } from 'primeng/table';
+import { Jornada } from 'src/app/core/modelo/jornada';
+import { Jornadas } from 'src/app/core/Dtos/fixture/jornadas';
+
 import { Log } from 'src/app/core/modelo/log';
+import { CompetenciasService } from 'src/app/servicios/competencias.service';
 import { FechaDesdeHastaService } from 'src/app/servicios/fecha-desde-hasta.service';
+import { JornadasService } from 'src/app/servicios/jornadas.service';
 import { LogAccionService } from 'src/app/servicios/log-accion.service';
 import { LogService } from 'src/app/servicios/log.service';
 
@@ -22,6 +27,7 @@ export class ListaLogsComponent implements OnInit {
   home : MenuItem = {}
   items : MenuItem[] = [];
 
+  calendario : Jornadas[] = [];
 
   constructor(
     private logsService: LogService, 
@@ -32,7 +38,7 @@ export class ListaLogsComponent implements OnInit {
   ngOnInit(): void {
     this.cargarLogs();
     this.cargarAcciones();
-    this.cargarItems();   
+    this.cargarItems();
   }
 
   clear(table : Table){
@@ -65,6 +71,5 @@ export class ListaLogsComponent implements OnInit {
   detalleUsuario(id: number): void {
     this.router.navigate([`/usuarios/detalle/${id}`]);
   }
-
 
 }
