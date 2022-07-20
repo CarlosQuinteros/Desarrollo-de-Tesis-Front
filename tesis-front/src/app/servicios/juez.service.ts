@@ -21,8 +21,8 @@ export class JuezService {
     return this.httpClient.get<Juez>(`${this.juecesURL}/detalle/${id}`);
   }
   
-  public detalleJuezPorDniOLegajo(dniOLegajo : number): Observable<Juez>{
-    return this.httpClient.get<Juez>(`${this.juecesURL}/detalle/${dniOLegajo}`);
+  public detalleJuezPorDniOLegajo(dniOLegajo : string): Observable<Juez>{
+    return this.httpClient.get<Juez>(`${this.juecesURL}/detalle/dni-legajo/${dniOLegajo}`);
   }
 
   public editarJuez(id:number, juezEditado : NuevoJuezDto): Observable<any>{
@@ -41,8 +41,8 @@ export class JuezService {
     return this.httpClient.get<number>(`${this.juecesURL}/cantidad`);
   }
 
-  public listadoNombreRolJuez(): Observable<string>{
-    return this.httpClient.get<string>(`${this.juecesURL}/roles`);
+  public listadoNombreRolJuez(): Observable<string[]>{
+    return this.httpClient.get<string[]>(`${this.juecesURL}/roles`);
   }
 
   

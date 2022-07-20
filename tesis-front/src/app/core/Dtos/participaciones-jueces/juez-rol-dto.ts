@@ -1,11 +1,11 @@
 export class JuezRolDto {
     idPartido : number;
     idJuez : number;
-    roles : string;
+    rol : string;
 
-    constructor(idPartido : number, idJuez : number, roles : string) {
+    constructor(idPartido : number, idJuez : number, rol : string) {
         this.idPartido = idPartido;
         this.idJuez = idJuez;
-        this.roles = roles;
+        this.rol = rol;
     }
 }

@@ -8,6 +8,7 @@ import { EditarCompetenciaComponent } from './pages/editar/editar-competencia.co
 import { CalendarioCompetenciaComponent } from './pages/calendario/calendario-competencia.component';
 import { CrearPartidoComponent } from './componentes/partidos/crear-partido.component';
 import { EditarPartidoComponent } from './componentes/partidos/editar/editar-partido.component';
+import { PageFichaPartidoComponent } from './pages/ficha-partido/page-ficha-partido.component';
 
 const ADMIN = Roles.ADMIN;
 const ENCARGADO_DE_TORNEOS = Roles.ENCARGADO_DE_TORNEOS;
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'partido/:idPartido/editar',
         component: EditarPartidoComponent
+      },
+      {
+        path: 'partido/:idPartido/ficha',
+        component: PageFichaPartidoComponent
       }
     ]
   }

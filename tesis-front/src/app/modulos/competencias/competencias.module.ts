@@ -29,6 +29,12 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { CrearPartidoComponent } from './componentes/partidos/crear-partido.component';
 import { CalendarModule } from 'primeng/calendar';
 import { EditarPartidoComponent } from './componentes/partidos/editar/editar-partido.component';
+import {CarouselModule} from 'primeng/carousel';
+import { PageFichaPartidoComponent } from './pages/ficha-partido/page-ficha-partido.component';
+import { EncabezadoPartidoComponent } from './componentes/partidos/portada-ficha-partido/encabezado-partido.component';
+import {AccordionModule} from 'primeng/accordion';
+import { CrearParticipacionJuezComponent } from './componentes/partidos/participacion-jueces/crear/crear-participacion-juez.component';
+import { EditarParticipacionJuezComponent } from './componentes/partidos/participacion-jueces/editar/editar-participacion-juez.component';
 
 
 @NgModule({
@@ -40,7 +46,11 @@ import { EditarPartidoComponent } from './componentes/partidos/editar/editar-par
     CalendarioCompetenciaComponent,
     DetalleCompetenciaComponent,
     CrearPartidoComponent,
-    EditarPartidoComponent
+    EditarPartidoComponent,
+    PageFichaPartidoComponent,
+    EncabezadoPartidoComponent,
+    CrearParticipacionJuezComponent,
+    EditarParticipacionJuezComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +73,13 @@ import { EditarPartidoComponent } from './componentes/partidos/editar/editar-par
     ToastModule,
     DynamicDialogModule,
     CalendarModule,
+    CarouselModule,
+    AccordionModule,
     SharedModule
+  ],
+  entryComponents:[
+    CrearParticipacionJuezComponent,
+    EditarParticipacionJuezComponent
   ]
 })
 export class CompetenciasModule { }

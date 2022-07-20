@@ -1,7 +1,12 @@
-<p-card *ngIf="competencia != null" styleClass="shadow-1" [header]="competencia.nombre">
-    <span class="text-base">{{competencia.descripcion}}.  </span>
-    <span>Organiza {{competencia.asociacionDeportiva.nombre}}.  </span>
-    <p>Temporada: {{competencia.temporada}}</p>
-    <p-chip styleClass="px-2 p-1 mr-2 mb-2">{{competencia.genero}}</p-chip>
-    <p-chip styleClass="px-2 p-1 mb-2">{{competencia.categoria.tipo}} : {{competencia.categoria.descripcion}}</p-chip>
-</p-card>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <p-card *ngIf="competencia != null" styleClass="shadow-1" [header]="competencia.nombre">
+            <span class="text-base">{{competencia.descripcion}}.  </span>
+            <span>Organiza {{competencia.asociacionDeportiva.nombre}}.  </span>
+            <p>Temporada: {{competencia.temporada}}</p>
+            <p-chip styleClass="px-2 p-1 mr-2 mb-2">{{competencia.genero}}</p-chip>
+            <p-chip styleClass="px-2 p-1 mb-2">{{competencia.categoria.tipo}} : {{competencia.categoria.descripcion}}</p-chip>
+            <button pRipple pButton class="p-button-sm p-button-rounded p-button-secondary p-button-text p-button-text" icon="pi pi-pencil" label="Datos" routerLink="/competencias/editar/{{competencia.id}}"></button>
+        </p-card>
+    </div>
+</div>

@@ -16,14 +16,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./calendario-competencia.component.css'],
   providers: [DialogService]
 })
-export class CalendarioCompetenciaComponent implements OnInit, OnDestroy {
+export class CalendarioCompetenciaComponent implements OnInit{
 
   competencia : Competencia | null = null;
   calendario : Jornadas[] = [];
   home : MenuItem = {}
   items : MenuItem[] = [];
   idCompetencia : number = 0;
-
   constructor(
     private router :Router,
     private rutaActiva : ActivatedRoute,
@@ -31,9 +30,6 @@ export class CalendarioCompetenciaComponent implements OnInit, OnDestroy {
     private jornadaService: JornadasService,
     public dialogService: DialogService,
   ) { }
-  
-
-  ref!: DynamicDialogRef;
 
 
   ngOnInit(): void {
@@ -156,12 +152,6 @@ export class CalendarioCompetenciaComponent implements OnInit, OnDestroy {
   obtenerNumeroSiguienteJornada(): number{
     let ultimaJornada : number | undefined = this.calendario.map(jornada => jornada.jornada.numero).pop();
     return ultimaJornada === undefined ? 1 : ultimaJornada + 1;
-  }
-
-  ngOnDestroy(): void {
-    if(this.ref){
-      this.ref.close();
-    }
   }
 
 }

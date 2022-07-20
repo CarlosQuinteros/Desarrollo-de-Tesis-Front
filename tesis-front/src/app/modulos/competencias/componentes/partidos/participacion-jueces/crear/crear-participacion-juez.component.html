@@ -1,0 +1,26 @@
+<div class="row" id="bodyJuez">
+    <div class="col-8">
+        <input type="text" class="form-control p-inputtext" name="docJuez" id="docJuez" [(ngModel)]="dniOLegajo" placeholder="Buscar por DNI o legajo" required>
+    </div>
+    <div class="col-4">
+        <button type="button" pRipple pButton class="p-button-sm p-button-rounded" icon="pi pi-search" label="Buscar" (click)="obtenerJuez()"></button>
+    </div>
+    <form #form= "ngForm" (ngSubmit)="crearParticipacionJuez()"  novalidate>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <label for="labelNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control p-inputtext" name="nombreJuez" id="nombreJuez" #nombre="ngModel" [(ngModel)]="juez.nombres" placeholder="Campo autocompletado" readonly required>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="labelApellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control p-inputtext" name="apellidoJuez" id="apellidoJuez" #apellido="ngModel" [(ngModel)]="juez.apellidos" placeholder="Campo autocompletado" readonly required>
+            </div>
+            <div class="col-12 col-md-10">
+                <p-dropdown [options]="roles" name="roles" styleClass="max-w-full" [(ngModel)]="juezRolDto.rol" appendTo="body"></p-dropdown>
+            </div>
+        </div>
+        <div class="mt-2 card-footer d-flex justify-content-end">
+            <button type="submit" pRipple pButton class="p-button-sm p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+        </div>
+    </form>
+</div>

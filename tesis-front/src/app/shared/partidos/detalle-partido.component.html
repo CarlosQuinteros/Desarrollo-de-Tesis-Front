@@ -14,7 +14,7 @@
             </td>
             <td class="text-center" *ngIf="accionesVisibles">
                 <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text m-1" icon="pi pi-pencil" (click)="navegarAEdicionPartido(partido.idPartido)" pTooltip="Editar" tooltipPosition="top"></button>
-                <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text m-1" icon="fas fa-futbol" pTooltip="Ficha" tooltipPosition="top"></button>
+                <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text m-1" icon="fas fa-futbol" pTooltip="Ficha" tooltipPosition="top" routerLink="/competencias/partido/{{partido.idPartido}}/ficha"></button>
                 <button pRipple pButton role="button" class="p-button-sm p-button-rounded p-button-raised p-button-text p-button-danger m-1" icon="pi pi-trash" pTooltip="Eliminar" tooltipPosition="top" (click)="eliminarPartido(partido.idPartido)"></button>
             </td>
         </tr>

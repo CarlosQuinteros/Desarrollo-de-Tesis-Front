@@ -1,11 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="container fadein animation-iteration-1 animation-duration-400">
     <p-breadcrumb class="m-2" [model]="items" [home]="home"></p-breadcrumb>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <app-detalle-competencia [competencia]="competencia!"></app-detalle-competencia>
-        </div>
-    </div>
+    <app-detalle-competencia [competencia]="competencia!"></app-detalle-competencia>
     <p-card header="Cronograma" styleClass="shadow-1 mt-3 mb-5">
         <button pRipple pButton class="p-button-sm p-button-raised p-button-rounded ml-3 mb-2" icon="pi pi-plus-circle" (click)="crearJornada()" label="Nueva Jornada"></button>
         <br><p-message *ngIf="calendario.length === 0" styleClass="m-4" severity="info" text="La competencia no cuenta con jornadas"></p-message>
