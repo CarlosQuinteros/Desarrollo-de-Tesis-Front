@@ -4,7 +4,7 @@
     <app-encabezado-partido [partido]="partido" *ngIf="partido"></app-encabezado-partido>
     <p-accordion [multiple]="true" styleClass="mt-4 shadow-1">
         <p-accordionTab header="JUECES" [selected]="jueces.length > 0">
-            <button pRipple pButton class="p-button-sm p-button-rounded p-button-raised mb-2" icon="pi pi-plus-circle" label="Nuevo" (click)="showNuevaParticipacionJuez()"></button>
+            <button pRipple pButton class="p-button-rounded p-button-text mb-2" icon="pi pi-plus-circle" label="Nuevo" (click)="showNuevaParticipacionJuez()"></button>
             <br><p-message *ngIf="jueces.length === 0" styleClass="mt-2" severity="info" text="No existen jueces en este partido"></p-message>
             <p-table *ngIf="jueces.length > 0"[value]="jueces" [loading]="loadingJueces" styleClass="p-datatable-sm p-datatable-striped" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
@@ -32,15 +32,15 @@
     <div class="row g-2" *ngIf=partido>
         <div class="col-12 col-md-6">
                 <div class="text-lg p-2 bg-blue-500 text-white rounded-3 shadow-3">{{partido.clubLocal}}</div>
-                <p-accordion [multiple]="true" styleClass="mb-2">
+                <p-accordion [multiple]="true" styleClass="mb-2" *ngIf="detallePartido">
                     <p-accordionTab header="TITULARES">
-                        Content 1
+                        <app-lista-jugadores-titulares  [partido]="detallePartido" [club]="detallePartido.clubLocal"></app-lista-jugadores-titulares>
                     </p-accordionTab>
                     <p-accordionTab header="SUPLENTES">
-                        Content 1
+                        <app-lista-jugadores-suplentes  [partido]="detallePartido" [club]="detallePartido.clubLocal"></app-lista-jugadores-suplentes>
                     </p-accordionTab>
                     <p-accordionTab header="SUSTITUCIONES">
-                        Content 1
+                        <app-lista-sustituciones [partido]="detallePartido" [club]="detallePartido.clubLocal"></app-lista-sustituciones>
                     </p-accordionTab>
                     <p-accordionTab header="ANOTACIONES">
                         Content 1
@@ -49,15 +49,15 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="text-lg p-2 bg-blue-500 text-white rounded-3 shadow-3">{{partido.clubVisitante}}</div>
-            <p-accordion [multiple]="true">
+            <p-accordion [multiple]="true" *ngIf="detallePartido">
                 <p-accordionTab header="TITULARES">
-                    titularesa
+                    <app-lista-jugadores-titulares  [partido]="detallePartido" [club]="detallePartido.clubVisitante"></app-lista-jugadores-titulares>
                 </p-accordionTab>
                 <p-accordionTab header="SUPLENTES">
-                    Content 1
+                    <app-lista-jugadores-suplentes [partido]="detallePartido" [club]="detallePartido.clubVisitante"></app-lista-jugadores-suplentes>
                 </p-accordionTab>
                 <p-accordionTab header="SUSTITUCIONES">
-                    Content 1
+                    <app-lista-sustituciones [partido]="detallePartido" [club]="detallePartido.clubVisitante"></app-lista-sustituciones>
                 </p-accordionTab>
                 <p-accordionTab header="ANOTACIONES">
                     Content 1

@@ -1,0 +1,33 @@
+<button pRipple pButton class="p-button-rounded p-button-text mb-2" icon="pi pi-plus-circle" label="Nuevo"
+    (click)="showCrearSuplente()"></button>
+<br>
+<p-message *ngIf="suplentes.length === 0" styleClass="mt-2" severity="info" text="No existen suplentes">
+</p-message>
+<p-table *ngIf="suplentes.length > 0" [value]="suplentes" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-striped text-sm" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Pos</th>
+            <th>Jugador</th>
+            <th>DNI</th>
+            <th>Edad</th>
+            <th>N°Cam</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-suplente>
+        <tr>
+            <td [ngClass]="textClassPorPosicion(suplente.posicion) + ' bg-gray-200'">{{suplente.posicion}}</td>
+            <td>{{suplente.jugador.apellidos}} {{suplente.jugador.nombre}}</td>
+            <td>{{suplente.jugador.documento}}</td>
+            <td>{{suplente.edadEnPartido}}</td>
+            <td>{{suplente.nroCamiseta}}</td>
+            <td>
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text" icon="pi pi-pencil"
+                (click)="showEditarSuplente(suplente)"></button>
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text p-button-danger"
+                    icon="pi pi-trash" (click)="eliminarParticipacionJugador(suplente.id)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

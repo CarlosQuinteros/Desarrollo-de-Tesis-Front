@@ -1,0 +1,31 @@
+<button pRipple pButton class=" p-button-rounded p-button-text mb-2" icon="pi pi-plus-circle" label="Nuevo"
+    (click)="showCrearSustitucion()"></button>
+<br>
+<p-message *ngIf="sustituciones.length === 0" styleClass="mt-2" severity="info" text="No existen sustituciones">
+</p-message>
+<p-table *ngIf="sustituciones.length > 0" [value]="sustituciones" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-striped text-sm" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Entra</th>
+            <th></th>
+            <th>Sale</th>
+            <th>Minuto</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-sustitucion>
+        <tr>
+            <td>{{sustitucion.jugadorEntra.apellidos}} {{sustitucion.jugadorEntra.nombre}}</td>
+            <td><i class="bi bi-arrow-left-right font-bold"></i></td>
+            <td>{{sustitucion.jugadorSale.apellidos}} {{sustitucion.jugadorSale.nombre}}</td>
+            <td>{{sustitucion.minuto}}</td>
+            <td>
+                <!-- <button pRipple pButton class="p-button-sm p-button-rounded p-button-text" icon="pi pi-pencil"
+                ></button> -->
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text p-button-danger"
+                    icon="pi pi-trash" (click)="eliminarSustitucion(sustitucion)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

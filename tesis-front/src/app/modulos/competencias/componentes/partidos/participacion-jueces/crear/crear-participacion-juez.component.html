@@ -1,10 +1,12 @@
 <div class="row" id="bodyJuez">
-    <div class="col-8">
-        <input type="text" class="form-control p-inputtext" name="docJuez" id="docJuez" [(ngModel)]="dniOLegajo" placeholder="Buscar por DNI o legajo" required>
-    </div>
-    <div class="col-4">
-        <button type="button" pRipple pButton class="p-button-sm p-button-rounded" icon="pi pi-search" label="Buscar" (click)="obtenerJuez()"></button>
-    </div>
+    <form #formBuscar = "ngForm" (ngSubmit)="obtenerJuez()" class="row">
+        <div class="col-8">
+            <input type="text" class="form-control p-inputtext" name="docJuez" id="docJuez" [pKeyFilter]= "blockSpace" [(ngModel)]="dniOLegajo" placeholder="Buscar por DNI o legajo" minlength="3" required>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <button type="submit" pRipple pButton class="p-button-sm p-button-rounded" icon="pi pi-search" label="Buscar" [disabled]="!formBuscar.valid"></button>
+        </div>        
+    </form>
     <form #form= "ngForm" (ngSubmit)="crearParticipacionJuez()"  novalidate>
         <div class="row">
             <div class="col-12 col-md-6">

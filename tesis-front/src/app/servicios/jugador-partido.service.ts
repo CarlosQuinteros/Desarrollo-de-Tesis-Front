@@ -23,11 +23,15 @@ export class JugadorPartidoService {
     return this.httpClient.post<any>(`${this.participacionJugadoresURL}/suplente`, nuevoSuplente);
   }
 
-  public editarParticipacion(participacionJugador : JugadorPartidoDto, idParticipacion : number):Observable<JugadorPartido>{
+  public editarParticipacion(participacionJugador : JugadorPartidoDto, idParticipacion : number):Observable<any>{
     return this.httpClient.put<any>(`${this.participacionJugadoresURL}/editar/${idParticipacion}`, participacionJugador);
   }
 
   public eliminarParticipacionJugador(idParticipacion : number):Observable<any>{
     return this.httpClient.delete<any>(`${this.participacionJugadoresURL}/eliminar/${idParticipacion}`);
+  }
+
+  public posiciones():Observable<string[]>{
+    return this.httpClient.get<string[]>(`${this.participacionJugadoresURL}/posiciones`);
   }
 }

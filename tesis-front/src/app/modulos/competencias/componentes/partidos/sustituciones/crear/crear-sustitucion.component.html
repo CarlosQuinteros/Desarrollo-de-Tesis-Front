@@ -1,0 +1,47 @@
+<div class="row" id="bodySustitucion">
+    <form #form= "ngForm" (ngSubmit)="crearSustitucion()" novalidate>
+        <div class="row">
+            <div class="col-12">
+                <label for="labelPos" class="form-label">Jugador que sale</label><br>
+                <p-dropdown styleClass="max-w-full" name="jugsale" appendTo="body" [options]="jugadores"  [(ngModel)]="jugadorSaleSelected" placeholder="Seleccione" [filter]="true" filterBy="nombre, apellidos,documento" [showClear]="false" [required]="true">
+                    <ng-template pTemplate="selectedItem">
+                        <div *ngIf="jugadorSaleSelected">
+                            <div>{{jugadorSaleSelected.apellidos}}, {{jugadorSaleSelected.nombre}} DNI: {{jugadorSaleSelected.documento}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-jugador pTemplate="item">
+                        <div>
+                            <p>{{jugador.apellidos}}, {{jugador.nombre}}</p>
+                            <p class="text-gray-700 text-sm">{{jugador.documento}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-12">
+                <label for="labelPos" class="form-label">Jugador que entra</label><br>
+                <p-dropdown styleClass="max-w-full" name="jugentra" appendTo="body" [options]="jugadores" [(ngModel)]="jugadorEntraSelected" placeholder="Seleccione" [filter]="true" filterBy="nombre, apellidos,documento" [showClear]="false" [required]="true">
+                    <ng-template pTemplate="selectedItem">
+                        <div *ngIf="jugadorEntraSelected">
+                            <div>{{jugadorEntraSelected.apellidos}}, {{jugadorEntraSelected.nombre}} DNI: {{jugadorEntraSelected.documento}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-jugador pTemplate="item">
+                        <div>
+                            <p>{{jugador.apellidos}}, {{jugador.nombre}}</p>
+                            <p class="text-gray-700 text-sm">{{jugador.documento}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="labelMin" class="form-label">Minuto de juego</label>
+                <input type="number" class="form-control p-inputtext" [(ngModel)]="sustitucionDto.minuto" name="minuto" id="minuto" min="1" max="125" required>
+
+            </div>
+            
+        </div>
+        <div class="mt-2 card-footer d-flex justify-content-end">
+            <button type="submit" pRipple pButton class="p-button-sm p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+        </div>
+    </form>
+</div>

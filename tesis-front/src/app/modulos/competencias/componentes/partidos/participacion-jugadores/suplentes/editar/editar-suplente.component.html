@@ -1,0 +1,26 @@
+<div class="row" id="bodyJugador">
+    <form #form= "ngForm" (ngSubmit)="editarSuplente()"  novalidate>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <label for="labelNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control p-inputtext" name="nombreJug" id="nombreJug" #nombre="ngModel" [(ngModel)]="jugador.nombre" placeholder="Campo autocompletado" readonly required>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="labelApellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control p-inputtext" name="apellidoJuez" id="apellidoJuez" #apellido="ngModel" [(ngModel)]="jugador.apellidos" placeholder="Campo autocompletado" readonly required>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="labelApellido" class="form-label">Camiseta</label>
+                <input type="number" class="form-control p-inputtext" name="nroCamiseta" id="nroCamiseta" #camiseta="ngModel" [(ngModel)]="jugadorPartidoDto.nroCamiseta" min="0">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="labelPos" class="form-label">Posicion</label><br>
+                <p-dropdown [options]="posiciones" styleClass="p-inputtext-sm" name="posicion" styleClass="max-w-full" [(ngModel)]="jugadorPartidoDto.posicion" appendTo="body"></p-dropdown>
+            </div>
+            
+        </div>
+        <div class="mt-2 card-footer d-flex justify-content-end">
+            <button type="submit" pRipple pButton class="p-button-sm p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+        </div>
+    </form>
+</div>

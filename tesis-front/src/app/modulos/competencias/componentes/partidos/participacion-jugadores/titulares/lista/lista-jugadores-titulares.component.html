@@ -1,0 +1,33 @@
+<button pRipple pButton class="p-button-rounded p-button-text mb-2" icon="pi pi-plus-circle" label="Nuevo"
+    (click)="showCrearTitular()"></button>
+<br>
+<p-message *ngIf="titulares.length === 0" styleClass="mt-2" severity="info" text="No existen titulares">
+</p-message>
+<p-table *ngIf="titulares.length > 0" [value]="titulares" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-striped text-sm" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Pos</th>
+            <th>Jugador</th>
+            <th>DNI</th>
+            <th>Edad</th>
+            <th>N°Cam</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-titular>
+        <tr>
+            <td [ngClass]="textClassPorPosicion(titular.posicion) + ' bg-gray-200'">{{titular.posicion}}</td>
+            <td>{{titular.jugador.apellidos}} {{titular.jugador.nombre}}</td>
+            <td>{{titular.jugador.documento}}</td>
+            <td>{{titular.edadEnPartido}}</td>
+            <td>{{titular.nroCamiseta}}</td>
+            <td>
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text" icon="pi pi-pencil"
+                (click)="showEditarTitular(titular)"></button>
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text p-button-danger"
+                    icon="pi pi-trash" (click)="eliminarParticipacionJugador(titular.id)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

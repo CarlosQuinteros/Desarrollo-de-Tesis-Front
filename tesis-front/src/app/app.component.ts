@@ -45,7 +45,8 @@ export class AppComponent implements OnInit {
       monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun","Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
       today: 'Hoy',
       dateFormat: 'dd/mm/yy',
-      emptyFilterMessage:'Sin resultados'
+      emptyFilterMessage:'Busqueda sin resultados',
+      emptyMessage:'No se obtuvieron datos'
     })
     document.documentElement.style.fontSize = '15px';
 

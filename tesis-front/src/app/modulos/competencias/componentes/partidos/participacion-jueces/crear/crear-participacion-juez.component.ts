@@ -19,6 +19,7 @@ export class CrearParticipacionJuezComponent implements OnInit {
   dniOLegajo :string = '';
   juez : Juez = new Juez(0,'','','','');
   juezRolDto : JuezRolDto = new JuezRolDto(0,0,'');
+  blockSpace: RegExp = /[^\s]/;
 
   constructor(
     private juezService: JuezService,

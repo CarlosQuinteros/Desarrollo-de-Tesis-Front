@@ -10,8 +10,9 @@ export class JugadorPartido {
     rol : string;
     posicion: string;
     edadEnPartido: number;
+    nroCamiseta: number;
 
-    constructor(id: number, partido: Partido,club: Club, jugador: Jugador, rol: string, posicion: string, edadEnPartido: number) {
+    constructor(id: number, partido: Partido,club: Club, jugador: Jugador, rol: string, posicion: string, edadEnPartido: number, nroCamiseta: number) {
         this.id = id;
         this.partido = partido;
         this.club = club;
@@ -19,5 +20,6 @@ export class JugadorPartido {
         this.rol = rol;
         this.posicion = posicion;
         this.edadEnPartido = edadEnPartido;
+        this.nroCamiseta = nroCamiseta;
     }
 }

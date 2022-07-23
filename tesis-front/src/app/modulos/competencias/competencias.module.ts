@@ -35,6 +35,15 @@ import { EncabezadoPartidoComponent } from './componentes/partidos/portada-ficha
 import {AccordionModule} from 'primeng/accordion';
 import { CrearParticipacionJuezComponent } from './componentes/partidos/participacion-jueces/crear/crear-participacion-juez.component';
 import { EditarParticipacionJuezComponent } from './componentes/partidos/participacion-jueces/editar/editar-participacion-juez.component';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { ListaJugadoresTitularesComponent } from './componentes/partidos/participacion-jugadores/titulares/lista/lista-jugadores-titulares.component';
+import { CrearTitularComponent } from './componentes/partidos/participacion-jugadores/titulares/crear/crear-titular.component';
+import { CrearSuplenteComponent } from './componentes/partidos/participacion-jugadores/suplentes/crear/crear-suplente.component';
+import { ListaJugadoresSuplentesComponent } from './componentes/partidos/participacion-jugadores/suplentes/lista/lista-jugadores-suplentes.component';
+import { EditarSuplenteComponent } from './componentes/partidos/participacion-jugadores/suplentes/editar/editar-suplente.component';
+import { EditarTitularComponent } from './componentes/partidos/participacion-jugadores/titulares/editar/editar-titular.component';
+import { ListaSustitucionesComponent } from './componentes/partidos/sustituciones/lista/lista-sustituciones.component';
+import { CrearSustitucionComponent } from './componentes/partidos/sustituciones/crear/crear-sustitucion.component';
 
 
 @NgModule({
@@ -50,7 +59,15 @@ import { EditarParticipacionJuezComponent } from './componentes/partidos/partici
     PageFichaPartidoComponent,
     EncabezadoPartidoComponent,
     CrearParticipacionJuezComponent,
-    EditarParticipacionJuezComponent
+    EditarParticipacionJuezComponent,
+    ListaJugadoresTitularesComponent,
+    ListaJugadoresSuplentesComponent,
+    CrearTitularComponent,
+    CrearSuplenteComponent,
+    EditarSuplenteComponent,
+    EditarTitularComponent,
+    ListaSustitucionesComponent,
+    CrearSustitucionComponent
   ],
   imports: [
     CommonModule,
@@ -75,11 +92,17 @@ import { EditarParticipacionJuezComponent } from './componentes/partidos/partici
     CalendarModule,
     CarouselModule,
     AccordionModule,
+    KeyFilterModule,
     SharedModule
   ],
   entryComponents:[
     CrearParticipacionJuezComponent,
-    EditarParticipacionJuezComponent
+    EditarParticipacionJuezComponent,
+    CrearTitularComponent,
+    CrearSuplenteComponent,
+    EditarTitularComponent,
+    EditarSuplenteComponent,
+    CrearSustitucionComponent
   ]
 })
 export class CompetenciasModule { }

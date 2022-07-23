@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DetalleGeneralPartidoDto } from '../core/Dtos/partidos/detalle-general-partido-dto';
 import { PartidoDto } from '../core/Dtos/partidos/partido-dto';
