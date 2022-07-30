@@ -144,6 +144,14 @@ export class PageFichaPartidoComponent implements OnInit, OnDestroy{
     )
   }
 
+  /************* escuhando evento de listado anotaciones */
+  setPartido(partido : DetalleGeneralPartidoDto):void{
+    if(this.partido.idPartido === partido.idPartido){
+      this.partido.cantidadGolesClubLocal = partido.cantidadGolesClubLocal;
+      this.partido.cantidadGolesClubVisitante = partido.cantidadGolesClubVisitante;
+    }
+  }
+
   /************ finalizacion partido**** */
   finalizarPartido(): void {
     Swal.fire({

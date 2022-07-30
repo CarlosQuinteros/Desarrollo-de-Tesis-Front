@@ -43,7 +43,7 @@
                         <app-lista-sustituciones [partido]="detallePartido" [club]="detallePartido.clubLocal"></app-lista-sustituciones>
                     </p-accordionTab>
                     <p-accordionTab header="ANOTACIONES">
-                        Content 1
+                        <app-lista-anotaciones [partido]="detallePartido" (detallePartido)="setPartido($event)" [club]="detallePartido.clubLocal"></app-lista-anotaciones>
                     </p-accordionTab>
                 </p-accordion>
         </div>
@@ -60,7 +60,7 @@
                     <app-lista-sustituciones [partido]="detallePartido" [club]="detallePartido.clubVisitante"></app-lista-sustituciones>
                 </p-accordionTab>
                 <p-accordionTab header="ANOTACIONES">
-                    Content 1
+                    <app-lista-anotaciones [partido]="detallePartido" (detallePartido)="setPartido($event)" [club]="detallePartido.clubVisitante"></app-lista-anotaciones>
                 </p-accordionTab>
             </p-accordion>
         </div>

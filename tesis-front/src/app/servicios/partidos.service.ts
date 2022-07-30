@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DetalleGeneralPartidoDto } from '../core/Dtos/partidos/detalle-general-partido-dto';
 import { PartidoDto } from '../core/Dtos/partidos/partido-dto';
 import { Anotacion } from '../core/modelo/anotacion';
 import { JuezRol } from '../core/modelo/juez-rol';
+import { Jugador } from '../core/modelo/jugador';
 import { JugadorPartido } from '../core/modelo/jugador-partido';
 import { Partido } from '../core/modelo/partido';
 import { Sustitucion } from '../core/modelo/sustitucion';

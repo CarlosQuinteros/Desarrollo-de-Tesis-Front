@@ -1,12 +1,24 @@
 <div class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
         <p-card *ngIf="competencia != null" styleClass="shadow-1" [header]="competencia.nombre">
             <span class="text-base">{{competencia.descripcion}}.  </span>
             <span>Organiza {{competencia.asociacionDeportiva.nombre}}.  </span>
             <p>Temporada: {{competencia.temporada}}</p>
             <p-chip styleClass="px-2 p-1 mr-2 mb-2">{{competencia.genero}}</p-chip>
             <p-chip styleClass="px-2 p-1 mb-2">{{competencia.categoria.tipo}} : {{competencia.categoria.descripcion}}</p-chip>
-            <button pRipple pButton class="p-button-sm p-button-rounded p-button-secondary p-button-text p-button-text" icon="pi pi-pencil" label="Datos" routerLink="/competencias/editar/{{competencia.id}}"></button>
+            <button pRipple pButton class="p-button-rounded p-button-secondary p-button-text p-button-text" icon="pi pi-pencil" label="Datos" routerLink="/competencias/editar/{{competencia.id}}"></button>
         </p-card>
+    </div>
+    <div class="col-12 col-md-7">
+        <div *ngIf="competencia != null" class="shadow-1 p-card">
+            <p-tabView styleClass="pt-2">
+                <p-tabPanel header="Goleadores">
+                    <app-lista-goleadores [competencia]="competencia!"></app-lista-goleadores>         
+                </p-tabPanel>
+                <p-tabPanel header="Estadisticas Generales" iconLeft="bi bi-trophy-fill">
+                    <app-estadisticas-generales-competencia [competencia]="competencia"></app-estadisticas-generales-competencia>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
     </div>
 </div>

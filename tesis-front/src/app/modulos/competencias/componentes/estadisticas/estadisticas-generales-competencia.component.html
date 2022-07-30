@@ -1,0 +1,6 @@
+<p-message styleClass="m-1" *ngIf="cantidadPartidos === 0" severity="info" text="No existen partidos"></p-message>
+<div *ngIf="cantidadPartidos > 0">
+    <p-chart type="pie" [data]="chart" height="23vh" width="100%"></p-chart>
+    <p class="text-center">{{textoMediaGoles}}</p>
+    <p class="text-center">{{textoCantidadGoles}}</p>
+</div>

@@ -22,7 +22,8 @@ export const environment = {
   juezRolURL: 'http://localhost:8080/participaciones-jueces',
   jugadorPartidoURL: 'http://localhost:8080/participaciones-jugadores',
   anotacionesURL: 'http://localhost:8080/anotaciones',
-  sustitucionesURL: 'http://localhost:8080/sustituciones'
+  sustitucionesURL: 'http://localhost:8080/sustituciones',
+  estadisticasCompetenciasURL: 'http://localhost:8080/estadisticas-competencia'
 
 
 

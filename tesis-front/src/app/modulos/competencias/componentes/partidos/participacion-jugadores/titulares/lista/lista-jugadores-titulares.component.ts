@@ -124,7 +124,7 @@ export class ListaJugadoresTitularesComponent implements OnInit, OnDestroy {
         this.obtenerTitularesSegunClub();
       },
       err => {
-        Swal.fire(err.error.message, '', 'error');
+        Swal.fire('Error',err.error.message, 'error');
       }
     )
   }

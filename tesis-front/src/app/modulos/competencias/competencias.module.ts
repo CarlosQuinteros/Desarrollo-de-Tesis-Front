@@ -44,6 +44,13 @@ import { EditarSuplenteComponent } from './componentes/partidos/participacion-ju
 import { EditarTitularComponent } from './componentes/partidos/participacion-jugadores/titulares/editar/editar-titular.component';
 import { ListaSustitucionesComponent } from './componentes/partidos/sustituciones/lista/lista-sustituciones.component';
 import { CrearSustitucionComponent } from './componentes/partidos/sustituciones/crear/crear-sustitucion.component';
+import { ListaAnotacionesComponent } from './componentes/partidos/anotaciones/lista/lista-anotaciones.component';
+import { CrearAnotacionComponent } from './componentes/partidos/anotaciones/crear/crear-anotacion.component';
+import { EditarAnotacionComponent } from './componentes/partidos/anotaciones/editar/editar-anotacion.component';
+import { ListaGoleadoresComponent } from './componentes/goleadores/lista-goleadores.component';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import { EstadisticasGeneralesCompetenciaComponent } from './componentes/estadisticas/estadisticas-generales-competencia.component';
+import { ChartModule } from 'primeng/chart';
 
 
 @NgModule({
@@ -67,7 +74,12 @@ import { CrearSustitucionComponent } from './componentes/partidos/sustituciones/
     EditarSuplenteComponent,
     EditarTitularComponent,
     ListaSustitucionesComponent,
-    CrearSustitucionComponent
+    CrearSustitucionComponent,
+    ListaAnotacionesComponent,
+    CrearAnotacionComponent,
+    EditarAnotacionComponent,
+    ListaGoleadoresComponent,
+    EstadisticasGeneralesCompetenciaComponent
   ],
   imports: [
     CommonModule,
@@ -93,6 +105,8 @@ import { CrearSustitucionComponent } from './componentes/partidos/sustituciones/
     CarouselModule,
     AccordionModule,
     KeyFilterModule,
+    VirtualScrollerModule,
+    ChartModule,
     SharedModule
   ],
   entryComponents:[
@@ -102,7 +116,9 @@ import { CrearSustitucionComponent } from './componentes/partidos/sustituciones/
     CrearSuplenteComponent,
     EditarTitularComponent,
     EditarSuplenteComponent,
-    CrearSustitucionComponent
+    CrearSustitucionComponent,
+    CrearAnotacionComponent,
+    EditarAnotacionComponent
   ]
 })
 export class CompetenciasModule { }

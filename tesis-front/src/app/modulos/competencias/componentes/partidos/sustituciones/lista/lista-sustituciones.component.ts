@@ -100,7 +100,7 @@ export class ListaSustitucionesComponent implements OnInit {
         this.obtenerSustitucionesSegunClub();
       },
       err => {
-        Swal.fire(err.error.message, '', 'error');
+        Swal.fire('Error',err.error.message, 'error');
       }
     )
   }

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="labelPos" class="form-label">Jugador que sale</label><br>
-                <p-dropdown styleClass="max-w-full" name="jugsale" appendTo="body" [options]="jugadores"  [(ngModel)]="jugadorSaleSelected" placeholder="Seleccione" [filter]="true" filterBy="nombre, apellidos,documento" [showClear]="false" [required]="true">
+                <p-dropdown styleClass="max-w-full" name="jugsale" appendTo="body" [options]="jugadores"  [(ngModel)]="jugadorSaleSelected" placeholder="Seleccione" [filter]="true" filterBy="apellidos,nombre,documento" [showClear]="false" [required]="true">
                     <ng-template pTemplate="selectedItem">
                         <div *ngIf="jugadorSaleSelected">
                             <div>{{jugadorSaleSelected.apellidos}}, {{jugadorSaleSelected.nombre}} DNI: {{jugadorSaleSelected.documento}}</div>
@@ -19,7 +19,7 @@
             </div>
             <div class="col-12">
                 <label for="labelPos" class="form-label">Jugador que entra</label><br>
-                <p-dropdown styleClass="max-w-full" name="jugentra" appendTo="body" [options]="jugadores" [(ngModel)]="jugadorEntraSelected" placeholder="Seleccione" [filter]="true" filterBy="nombre, apellidos,documento" [showClear]="false" [required]="true">
+                <p-dropdown styleClass="max-w-full" name="jugentra" appendTo="body" [options]="jugadores" [(ngModel)]="jugadorEntraSelected" placeholder="Seleccione" [filter]="true" filterBy="apellidos,nombre,documento" [showClear]="false" [required]="true">
                     <ng-template pTemplate="selectedItem">
                         <div *ngIf="jugadorEntraSelected">
                             <div>{{jugadorEntraSelected.apellidos}}, {{jugadorEntraSelected.nombre}} DNI: {{jugadorEntraSelected.documento}}</div>

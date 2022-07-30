@@ -1,0 +1,31 @@
+<button pRipple pButton class="p-button-rounded p-button-text mb-2" icon="pi pi-plus-circle" label="Nuevo"
+    (click)="showCrearAnotacion()"></button>
+<br>
+<p-message *ngIf="anotaciones.length === 0" styleClass="mt-2" severity="info" text="No existen anotaciones">
+</p-message>
+<p-table *ngIf="anotaciones.length > 0" [value]="anotaciones" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-striped text-sm" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Jugador</th>
+            <th>DNI</th>
+            <th>Min</th>
+            <th>Tipo Gol</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-anotacion>
+        <tr>
+            <td>{{anotacion.jugador.apellidos}} {{anotacion.jugador.nombre}}</td>
+            <td>{{anotacion.jugador.documento}}</td>
+            <td>{{anotacion.minuto}}'</td>
+            <td>{{anotacion.tipoGol}}</td>
+            <td>
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text" icon="pi pi-pencil"
+                (click)="showEditarAnotacion(anotacion)"></button>
+                <button pRipple pButton class="p-button-sm p-button-rounded p-button-text p-button-danger"
+                    icon="pi pi-trash" (click)="eliminarAnotation(anotacion)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

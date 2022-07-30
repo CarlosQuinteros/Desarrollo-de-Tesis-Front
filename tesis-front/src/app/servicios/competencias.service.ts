@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CompetenciaDto } from '../core/Dtos/competencias/competencia-dto';
+import { Goleador } from '../core/Dtos/competencias/goleador';
 import { Competencia } from '../core/modelo/competencia';
 import { Jornada } from '../core/modelo/jornada';
 
@@ -47,6 +48,10 @@ export class CompetenciasService {
 
   public cantidadTotalCompetencias(): Observable<number>{
     return this.httpClient.get<number>(`${this.competenciasURL}/cantidad-total`);
+  }
+
+  public goleadoresDeCompetencia(idCompetencia : number): Observable<Goleador[]>{
+    return this.httpClient.get<Goleador[]>(`${this.competenciasURL}/${idCompetencia}/goleadores`);
   }
 
 }

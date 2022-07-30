@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Competencia } from 'src/app/core/modelo/competencia';
 import { CompetenciasService } from 'src/app/servicios/competencias.service';
+import { EstadisticasCompetenciaService } from 'src/app/servicios/estadisticas-competencia.service';
 
 @Component({
   selector: 'app-detalle-competencia',

@@ -23,6 +23,10 @@ export class AnotacionService {
     return this.httpClient.put<any>(`${this.anotacionesURL}/editar/${id}`, editarAnotacion);
   }
 
+  public eliminarAnotacion(id: number): Observable<any>{
+    return this.httpClient.delete<any>(`${this.anotacionesURL}/eliminar/${id}`);
+  }
+
   public tiposDeGol():Observable<string[]>{
     return this.httpClient.get<string[]>(`${this.anotacionesURL}/tipo-goles`);
   }

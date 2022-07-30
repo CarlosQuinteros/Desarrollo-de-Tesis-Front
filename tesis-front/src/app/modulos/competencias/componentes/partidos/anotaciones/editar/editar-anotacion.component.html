@@ -1,0 +1,37 @@
+<div class="row"  id="bodyAnotacion">
+    <form #form= "ngForm" (ngSubmit)="editarAnotacion()" novalidate>
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <label for="labelGol" class="form-label">Seleccione el tipo de gol</label><br>
+                <p-dropdown styleClass="max-w-full" name="tipoGol" appendTo="body" [options]="tipoGoles" (onChange)="onChangeTipoGol($event)" [(ngModel)]="anotacionDto.tipoGol"></p-dropdown>
+            </div>
+            <div class="col-12">
+                <p-message *ngIf="anotacionDto.tipoGol === 'GOL_EN_CONTRA'" severity="info" styleClass="" text='Debes seleccionar un jugador del equipo contrario'></p-message>
+            </div>
+            <div class="col-12">
+                <label for="labelAnota" class="form-label">Jugador que anota</label><br>
+                <p-dropdown styleClass="max-w-full" name="juganota" appendTo="body" [options]="jugadores"  [(ngModel)]="jugadorAnotaSelected" placeholder="Seleccione" [filter]="true" filterBy="apellidos,nombre,documento" [showClear]="false" [required]="true">
+                    <ng-template pTemplate="selectedItem">
+                        <div *ngIf="jugadorAnotaSelected">
+                            <div>{{jugadorAnotaSelected.apellidos}}, {{jugadorAnotaSelected.nombre}} DNI: {{jugadorAnotaSelected.documento}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-jugador pTemplate="item">
+                        <div>
+                            <p>{{jugador.apellidos}}, {{jugador.nombre}}</p>
+                            <p class="text-gray-700 text-sm">{{jugador.documento}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="labelMin" class="form-label">Minuto de juego</label>
+                <input type="number" class="form-control p-inputtext" [(ngModel)]="anotacionDto.minuto" name="minuto" id="minuto" min="1" max="125" required>
+            </div>
+            
+        </div>
+        <div class="mt-2 card-footer d-flex justify-content-end">
+            <button type="submit" pRipple pButton class="p-button-sm p-button-rounded p-button-raised" icon="pi pi-check" label="Guardar" [disabled]="!form.valid"></button>
+        </div>
+    </form>
+</div>

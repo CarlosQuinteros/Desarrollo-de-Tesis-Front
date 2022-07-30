@@ -137,8 +137,8 @@ export class EditarCompetenciaComponent implements OnInit {
   solicitarEdicionCompetencia(): void {
     this.competenciaService.editarCompetencia(this.competenciaDto, this.idCompetencia).subscribe(
       data => {
-        Swal.fire({title:data.mensaje, text:'Te redireccionamos al listado',icon:'success'});
-        this.router.navigate(['/competencias']);
+        Swal.fire({title:data.mensaje, text:'',icon:'success'});
+        this.location.back();
       },
       err => {
         Swal.fire({title:'Error', text: err.error.message, icon:'error'});

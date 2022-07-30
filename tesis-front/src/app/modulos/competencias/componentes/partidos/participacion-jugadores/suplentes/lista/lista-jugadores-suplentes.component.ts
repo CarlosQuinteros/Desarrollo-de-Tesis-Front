@@ -121,7 +121,7 @@ export class ListaJugadoresSuplentesComponent implements OnInit, OnDestroy {
         this.obtenerSuplentesSegunClub();
       },
       err => {
-        Swal.fire(err.error.message, '', 'error');
+        Swal.fire('Error',err.error.message, 'error');
       }
     )
   }
